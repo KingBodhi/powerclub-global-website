@@ -4,18 +4,23 @@ import Image from "next/image";
 const PARTNERS = [
   {
     id: 1,
-    name: "Mad Lads",
-    logo: "/partners/madlads.svg",
+    name: "DC Blockchain Summit",
+    logo: "/partners/dc-blockchain-summit.png",
   },
   {
     id: 2,
-    name: "Monke DAO",
-    logo: "/partners/monkedao.png",
+    name: "Eth Denver",
+    logo: "/partners/ethdenver.png",
   },
   {
     id: 3,
-    name: "Solana ID",
-    logo: "/partners/solanaid.png",
+    name: "Bitcoin Conference",
+    logo: "/partners/bitcoin-conference.svg",
+  },
+  {
+    id: 4,
+    name: "Consensys",
+    logo: "/partners/consensys.png",
   },
 ];
 
