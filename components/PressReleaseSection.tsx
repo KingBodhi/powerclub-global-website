@@ -163,7 +163,7 @@ const PressReleaseSection: React.FC = () => {
   }
 
   return (
-    <div className="relative w-full pb-32 overflow-hidden">
+    <div className="relative w-full pb-32 ">
       {/* Animated Grid Background */}
       <div className="absolute inset-0">
         <svg

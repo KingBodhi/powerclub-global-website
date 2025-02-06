@@ -7,6 +7,7 @@ import {
   Code,
   LucideIcon,
 } from "lucide-react";
+import { motion } from "motion/react";
 
 interface ServiceCardProps {
   icon: LucideIcon;
@@ -143,7 +144,19 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
 const ServicesSection: React.FC = () => {
   return (
-    <div className="relative w-full pb-32">
+    <div className="relative w-full pb-32 overflow-x-hidden">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.2 }}
+        className="absolute top-24 right-0 w-[200px] h-[200px] rounded-full bg-gradient-to-l from-[#ae904c]/10 to-[#ae904c]/20 blur-[64px] animate-blob animation-delay-2000"
+      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.2 }}
+        className="absolute bottom-14 left-10 w-[200px] h-[200px] rounded-full bg-gradient-to-l from-[#ae904c]/10 to-[#ae904c]/20 blur-[64px] animate-blob animation-delay-2000"
+      />
       <div className="container mx-auto px-4">
         <div className="text-center md:mb-16 mb-12">
           <h2 className="text-4xl font-bold mb-3 md:mb-6">
