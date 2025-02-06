@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
@@ -17,23 +19,16 @@ const PressReleaseCard: React.FC<PressReleaseCardProps> = ({
   image,
 }) => (
   <div className="group relative h-[450px] perspective-1000">
-    {/* 3D Container */}
     <div className="preserve-3d transition-transform duration-500 ease-out group-hover:[transform:rotateX(10deg)_rotateY(-10deg)]">
-      {/* Shadow Layer */}
       <div className="absolute inset-0 rounded-md bg-black/30 blur-xl transform translate-y-4 scale-95 transition-all duration-500 group-hover:translate-y-8 group-hover:scale-90" />
-
-      {/* Card Frame */}
       <div className="absolute inset-0 rounded-md backdrop-blur-sm bg-[#ae904c]/5 border border-[#ae904c]/20 transform transition-all duration-500" />
-
-      {/* Main Card Content */}
       <div
         className="relative h-[450px] rounded-md backdrop-blur-sm bg-gradient-to-b from-[#ae904c]/5 to-[#ae904c]/0 
         border border-[#ae904c]/20 group-hover:border-[#ae904c]/40
         transition-all duration-500 ease-out transform
         group-hover:-translate-y-2 group-hover:-translate-x-2"
       >
-        {/* Image Container */}
-        <div className="h-48 w-full rounded-t-md overflow-hidden">
+        <div className="h-48 w-full rounded-t-md overflow-hidden relative">
           <img
             src={image}
             alt={title}
@@ -42,13 +37,11 @@ const PressReleaseCard: React.FC<PressReleaseCardProps> = ({
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50" />
         </div>
 
-        {/* Glow Effects */}
         <div className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           <div className="absolute inset-0 bg-gradient-to-tr from-[#ae904c]/20 via-transparent to-[#ae904c]/20 animate-gradient-shift" />
           <div className="absolute -inset-px rounded-md bg-gradient-to-r from-[#ae904c]/30 via-[#ae904c]/10 to-[#ae904c]/30 blur-sm group-hover:animate-pulse" />
         </div>
 
-        {/* Content Container */}
         <div className="relative z-10 p-6 w-full h-[calc(100%-12rem)] flex flex-col">
           <div className="flex justify-between items-center mb-4">
             <span className="text-[#ae904c]/80 text-sm font-medium">
@@ -81,17 +74,34 @@ const PressReleaseCard: React.FC<PressReleaseCardProps> = ({
 
 const PressReleaseSection: React.FC = () => {
   const [time, setTime] = useState(0);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [isClient, setIsClient] = useState(false);
   const gridSize = 60;
-  const cols = Math.ceil(window.innerWidth / gridSize);
-  const rows = Math.ceil(window.innerHeight / gridSize);
 
   useEffect(() => {
+    setIsClient(true);
+    const updateDimensions = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+
     const interval = setInterval(() => {
       setTime((prev) => prev + 0.01);
     }, 1000 / 30);
 
-    return () => clearInterval(interval);
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+      clearInterval(interval);
+    };
   }, []);
+
+  const cols = Math.ceil(dimensions.width / gridSize) || 0;
+  const rows = Math.ceil(dimensions.height / gridSize) || 0;
 
   const calculateOpacity = (row: number, col: number): number => {
     const waveX = Math.sin((col * 0.3 + time) * 0.5);
@@ -108,7 +118,7 @@ const PressReleaseSection: React.FC = () => {
       description:
         "Announcing the launch of our groundbreaking platform that transforms how businesses interact with their customers.",
       readingTime: "3 min read",
-      image: "/api/placeholder/800/600",
+      image: "/press-release/press-release-1.jpg",
     },
     {
       date: "January 15, 2024",
@@ -116,7 +126,7 @@ const PressReleaseSection: React.FC = () => {
       description:
         "Exciting new partnership set to revolutionize industry standards and create innovative solutions for clients.",
       readingTime: "4 min read",
-      image: "/api/placeholder/800/600",
+      image: "/press-release/press-release-2.jpg",
     },
     {
       date: "January 5, 2024",
@@ -124,7 +134,7 @@ const PressReleaseSection: React.FC = () => {
       description:
         "Our team's dedication to excellence recognized with prestigious industry award for technological innovation.",
       readingTime: "2 min read",
-      image: "/api/placeholder/800/600",
+      image: "/press-release/press-release-4.jpg",
     },
     {
       date: "December 20, 2023",
@@ -132,9 +142,25 @@ const PressReleaseSection: React.FC = () => {
       description:
         "Strategic expansion plans unveiled as company moves to establish presence in key international markets.",
       readingTime: "5 min read",
-      image: "/api/placeholder/800/600",
+      image: "/press-release/press-release-3.jpg",
     },
   ];
+
+  // Show a simple loading state during SSR
+  if (!isClient) {
+    return (
+      <div className="relative w-full pb-32 overflow-hidden bg-black">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="animate-pulse">
+              <div className="h-8 w-48 bg-[#ae904c]/10 rounded mb-4" />
+              <div className="h-4 w-64 bg-[#ae904c]/5 rounded" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full pb-32 overflow-hidden">

@@ -11,43 +11,72 @@ interface AnimationPoint {
   duration: number;
 }
 
+interface Dimensions {
+  width: number;
+  height: number;
+}
+
 const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
-  const [mousePosition, setMousePosition] = useState<MousePosition>({
-    x: window.innerWidth * 0.1,
-    y: window.innerHeight * 0.9,
+  const [dimensions, setDimensions] = useState<Dimensions>({
+    width: 0,
+    height: 0,
   });
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isUserInteracting, setIsUserInteracting] = useState(false);
+  const [mousePosition, setMousePosition] = useState<MousePosition>({
+    x: 0,
+    y: 0,
+  });
+  const [isClient, setIsClient] = useState(false);
+  const [, setIsUserInteracting] = useState(false);
+
   const animationFrameRef = useRef<number>(0);
   const lastInteractionTime = useRef<number>(0);
   const currentPathIndex = useRef<number>(0);
   const animationPath = useRef<AnimationPoint[]>([]);
 
   const gridSize = 60;
-  const cols = Math.ceil(window.innerWidth / gridSize);
-  const rows = Math.ceil(window.innerHeight / gridSize);
+
+  // Initialize client-side state
+  useEffect(() => {
+    setIsClient(true);
+    const updateDimensions = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+      setMousePosition({
+        x: window.innerWidth * 0.1,
+        y: window.innerHeight * 0.9,
+      });
+    };
+
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+
+  const cols = Math.ceil(dimensions.width / gridSize) || 0;
+  const rows = Math.ceil(dimensions.height / gridSize) || 0;
 
   const generateRandomPoint = () => {
-    // Generate points along the edges of the screen
-    const edge = Math.floor(Math.random() * 4); // 0: top, 1: right, 2: bottom, 3: left
+    const edge = Math.floor(Math.random() * 4);
     let x, y;
 
     switch (edge) {
-      case 0: // top
-        x = Math.random() * window.innerWidth;
+      case 0:
+        x = Math.random() * dimensions.width;
         y = 0;
         break;
-      case 1: // right
-        x = window.innerWidth;
-        y = Math.random() * window.innerHeight;
+      case 1:
+        x = dimensions.width;
+        y = Math.random() * dimensions.height;
         break;
-      case 2: // bottom
-        x = Math.random() * window.innerWidth;
-        y = window.innerHeight;
+      case 2:
+        x = Math.random() * dimensions.width;
+        y = dimensions.height;
         break;
-      default: // left
+      default:
         x = 0;
-        y = Math.random() * window.innerHeight;
+        y = Math.random() * dimensions.height;
     }
 
     return { x, y };
@@ -57,11 +86,10 @@ const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
     const start = generateRandomPoint();
     const end = generateRandomPoint();
     const centerOffset = {
-      x: (Math.random() - 0.5) * 200, // Random offset from center
+      x: (Math.random() - 0.5) * 200,
       y: (Math.random() - 0.5) * 200,
     };
 
-    // Create a path through center with random durations
     return [
       {
         x: start.x,
@@ -69,8 +97,8 @@ const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
         duration: 1000 + Math.random() * 1000,
       },
       {
-        x: window.innerWidth / 2 + centerOffset.x,
-        y: window.innerHeight / 2 + centerOffset.y,
+        x: dimensions.width / 2 + centerOffset.x,
+        y: dimensions.height / 2 + centerOffset.y,
         duration: 1000 + Math.random() * 1000,
       },
       {
@@ -118,16 +146,17 @@ const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
   };
 
   useEffect(() => {
-    // Start initial animation
-    lastInteractionTime.current = performance.now();
-    animationFrameRef.current = requestAnimationFrame(animate);
+    if (dimensions.width && dimensions.height) {
+      lastInteractionTime.current = performance.now();
+      animationFrameRef.current = requestAnimationFrame(animate);
+    }
 
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, []);
+  }, [dimensions]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsUserInteracting(true);
@@ -137,7 +166,6 @@ const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
       y: e.clientY - rect.top,
     });
 
-    // Clear any existing timeout
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
     }
@@ -159,6 +187,15 @@ const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
   ): number => {
     return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
   };
+
+  // Show a simple placeholder during SSR
+  if (!isClient) {
+    return (
+      <div className="relative min-h-screen w-full bg-black">
+        <div className="relative z-10">{children}</div>
+      </div>
+    );
+  }
 
   return (
     <div
