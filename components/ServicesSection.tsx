@@ -145,16 +145,22 @@ const ServicesSection: React.FC = () => {
   return (
     <div className="relative w-full pb-32">
       <div className="container mx-auto px-4">
-        <div className="text-center md:mb-20 mb-12">
+        <div className="text-center md:mb-16 mb-12">
           <h2 className="text-4xl font-bold mb-3 md:mb-6">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ae904c]/80 via-[#ae904c] to-[#ae904c]/80">
               Our Services
             </span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg">
-            Comprehensive solutions tailored to elevate your brand and create
-            memorable experiences
-          </p>
+          <div className="flex flex-col items-center gap-6">
+            <p className="text-white/60 max-w-3xl mx-auto text-lg">
+              Comprehensive solutions tailored to elevate your brand and create
+              memorable experiences
+            </p>
+            <button className="group flex items-center gap-2 px-6 py-2 rounded-full bg-[#ae904c]/10 hover:bg-[#ae904c]/20 border border-[#ae904c]/20 hover:border-[#ae904c]/40 transition-all duration-300">
+              <span className="text-[#ae904c] font-medium">View All</span>
+              <ArrowRight className="w-4 h-4 text-[#ae904c] transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+          </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           <div className="h-full">

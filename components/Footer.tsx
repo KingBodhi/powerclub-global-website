@@ -1,5 +1,6 @@
 import React from "react";
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer: React.FC = () => {
   return (
@@ -23,25 +24,33 @@ const Footer: React.FC = () => {
             />
             <div className="flex space-x-6">
               <a
-                href="#"
+                href="https://www.facebook.com/p/Powerclub-Global-100093219199164/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
               >
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://x.com/powerclubglobal"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
               >
-                <Twitter className="w-5 h-5" />
+                <FaXTwitter className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/powerclub.global/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
               >
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/company/powerclub-global-usa"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
               >
                 <Linkedin className="w-5 h-5" />
@@ -55,7 +64,8 @@ const Footer: React.FC = () => {
           {/* Bottom Section */}
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-white/40">
             <div className="mb-4 md:mb-0">
-              © 2024 Power Club Global. All rights reserved.
+              © {new Date().getFullYear()} Powerclub Global. All rights
+              reserved.
             </div>
             <div className="flex flex-wrap justify-center gap-6">
               <a

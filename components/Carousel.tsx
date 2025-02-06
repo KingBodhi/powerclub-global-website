@@ -12,15 +12,21 @@ const PARTNERS = [
     name: "Eth Denver",
     logo: "/partners/ethdenver.png",
   },
+
   {
     id: 3,
-    name: "Bitcoin Conference",
-    logo: "/partners/bitcoin-conference.svg",
+    name: "Wagmi",
+    logo: "/partners/wagmi.webp",
   },
   {
     id: 4,
     name: "Consensys",
-    logo: "/partners/consensys.png",
+    logo: "/partners/consensus.svg",
+  },
+  {
+    id: 5,
+    name: "Bitcoin Conference",
+    logo: "/partners/bitcoin-conference.svg",
   },
 ];
 
