@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 px-4 md:px-8 py-2 md:py-6 ${inter.className} bg-black`}
+      className={`fixed top-0 w-full z-50 px-4 md:px-8 py-2 ${inter.className} bg-black`}
     >
       <div className="max-w-7xl mx-auto">
         {/* Desktop Layout */}
