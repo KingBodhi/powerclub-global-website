@@ -1,0 +1,87 @@
+import React from "react";
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+
+const Footer: React.FC = () => {
+  return (
+    <footer className="relative w-full bg-black overflow-hidden">
+      {/* Gradient Blobs */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 -left-[10%] w-[500px] h-[500px] rounded-full bg-gradient-to-r from-amber-500/10 to-amber-300/10 blur-[128px] animate-blob" />
+        <div className="absolute -top-[10%] right-1/3 w-[400px] h-[400px] rounded-full bg-gradient-to-l from-amber-400/10 to-amber-200/10 blur-[96px] animate-blob animation-delay-2000" />
+        <div className="absolute bottom-0 right-[10%] w-[600px] h-[600px] rounded-full bg-gradient-to-t from-amber-500/10 to-amber-300/10 blur-[128px] animate-blob animation-delay-4000" />
+      </div>
+
+      {/* Footer Content */}
+      <div className="relative z-10 container mx-auto px-4 py-8">
+        <div className="max-w-6xl mx-auto">
+          {/* Logo and Social Links */}
+          <div className="flex flex-col md:flex-row justify-between items-center mb-12">
+            <img
+              src="/logo-transparent.png"
+              alt="Logo"
+              className="w-20 mb-4 md:mb-0"
+            />
+            <div className="flex space-x-6">
+              <a
+                href="#"
+                className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
+              >
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-amber-400/20 to-transparent mb-8" />
+
+          {/* Bottom Section */}
+          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-white/40">
+            <div className="mb-4 md:mb-0">
+              © 2024 Power Club Global. All rights reserved.
+            </div>
+            <div className="flex flex-wrap justify-center gap-6">
+              <a
+                href="#"
+                className="hover:text-amber-400 transition-colors duration-300"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="#"
+                className="hover:text-amber-400 transition-colors duration-300"
+              >
+                Terms of Service
+              </a>
+              <a
+                href="#"
+                className="hover:text-amber-400 transition-colors duration-300"
+              >
+                Cookie Policy
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

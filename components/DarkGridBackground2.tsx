@@ -176,12 +176,12 @@ const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
           height="100%"
           className="[mask-image:radial-gradient(circle_at_center,white,transparent)]"
         >
-          <defs>
+          {/* <defs>
             <radialGradient id="hoverGradient">
               <stop offset="0%" stopColor="rgba(255, 215, 0, 0.2)" />
               <stop offset="100%" stopColor="rgba(255, 215, 0, 0)" />
             </radialGradient>
-          </defs>
+          </defs> */}
 
           {Array.from({ length: rows }).map((_, row) =>
             Array.from({ length: cols }).map((_, col) => {
@@ -221,7 +221,7 @@ const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 80%)",
+            "radial-gradient(circle at 50% 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 50%)",
         }}
       />
 
