@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Inter } from "next/font/google";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,28 +16,33 @@ interface NavItemProps {
 
 const NavItem: React.FC<NavItemProps> = ({ text, isMobile, onClick }) => (
   <button
-    className={`group relative px-4 py-2 ${isMobile ? "w-full text-left" : ""}`}
+    className={`group relative px-4 py-2 ${
+      isMobile ? "w-full text-center" : ""
+    }`}
     onClick={onClick}
   >
     <span className="text-sm font-light tracking-widest text-amber-400/50 group-hover:text-amber-400/80 transition-colors duration-300">
       {text}
     </span>
-    <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-400/0 to-transparent group-hover:via-amber-400/70 transition-all duration-500" />
+    <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent group-hover:via-amber-400/70 transition-all duration-500" />
   </button>
 );
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navItems = ["HOME", "ABOUT", "SERVICES", "PRESS RELEASES", "CONTACT"];
+  // Removed "HOME" from navItems since logo will act as home button
+  const navItems = ["ABOUT", "SERVICES", "PRESS RELEASES", "CONTACT"];
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 px-4 md:px-8 py-4 md:py-6 ${inter.className} bg-black`}
+      className={`fixed top-0 w-full z-50 px-4 md:px-8 py-2 md:py-6 ${inter.className} bg-black`}
     >
       <div className="max-w-7xl mx-auto">
-        {/* Desktop Layout - Exactly as original */}
+        {/* Desktop Layout */}
         <div className="hidden md:flex justify-between items-center">
-          <img src="/logo-transparent.png" alt="Logo" className="w-20" />
+          <Link href="/" className="cursor-pointer">
+            <img src="/logo-transparent.png" alt="Home" className="w-20" />
+          </Link>
           {navItems.map((item) => (
             <NavItem key={item} text={item} />
           ))}
@@ -44,7 +50,9 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Layout */}
         <div className="flex md:hidden justify-between items-center">
-          <img src="/logo-transparent.png" alt="Logo" className="w-16" />
+          <Link href="/" className="cursor-pointer">
+            <img src="/logo-transparent.png" alt="Home" className="w-16" />
+          </Link>
           <button className="p-2" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? (
               <X className="h-6 w-6 text-amber-400/50" />
@@ -64,7 +72,7 @@ const Navbar: React.FC = () => {
           ${isOpen ? "top-16 opacity-100" : "-top-full opacity-0"}
         `}
         >
-          <div className="flex flex-col p-4 space-y-2">
+          <div className="flex flex-col items-center p-4 space-y-2">
             {navItems.map((item) => (
               <NavItem
                 key={item}

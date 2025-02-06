@@ -45,7 +45,7 @@ export default function Home() {
       <Navbar />
       <DarkGridBackground>
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center justify-center min-h-screen max-w-4xl mx-auto text-center -mt-10">
+          <div className="flex flex-col items-center justify-center min-h-screen max-w-5xl mx-auto text-center -mt-10">
             <motion.img
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -69,20 +69,21 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 tracking-tight px-4"
+              className="text-2xl md:text-4xl lg:text-6xl font-bold mb-6 md:mb-8 tracking-tight px-4"
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ae904c]/80 via-[#ae904c] to-[#ae904c]/80">
-                LOREM IPSUM DOLOR
+              <span className="bg-clip-text text-transparent uppercase bg-gradient-to-r from-[#ae904c]/80 via-[#ae904c] to-[#ae904c]/80">
+                Championing the Bold to Achieve the Extraordinary
               </span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="text-base md:text-lg text-white/60 mb-8 md:mb-12 uppercase tracking-wide max-w-2xl font-light px-4"
+              className="text-xs md:text-base lg:text-lg text-white/60 mb-8 md:mb-12 uppercase tracking-wide max-w-3xl font-light px-4"
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Powerclub Global is a leading international agency specializing in
+              branding, marketing, and digital innovation for early to mid-stage
+              technology startups.
             </motion.p>
             <motion.button
               initial={{ opacity: 0, y: 20 }}
