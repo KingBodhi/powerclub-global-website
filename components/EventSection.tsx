@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ArrowRight, ArrowUpRight, Calendar, MapPin } from "lucide-react";
 
 interface Event {
@@ -210,14 +210,31 @@ const EVENTS = [
   },
 ];
 
+interface Event {
+  name: string;
+  dates: string;
+  location: string;
+  url: string;
+  image: string;
+}
+
+interface ScrollingRowProps {
+  events: Event[];
+  direction: "left" | "right";
+}
+
+interface EventCardProps {
+  event: Event;
+}
+
 const EventCard: React.FC<EventCardProps> = ({ event }) => (
-  <div className="flex-shrink-0 min-w-[280px] sm:min-w-[400px] md:min-w-[500px] lg:min-w-[600px] h-auto sm:h-52 mx-2 sm:mx-6 relative group">
+  <div className="flex-shrink-0 w-[260px] sm:w-[400px] lg:w-[500px] h-auto sm:h-52 mx-3 sm:mx-6 relative group">
     {/* Static border frame */}
-    <div className="absolute inset-0 rounded-xl border border-[#ae904c]/30 transition-all duration-300 group-hover:border-[#ae904c]/50" />
+    <div className="absolute inset-0 rounded-lg sm:rounded-xl border border-[#ae904c]/30 transition-all duration-300 group-hover:border-[#ae904c]/50" />
 
     {/* Card content */}
     <div
-      className="relative h-full rounded-xl flex flex-col sm:flex-row overflow-hidden bg-gradient-to-br from-[#ae904c]/10 to-black/40 
+      className="relative h-full rounded-lg sm:rounded-xl flex flex-col sm:flex-row overflow-hidden bg-gradient-to-br from-[#ae904c]/10 to-black/40 
             border border-[#ae904c]/30 backdrop-blur-md transform-gpu 
             transition-all duration-300 -translate-x-1 -translate-y-1 sm:-translate-x-2 sm:-translate-y-2
             group-hover:scale-[1.02] group-hover:-translate-x-2 group-hover:-translate-y-2 sm:group-hover:-translate-x-3 sm:group-hover:-translate-y-3
@@ -225,7 +242,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => (
             group-hover:border-[#ae904c]/50 group-hover:shadow-lg"
     >
       {/* Image section */}
-      <div className="w-full h-48 sm:w-48 sm:h-full relative">
+      <div className="w-full h-32 sm:h-48 sm:w-48 sm:h-full relative">
         <img
           src={event.image}
           alt={event.name}
@@ -235,42 +252,46 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => (
       </div>
 
       {/* Content section */}
-      <div className="flex-1 p-4 sm:p-6 flex flex-col justify-between">
+      <div className="flex-1 p-3 sm:p-6 flex flex-col justify-between">
         <div>
-          <h3 className="text-lg sm:text-xl font-semibold text-[#ae904c] mb-2 sm:mb-4 transition-colors duration-300 group-hover:text-[#d4b366] line-clamp-2">
+          <h3 className="text-base sm:text-xl font-semibold text-[#ae904c] mb-2 sm:mb-4 transition-colors duration-300 group-hover:text-[#d4b366] line-clamp-2">
             {event.name}
           </h3>
 
-          <div className="space-y-2 sm:space-y-3">
+          <div className="space-y-1.5 sm:space-y-3">
             <div className="flex items-center text-white/70 transition-colors duration-300 group-hover:text-white/90">
               <Calendar
-                className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0"
+                className="w-3.5 h-3.5 sm:w-5 sm:h-5 mr-1.5 sm:mr-3 flex-shrink-0"
                 strokeWidth={1.5}
               />
-              <span className="text-sm sm:text-base">{event.dates}</span>
+              <span className="text-xs sm:text-base">{event.dates}</span>
             </div>
 
             <div className="flex items-center text-white/70 transition-colors duration-300 group-hover:text-white/90">
               <MapPin
-                className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0"
+                className="w-3.5 h-3.5 sm:w-5 sm:h-5 mr-1.5 sm:mr-3 flex-shrink-0"
                 strokeWidth={1.5}
               />
-              <span className="text-sm sm:text-base">{event.location}</span>
+              <span className="text-xs sm:text-base truncate">
+                {event.location}
+              </span>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-4">
+        <div className="flex flex-row sm:flex-row gap-2 sm:gap-4 mt-3 sm:mt-4">
           <button
-            className="flex items-center justify-center sm:justify-start gap-2 px-4 py-2 rounded-lg bg-[#ae904c] text-white text-sm sm:text-base
-                  transition-all duration-300 hover:bg-[#d4b366] hover:scale-105 w-full sm:w-auto"
+            className="flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-md sm:rounded-lg 
+                    bg-[#ae904c] text-white text-xs sm:text-base
+                    transition-all duration-300 hover:bg-[#d4b366] hover:scale-105 w-full sm:w-auto"
           >
             Register <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
           <button
-            className="flex items-center justify-center sm:justify-start gap-2 px-4 py-2 rounded-lg border border-[#ae904c]/30 text-sm sm:text-base
-                  text-[#ae904c] transition-all duration-300 hover:bg-[#ae904c]/10 
-                  hover:border-[#ae904c]/50 hover:text-[#d4b366] hover:scale-105 w-full sm:w-auto"
+            className="flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-md sm:rounded-lg 
+                    border border-[#ae904c]/30 text-xs sm:text-base
+                    text-[#ae904c] transition-all duration-300 hover:bg-[#ae904c]/10 
+                    hover:border-[#ae904c]/50 hover:text-[#d4b366] hover:scale-105 w-full sm:w-auto"
           >
             Details <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
@@ -279,19 +300,32 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => (
     </div>
   </div>
 );
-const ScrollingRow: React.FC<ScrollingRowProps> = ({ events, direction }) => (
-  <div className="flex overflow-hidden py-6">
+
+const ScrollingRow: React.FC<ScrollingRowProps> = ({ events, direction }) => {
+  const [isPaused, setIsPaused] = useState(false);
+
+  return (
     <div
-      className={`flex ${
-        direction === "right" ? "animate-scroll-reverse" : "animate-scroll-slow"
-      } hover:[animation-play-state:paused]`}
+      className="flex overflow-hidden py-6"
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
     >
-      {[...events, ...events, ...events].map((event, idx) => (
-        <EventCard key={`${event.name}-${idx}`} event={event} />
-      ))}
+      <div
+        className={`flex ${
+          direction === "right"
+            ? "animate-scroll-reverse"
+            : "animate-scroll-slow"
+        } ${
+          isPaused ? "animate-none" : ""
+        } sm:hover:[animation-play-state:paused]`}
+      >
+        {[...events, ...events, ...events].map((event, idx) => (
+          <EventCard key={`${event.name}-${idx}`} event={event} />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const EventsSection: React.FC = () => {
   const mid = Math.ceil(EVENTS.length / 2);
@@ -299,20 +333,22 @@ const EventsSection: React.FC = () => {
   const bottomEvents = EVENTS.slice(mid);
 
   return (
-    <div className="w-full py-20 overflow-hidden">
-      <div className="container mx-auto px-4 mb-12">
-        <div className="flex flex-col items-center space-y-6">
-          <h2 className="text-4xl font-bold text-center">
+    <div className="w-full py-12 sm:py-20 overflow-hidden">
+      <div className="container mx-auto px-4 mb-8 sm:mb-12">
+        <div className="flex flex-col items-center space-y-4 sm:space-y-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ae904c]/80 via-[#ae904c] to-[#ae904c]/80">
               Upcoming Events
             </span>
           </h2>
-          <p className="text-white/60 text-center max-w-2xl">
+          <p className="text-white/60 text-center max-w-2xl text-sm sm:text-base">
             Join us at these upcoming blockchain and technology events
           </p>
-          <button className="group inline-flex items-center gap-2 px-6 py-2 rounded-full bg-[#ae904c]/10 hover:bg-[#ae904c]/20 border border-[#ae904c]/20 hover:border-[#ae904c]/40 transition-all duration-300">
-            <span className="text-[#ae904c] font-medium">View All</span>
-            <ArrowRight className="w-4 h-4 text-[#ae904c] transition-transform duration-300 group-hover:translate-x-1" />
+          <button className="group inline-flex items-center gap-2 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-[#ae904c]/10 hover:bg-[#ae904c]/20 border border-[#ae904c]/20 hover:border-[#ae904c]/40 transition-all duration-300">
+            <span className="text-[#ae904c] font-medium text-sm sm:text-base">
+              View All
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ae904c] transition-transform duration-300 group-hover:translate-x-1" />
           </button>
         </div>
       </div>
