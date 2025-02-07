@@ -16,9 +16,8 @@ interface NavItemProps {
 }
 
 const NavItem: React.FC<NavItemProps> = ({ text, href, isMobile, onClick }) => (
-  <Link
-    href={href}
-    scroll={false} // Disable scroll behavior
+  <button
+    // scroll={false} // Disable scroll behavior
     className={`group relative px-4 py-2 ${
       isMobile ? "w-full text-center" : ""
     }`}
@@ -35,7 +34,7 @@ const NavItem: React.FC<NavItemProps> = ({ text, href, isMobile, onClick }) => (
       {text}
     </span>
     <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent group-hover:via-amber-400/70" />
-  </Link>
+  </button>
 );
 
 const Navbar: React.FC = () => {
