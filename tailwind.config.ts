@@ -15,6 +15,9 @@ export default {
       animation: {
         blob: "blob 7s infinite",
         scroll: "scroll 20s linear infinite",
+        "scroll-reverse": "scroll-reverse 200s linear infinite",
+        "scroll-slow": "scroll-slow 200s linear infinite",
+        pause: "none",
       },
       keyframes: {
         blob: {
@@ -34,6 +37,14 @@ export default {
         scroll: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-100%)" },
+        },
+        "scroll-slow": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+        "scroll-reverse": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
         },
       },
     },

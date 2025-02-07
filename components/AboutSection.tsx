@@ -70,7 +70,7 @@ const VideoSection: React.FC = () => {
                   playsInline
                   onEnded={() => setIsPlaying(false)}
                 >
-                  <source src="/mbw2022.mp4" type="video/mp4" />
+                  <source src="/pmm.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
 

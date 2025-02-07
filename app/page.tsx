@@ -11,6 +11,7 @@ import Navbar from "@/components/Navbar";
 import PressReleaseSection from "@/components/PressReleaseSection";
 import ServicesSection from "@/components/ServicesSection";
 import { Sparkles } from "lucide-react";
+import EventSection from "@/components/EventSection";
 interface FadeInSectionProps {
   children: React.ReactNode;
   delay?: number;
@@ -108,6 +109,11 @@ export default function Home() {
       <FadeInSection>
         <VideoSection />
       </FadeInSection>
+      <DarkGridBackground2>
+        <FadeInSection>
+          <EventSection />
+        </FadeInSection>
+      </DarkGridBackground2>
 
       <DarkGridBackground2>
         <FadeInSection>
