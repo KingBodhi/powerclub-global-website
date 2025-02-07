@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, PropsWithChildren } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  PropsWithChildren,
+} from "react";
 
 interface MousePosition {
   x: number;
@@ -11,13 +17,23 @@ interface AnimationPoint {
   duration: number;
 }
 
+interface Dimensions {
+  width: number;
+  height: number;
+}
+
 const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [dimensions, setDimensions] = useState<Dimensions>({
+    width: 0,
+    height: 0,
+  });
   const [mousePosition, setMousePosition] = useState<MousePosition>({
     x: 0,
     y: 0,
   });
+  const [, setIsClient] = useState(false);
   const [, setIsUserInteracting] = useState(false);
+
   const animationFrameRef = useRef<number>(0);
   const lastInteractionTime = useRef<number>(0);
   const currentPathIndex = useRef<number>(0);
@@ -27,25 +43,7 @@ const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
   const cols = Math.ceil((dimensions.width || 0) / gridSize);
   const rows = Math.ceil((dimensions.height || 0) / gridSize);
 
-  // Initialize dimensions on client-side
-  useEffect(() => {
-    const updateDimensions = () => {
-      setDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-      setMousePosition({
-        x: window.innerWidth * 0.1,
-        y: window.innerHeight * 0.9,
-      });
-    };
-
-    updateDimensions();
-    window.addEventListener("resize", updateDimensions);
-    return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
-
-  const generateRandomPoint = () => {
+  const generateRandomPoint = useCallback(() => {
     const edge = Math.floor(Math.random() * 4);
     let x, y;
 
@@ -68,9 +66,9 @@ const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
     }
 
     return { x, y };
-  };
+  }, [dimensions.width, dimensions.height]);
 
-  const generateNewPath = () => {
+  const generateNewPath = useCallback(() => {
     const start = generateRandomPoint();
     const end = generateRandomPoint();
     const centerOffset = {
@@ -95,43 +93,65 @@ const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
         duration: 1000 + Math.random() * 1000,
       },
     ];
-  };
+  }, [dimensions.width, dimensions.height, generateRandomPoint]);
 
-  const animate = (timestamp: number) => {
-    if (!animationPath.current.length) {
-      animationPath.current = generateNewPath();
-      currentPathIndex.current = 0;
-    }
-
-    const currentPoint = animationPath.current[currentPathIndex.current];
-    const nextPoint = animationPath.current[currentPathIndex.current + 1];
-
-    if (!currentPoint || !nextPoint) {
-      animationPath.current = generateNewPath();
-      currentPathIndex.current = 0;
-      animationFrameRef.current = requestAnimationFrame(animate);
-      return;
-    }
-
-    const progress =
-      (timestamp - lastInteractionTime.current) / currentPoint.duration;
-
-    if (progress >= 1) {
-      lastInteractionTime.current = timestamp;
-      currentPathIndex.current++;
-
-      if (currentPathIndex.current >= animationPath.current.length - 1) {
+  const animate = useCallback(
+    (timestamp: number) => {
+      if (!animationPath.current.length) {
         animationPath.current = generateNewPath();
         currentPathIndex.current = 0;
       }
-    } else {
-      const newX = currentPoint.x + (nextPoint.x - currentPoint.x) * progress;
-      const newY = currentPoint.y + (nextPoint.y - currentPoint.y) * progress;
-      setMousePosition({ x: newX, y: newY });
-    }
 
-    animationFrameRef.current = requestAnimationFrame(animate);
-  };
+      const currentPoint = animationPath.current[currentPathIndex.current];
+      const nextPoint = animationPath.current[currentPathIndex.current + 1];
+
+      if (!currentPoint || !nextPoint) {
+        animationPath.current = generateNewPath();
+        currentPathIndex.current = 0;
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      const progress =
+        (timestamp - lastInteractionTime.current) / currentPoint.duration;
+
+      if (progress >= 1) {
+        lastInteractionTime.current = timestamp;
+        currentPathIndex.current++;
+
+        if (currentPathIndex.current >= animationPath.current.length - 1) {
+          animationPath.current = generateNewPath();
+          currentPathIndex.current = 0;
+        }
+      } else {
+        const newX = currentPoint.x + (nextPoint.x - currentPoint.x) * progress;
+        const newY = currentPoint.y + (nextPoint.y - currentPoint.y) * progress;
+        setMousePosition({ x: newX, y: newY });
+      }
+
+      animationFrameRef.current = requestAnimationFrame(animate);
+    },
+    [generateNewPath]
+  );
+
+  // Initialize client-side state
+  useEffect(() => {
+    setIsClient(true);
+    const updateDimensions = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+      setMousePosition({
+        x: window.innerWidth * 0.1,
+        y: window.innerHeight * 0.9,
+      });
+    };
+
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
 
   useEffect(() => {
     if (dimensions.width && dimensions.height) {
@@ -144,7 +164,7 @@ const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [dimensions]);
+  }, [dimensions, animate]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsUserInteracting(true);

@@ -30,6 +30,8 @@ const FadeInSection: React.FC<FadeInSectionProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.7, delay }}
+      // Add this to disable exit animations
+      exit={{ opacity: 0, transition: { duration: 0 } }}
     >
       {children}
     </motion.div>

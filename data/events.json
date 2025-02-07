@@ -1,0 +1,1361 @@
+{
+  "events": [
+    {
+      "id": "ces-2025",
+      "name": "CES 2025",
+      "dates": "January 7–10, 2025",
+      "location": "Las Vegas, Nevada",
+      "url": "https://www.ces.tech/",
+      "image": "/events/ces.png",
+      "description": "The most influential tech event in the world — CES® advances the technology industry and helps support the growth and innovation of the tech sector.",
+      "venue": "Las Vegas Convention Center",
+      "ticketPrice": {
+        "early": 799,
+        "regular": 1299,
+        "vip": 2499
+      },
+      "organizer": "Consumer Technology Association",
+      "speakers": [
+        {
+          "name": "Lisa Su",
+          "title": "CEO, AMD",
+          "image": "/speakers/lisa-su.jpg"
+        },
+        {
+          "name": "Jensen Huang",
+          "title": "CEO, NVIDIA",
+          "image": "/speakers/jensen-huang.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "January 7, 2025",
+          "events": [
+            {
+              "time": "09:00 AM",
+              "title": "Opening Keynote",
+              "speaker": "Lisa Su",
+              "location": "Main Hall"
+            },
+            {
+              "time": "11:00 AM",
+              "title": "The Future of AI",
+              "speaker": "Jensen Huang",
+              "location": "West Hall"
+            },
+            {
+              "time": "02:00 PM",
+              "title": "Next Generation Computing",
+              "speaker": "Pat Gelsinger",
+              "location": "Central Hall"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Samsung", "Intel", "Google", "AMD", "NVIDIA"],
+      "tags": ["technology", "innovation", "consumer electronics"],
+      "capacity": 180000,
+      "registrationDeadline": "2025-01-05"
+    },
+    {
+      "id": "wagmi-miami-2025",
+      "name": "WAGMI Miami 2025",
+      "dates": "January 21–24, 2025",
+      "location": "Miami, Florida",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/wagmi.png",
+      "description": "WAGMI Miami brings together the most innovative minds in Web3 for a four-day exploration of blockchain technology, DeFi, and the future of finance.",
+      "venue": "Miami Beach Convention Center",
+      "ticketPrice": {
+        "early": 599,
+        "regular": 899,
+        "vip": 1999
+      },
+      "organizer": "WAGMI Events LLC",
+      "speakers": [
+        {
+          "name": "Vitalik Buterin",
+          "title": "Co-founder, Ethereum",
+          "image": "/speakers/vitalik.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "January 21, 2025",
+          "events": [
+            {
+              "time": "10:00 AM",
+              "title": "The Future of Web3",
+              "speaker": "Vitalik Buterin",
+              "location": "Main Stage"
+            },
+            {
+              "time": "02:00 PM",
+              "title": "DeFi Innovation Panel",
+              "speaker": "Industry Leaders Panel",
+              "location": "DeFi Stage"
+            },
+            {
+              "time": "04:00 PM",
+              "title": "NFT Market Evolution",
+              "speaker": "Digital Art Panel",
+              "location": "NFT Hall"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Binance", "Coinbase", "FTX"],
+      "tags": ["blockchain", "crypto", "web3", "defi"],
+      "capacity": 15000,
+      "registrationDeadline": "2025-01-19"
+    },
+    {
+      "id": "crypto-gathering-2025",
+      "name": "Crypto Gathering 2025",
+      "dates": "January 30–February 1, 2025",
+      "location": "Miami Beach, Florida",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/crypto-gathering.png",
+      "description": "An intimate gathering of crypto industry leaders focused on the future of digital assets and blockchain technology.",
+      "venue": "Fontainebleau Miami Beach",
+      "ticketPrice": {
+        "early": 699,
+        "regular": 999,
+        "vip": 1899
+      },
+      "organizer": "Crypto Gathering DAO",
+      "speakers": [
+        {
+          "name": "Brian Armstrong",
+          "title": "CEO, Coinbase",
+          "image": "/speakers/brian-armstrong.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "January 30, 2025",
+          "events": [
+            {
+              "time": "09:00 AM",
+              "title": "State of Crypto Markets",
+              "speaker": "Brian Armstrong",
+              "location": "Grand Ballroom"
+            },
+            {
+              "time": "11:00 AM",
+              "title": "Regulatory Landscape",
+              "speaker": "Legal Panel",
+              "location": "Conference Room A"
+            },
+            {
+              "time": "02:00 PM",
+              "title": "Institutional Adoption",
+              "speaker": "Investment Panel",
+              "location": "Main Hall"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Coinbase", "Gemini", "Kraken"],
+      "tags": ["crypto", "blockchain", "investment"],
+      "capacity": 5000,
+      "registrationDeadline": "2025-01-28"
+    },
+    {
+      "id": "digital-assets-forum",
+      "name": "Digital Assets Forum",
+      "dates": "February 3, 2025",
+      "location": "London, UK",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/london.png",
+      "description": "The premier European conference focusing on institutional adoption of digital assets and blockchain technology.",
+      "venue": "ExCeL London",
+      "ticketPrice": {
+        "early": 899,
+        "regular": 1299,
+        "vip": 2499
+      },
+      "organizer": "Digital Asset Council",
+      "speakers": [
+        {
+          "name": "Michael Saylor",
+          "title": "Executive Chairman, MicroStrategy",
+          "image": "/speakers/saylor.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "February 3, 2025",
+          "events": [
+            {
+              "time": "09:30 AM",
+              "title": "Bitcoin for Institutions",
+              "speaker": "Michael Saylor",
+              "location": "Main Hall"
+            },
+            {
+              "time": "11:00 AM",
+              "title": "Regulatory Framework in Europe",
+              "speaker": "EU Regulatory Panel",
+              "location": "Policy Room"
+            },
+            {
+              "time": "02:00 PM",
+              "title": "Digital Asset Custody Solutions",
+              "speaker": "Banking Panel",
+              "location": "Finance Track"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["JPMorgan", "Goldman Sachs", "Fidelity"],
+      "tags": ["institutional", "digital assets", "finance"],
+      "capacity": 5000,
+      "registrationDeadline": "2025-02-01"
+    },
+    {
+      "id": "consensus-hongkong",
+      "name": "Consensus Hong Kong",
+      "dates": "February 18–20, 2025",
+      "location": "Hong Kong, HK",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/hongkong.png",
+      "description": "The Asian edition of the world's largest blockchain technology summit, focusing on the intersection of traditional finance and digital assets.",
+      "venue": "Hong Kong Convention and Exhibition Centre",
+      "ticketPrice": {
+        "early": 799,
+        "regular": 1199,
+        "vip": 2299
+      },
+      "organizer": "CoinDesk",
+      "speakers": [
+        {
+          "name": "Justin Sun",
+          "title": "Founder, TRON",
+          "image": "/speakers/justin-sun.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "February 18, 2025",
+          "events": [
+            {
+              "time": "09:00 AM",
+              "title": "Asian Markets Overview",
+              "speaker": "Justin Sun",
+              "location": "Grand Hall"
+            },
+            {
+              "time": "11:30 AM",
+              "title": "CBDCs in Asia",
+              "speaker": "Central Bank Panel",
+              "location": "Policy Track"
+            },
+            {
+              "time": "02:30 PM",
+              "title": "Web3 Gaming Future",
+              "speaker": "Gaming Panel",
+              "location": "Innovation Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["OKX", "Huobi", "BitMEX"],
+      "tags": ["asia", "blockchain", "finance"],
+      "capacity": 10000,
+      "registrationDeadline": "2025-02-15"
+    },
+    {
+      "id": "digital-assets-week-hongkong",
+      "name": "Digital Assets Week - Hong Kong",
+      "dates": "February 27, 2025",
+      "location": "Kowloon, Hong Kong",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/hongkong-daw.png",
+      "description": "A week-long exploration of digital assets, featuring industry leaders and innovative projects in the Asian market.",
+      "venue": "Kowloon Bay International Trade & Exhibition Centre",
+      "ticketPrice": {
+        "early": 699,
+        "regular": 999,
+        "vip": 1899
+      },
+      "organizer": "Digital Assets Council Asia",
+      "speakers": [
+        {
+          "name": "Sam Bankman-Fried",
+          "title": "Founder, FTX",
+          "image": "/speakers/sbf.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "February 27, 2025",
+          "events": [
+            {
+              "time": "10:00 AM",
+              "title": "Digital Asset Trading",
+              "speaker": "Trading Panel",
+              "location": "Main Stage"
+            },
+            {
+              "time": "01:00 PM",
+              "title": "DeFi in Asia",
+              "speaker": "DeFi Panel",
+              "location": "DeFi Track"
+            },
+            {
+              "time": "03:30 PM",
+              "title": "NFT Market Trends",
+              "speaker": "NFT Panel",
+              "location": "Digital Art Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Binance", "Gate.io", "KuCoin"],
+      "tags": ["digital assets", "asia", "defi"],
+      "capacity": 7000,
+      "registrationDeadline": "2025-02-25"
+    },
+    {
+      "id": "crypto-expo-europe",
+      "name": "Crypto Expo - Europe",
+      "dates": "March 2–3, 2025",
+      "location": "Bucharest, Romania",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/bucharest.png",
+      "description": "Eastern Europe's largest crypto expo, showcasing the latest in blockchain technology and cryptocurrency innovations.",
+      "venue": "Romexpo",
+      "ticketPrice": {
+        "early": 499,
+        "regular": 799,
+        "vip": 1499
+      },
+      "organizer": "Crypto Expo Events",
+      "speakers": [
+        {
+          "name": "Gavin Wood",
+          "title": "Founder, Polkadot",
+          "image": "/speakers/gavin-wood.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "March 2, 2025",
+          "events": [
+            {
+              "time": "09:30 AM",
+              "title": "Web3 Infrastructure",
+              "speaker": "Gavin Wood",
+              "location": "Main Hall"
+            },
+            {
+              "time": "11:30 AM",
+              "title": "Eastern European Blockchain Scene",
+              "speaker": "Regional Panel",
+              "location": "Regional Track"
+            },
+            {
+              "time": "02:30 PM",
+              "title": "Cross-chain Interoperability",
+              "speaker": "Tech Panel",
+              "location": "Tech Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Elrond", "OMG Network", "Bitdegree"],
+      "tags": ["crypto", "eastern europe", "blockchain"],
+      "capacity": 6000,
+      "registrationDeadline": "2025-02-28"
+    },
+    {
+      "id": "web3-amsterdam",
+      "name": "Web3 Amsterdam",
+      "dates": "March 13–14, 2025",
+      "location": "Amsterdam, Netherlands",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/amsterdam.png",
+      "description": "A deep dive into Web3 technology and its applications, featuring leading projects and developers from around the world.",
+      "venue": "RAI Amsterdam",
+      "ticketPrice": {
+        "early": 599,
+        "regular": 899,
+        "vip": 1799
+      },
+      "organizer": "Web3 Foundation",
+      "speakers": [
+        {
+          "name": "Charles Hoskinson",
+          "title": "Founder, Cardano",
+          "image": "/speakers/charles-hoskinson.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "March 13, 2025",
+          "events": [
+            {
+              "time": "10:00 AM",
+              "title": "Future of Smart Contracts",
+              "speaker": "Charles Hoskinson",
+              "location": "Main Stage"
+            },
+            {
+              "time": "01:00 PM",
+              "title": "DAOs & Governance",
+              "speaker": "Governance Panel",
+              "location": "DAO Track"
+            },
+            {
+              "time": "03:30 PM",
+              "title": "Web3 Social Platforms",
+              "speaker": "Social Media Panel",
+              "location": "Innovation Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Polkadot", "Cardano", "Web3 Foundation"],
+      "tags": ["web3", "blockchain", "europe"],
+      "capacity": 8000,
+      "registrationDeadline": "2025-03-10"
+    },
+    {
+      "id": "next-block-expo",
+      "name": "Next Block Expo",
+      "dates": "March 19–20, 2025",
+      "location": "Warsaw, Poland",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/warsaw.png",
+      "description": "Central Europe's premier blockchain event connecting entrepreneurs, developers, and investors in the heart of Poland.",
+      "venue": "PGE Narodowy",
+      "ticketPrice": {
+        "early": 499,
+        "regular": 799,
+        "vip": 1499
+      },
+      "organizer": "Next Block Events",
+      "speakers": [
+        {
+          "name": "Joseph Lubin",
+          "title": "Co-founder, Ethereum & CEO, ConsenSys",
+          "image": "/speakers/joseph-lubin.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "March 19, 2025",
+          "events": [
+            {
+              "time": "09:00 AM",
+              "title": "Ethereum Enterprise Solutions",
+              "speaker": "Joseph Lubin",
+              "location": "Main Stage"
+            },
+            {
+              "time": "11:30 AM",
+              "title": "Central European Blockchain Scene",
+              "speaker": "Regional Leaders Panel",
+              "location": "Regional Track"
+            },
+            {
+              "time": "02:00 PM",
+              "title": "DeFi Security Best Practices",
+              "speaker": "Security Panel",
+              "location": "Tech Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["ConsenSys", "Ethereum Foundation", "Protocol Labs"],
+      "tags": ["blockchain", "central europe", "ethereum"],
+      "capacity": 5000,
+      "registrationDeadline": "2025-03-17"
+    },
+    {
+      "id": "dc-blockchain-summit",
+      "name": "DC Blockchain Summit 2025",
+      "dates": "March 26, 2025",
+      "location": "Washington, DC",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/dc.png",
+      "description": "The premier policy-focused blockchain conference bringing together regulators, industry leaders, and policymakers.",
+      "venue": "Walter E. Washington Convention Center",
+      "ticketPrice": {
+        "early": 899,
+        "regular": 1299,
+        "vip": 2499
+      },
+      "organizer": "Chamber of Digital Commerce",
+      "speakers": [
+        {
+          "name": "Gary Gensler",
+          "title": "Chairman, SEC",
+          "image": "/speakers/gary-gensler.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "March 26, 2025",
+          "events": [
+            {
+              "time": "09:30 AM",
+              "title": "Regulatory Framework for Digital Assets",
+              "speaker": "Gary Gensler",
+              "location": "Main Hall"
+            },
+            {
+              "time": "11:00 AM",
+              "title": "Policy Innovation in Blockchain",
+              "speaker": "Policy Panel",
+              "location": "Policy Track"
+            },
+            {
+              "time": "02:30 PM",
+              "title": "National Security & Blockchain",
+              "speaker": "Security Panel",
+              "location": "Security Track"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Ripple", "Circle", "Coinbase"],
+      "tags": ["policy", "regulation", "government"],
+      "capacity": 3000,
+      "registrationDeadline": "2025-03-24"
+    },
+    {
+      "id": "paris-blockchain-week",
+      "name": "Paris Blockchain Week",
+      "dates": "April 8–10, 2025",
+      "location": "Paris, France",
+      "url": "https://www.blockchainweek.fr/",
+      "image": "/events/paris.png",
+      "description": "Europe's largest blockchain event bringing together entrepreneurs, investors, and industry leaders to shape the future of Web3.",
+      "venue": "Carrousel du Louvre",
+      "ticketPrice": {
+        "early": 699,
+        "regular": 999,
+        "vip": 1999
+      },
+      "organizer": "Paris Blockchain Week SA",
+      "speakers": [
+        {
+          "name": "Changpeng Zhao",
+          "title": "CEO, Binance",
+          "image": "/speakers/cz.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "April 8, 2025",
+          "events": [
+            {
+              "time": "10:00 AM",
+              "title": "Future of Crypto Exchanges",
+              "speaker": "Changpeng Zhao",
+              "location": "Main Stage"
+            },
+            {
+              "time": "01:30 PM",
+              "title": "European DeFi Ecosystem",
+              "speaker": "DeFi Panel",
+              "location": "DeFi Track"
+            },
+            {
+              "time": "04:00 PM",
+              "title": "NFTs & Digital Culture",
+              "speaker": "Culture Panel",
+              "location": "NFT Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Ledger", "Binance", "Crypto.com"],
+      "tags": ["blockchain", "europe", "web3"],
+      "capacity": 12000,
+      "registrationDeadline": "2025-04-06"
+    },
+    {
+      "id": "canada-crypto-week",
+      "name": "Canada Crypto Week",
+      "dates": "May 11–17, 2025",
+      "location": "Toronto, Canada",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/toronto.png",
+      "description": "A week-long celebration of blockchain and cryptocurrency innovation in Canada, featuring multiple events and workshops.",
+      "venue": "Metro Toronto Convention Centre",
+      "ticketPrice": {
+        "early": 599,
+        "regular": 899,
+        "vip": 1799
+      },
+      "organizer": "Canadian Blockchain Association",
+      "speakers": [
+        {
+          "name": "Anthony Di Iorio",
+          "title": "Co-founder, Ethereum",
+          "image": "/speakers/anthony-di-iorio.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "May 11, 2025",
+          "events": [
+            {
+              "time": "10:00 AM",
+              "title": "Canadian Crypto Ecosystem",
+              "speaker": "Anthony Di Iorio",
+              "location": "Main Hall"
+            },
+            {
+              "time": "01:00 PM",
+              "title": "Mining in Canada",
+              "speaker": "Mining Panel",
+              "location": "Mining Track"
+            },
+            {
+              "time": "03:30 PM",
+              "title": "Regulatory Framework",
+              "speaker": "Policy Panel",
+              "location": "Policy Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["3iQ", "Wealthsimple", "Bitbuy"],
+      "tags": ["canada", "crypto", "blockchain"],
+      "capacity": 8000,
+      "registrationDeadline": "2025-05-09"
+    },
+    {
+      "id": "blockchain-futurist-toronto",
+      "name": "Blockchain Futurist Conference Toronto",
+      "dates": "May 13, 2025",
+      "location": "Toronto, Canada",
+      "url": "https://www.blockchainfuturistconference.com/",
+      "image": "/events/toronto-bfc.png",
+      "description": "Canada's largest blockchain and emerging technologies conference focused on the future of the industry.",
+      "venue": "Rebel Entertainment Complex",
+      "ticketPrice": {
+        "early": 499,
+        "regular": 799,
+        "vip": 1499
+      },
+      "organizer": "Untraceable Events",
+      "speakers": [
+        {
+          "name": "Erik Voorhees",
+          "title": "CEO, ShapeShift",
+          "image": "/speakers/erik-voorhees.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "May 13, 2025",
+          "events": [
+            {
+              "time": "09:30 AM",
+              "title": "Future of DeFi",
+              "speaker": "Erik Voorhees",
+              "location": "Main Stage"
+            },
+            {
+              "time": "11:30 AM",
+              "title": "AI & Blockchain Convergence",
+              "speaker": "Tech Panel",
+              "location": "Innovation Track"
+            },
+            {
+              "time": "02:00 PM",
+              "title": "Smart City Solutions",
+              "speaker": "Infrastructure Panel",
+              "location": "Future Track"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Ethereum Foundation", "Decentral", "Blockgeeks"],
+      "tags": ["blockchain", "innovation", "technology"],
+      "capacity": 5000,
+      "registrationDeadline": "2025-05-11"
+    },
+    {
+      "id": "ethwomen",
+      "name": "ETHWomen",
+      "dates": "May 13, 2025",
+      "location": "Toronto, Canada",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/ethwomen.png",
+      "description": "A conference celebrating and promoting women in the Ethereum ecosystem and blockchain technology.",
+      "venue": "Four Seasons Hotel Toronto",
+      "ticketPrice": {
+        "early": 399,
+        "regular": 599,
+        "vip": 999
+      },
+      "organizer": "ETHWomen DAO",
+      "speakers": [
+        {
+          "name": "Elizabeth Stark",
+          "title": "CEO, Lightning Labs",
+          "image": "/speakers/elizabeth-stark.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "May 13, 2025",
+          "events": [
+            {
+              "time": "10:00 AM",
+              "title": "Women in Blockchain Leadership",
+              "speaker": "Elizabeth Stark",
+              "location": "Main Hall"
+            },
+            {
+              "time": "01:00 PM",
+              "title": "Diversity in Tech",
+              "speaker": "DEI Panel",
+              "location": "Community Track"
+            },
+            {
+              "time": "03:30 PM",
+              "title": "Building Inclusive Web3",
+              "speaker": "Community Panel",
+              "location": "Workshop Room"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Lightning Labs", "ETHGlobal", "She256"],
+      "tags": ["ethereum", "women", "diversity"],
+      "capacity": 1000,
+      "registrationDeadline": "2025-05-11"
+    },
+    {
+      "id": "consensus-toronto",
+      "name": "Consensus Toronto",
+      "dates": "May 14–16, 2025",
+      "location": "Toronto, Canada",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/toronto-consensus.png",
+      "description": "The premier Canadian blockchain conference bringing together industry leaders, developers, and investors.",
+      "venue": "Metro Toronto Convention Centre",
+      "ticketPrice": {
+        "early": 799,
+        "regular": 1199,
+        "vip": 2299
+      },
+      "organizer": "CoinDesk",
+      "speakers": [
+        {
+          "name": "Sam Altman",
+          "title": "CEO, OpenAI",
+          "image": "/speakers/sam-altman.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "May 14, 2025",
+          "events": [
+            {
+              "time": "09:00 AM",
+              "title": "AI and Blockchain Convergence",
+              "speaker": "Sam Altman",
+              "location": "Main Hall"
+            },
+            {
+              "time": "11:30 AM",
+              "title": "Zero Knowledge Proofs",
+              "speaker": "Technical Panel",
+              "location": "Tech Track"
+            },
+            {
+              "time": "02:00 PM",
+              "title": "Future of Digital Identity",
+              "speaker": "Identity Panel",
+              "location": "Innovation Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["BMO", "RBC", "TD Bank"],
+      "tags": ["blockchain", "canada", "technology"],
+      "capacity": 8000,
+      "registrationDeadline": "2025-05-12"
+    },
+    {
+      "id": "digital-assets-week-ny",
+      "name": "Digital Assets Week - New York",
+      "dates": "May 20–21, 2025",
+      "location": "New York, NY",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/ny-daw.png",
+      "description": "A comprehensive exploration of digital assets in the world's financial capital, focusing on institutional adoption and innovation.",
+      "venue": "Javits Center",
+      "ticketPrice": {
+        "early": 899,
+        "regular": 1399,
+        "vip": 2799
+      },
+      "organizer": "Digital Assets Council NY",
+      "speakers": [
+        {
+          "name": "Mike Novogratz",
+          "title": "CEO, Galaxy Digital",
+          "image": "/speakers/novogratz.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "May 20, 2025",
+          "events": [
+            {
+              "time": "09:30 AM",
+              "title": "Institutional Crypto Strategy",
+              "speaker": "Mike Novogratz",
+              "location": "Main Stage"
+            },
+            {
+              "time": "11:00 AM",
+              "title": "Wall Street & Crypto",
+              "speaker": "Banking Panel",
+              "location": "Finance Track"
+            },
+            {
+              "time": "02:30 PM",
+              "title": "Digital Asset Securities",
+              "speaker": "Legal Panel",
+              "location": "Regulatory Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Galaxy Digital", "Grayscale", "NYDIG"],
+      "tags": ["digital assets", "institutional", "finance"],
+      "capacity": 6000,
+      "registrationDeadline": "2025-05-18"
+    },
+    {
+      "id": "bitcoin-2025",
+      "name": "Bitcoin 2025 Conference",
+      "dates": "May 27–29, 2025",
+      "location": "Las Vegas, Nevada",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/bitcoin.png",
+      "description": "The world's largest Bitcoin-focused conference, celebrating innovation and adoption of the original cryptocurrency.",
+      "venue": "The Venetian Resort",
+      "ticketPrice": {
+        "early": 699,
+        "regular": 999,
+        "vip": 1999
+      },
+      "organizer": "Bitcoin Magazine",
+      "speakers": [
+        {
+          "name": "Jack Dorsey",
+          "title": "CEO, Block",
+          "image": "/speakers/jack-dorsey.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "May 27, 2025",
+          "events": [
+            {
+              "time": "10:00 AM",
+              "title": "Bitcoin's Next Decade",
+              "speaker": "Jack Dorsey",
+              "location": "Main Hall"
+            },
+            {
+              "time": "01:00 PM",
+              "title": "Lightning Network Innovation",
+              "speaker": "Lightning Panel",
+              "location": "Tech Track"
+            },
+            {
+              "time": "03:30 PM",
+              "title": "Mining Sustainability",
+              "speaker": "Mining Panel",
+              "location": "Mining Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Block", "BitFury", "Marathon"],
+      "tags": ["bitcoin", "mining", "lightning"],
+      "capacity": 12000,
+      "registrationDeadline": "2025-05-25"
+    },
+    {
+      "id": "icma-conference",
+      "name": "ICMA Annual General Meeting & Conference 2025",
+      "dates": "June 4–6, 2025",
+      "location": "Frankfurt, Germany",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/frankfurt.png",
+      "description": "The International Capital Market Association's annual conference focusing on the future of capital markets and digital assets.",
+      "venue": "Messe Frankfurt",
+      "ticketPrice": {
+        "early": 999,
+        "regular": 1499,
+        "vip": 2999
+      },
+      "organizer": "ICMA",
+      "speakers": [
+        {
+          "name": "Christine Lagarde",
+          "title": "President, ECB",
+          "image": "/speakers/lagarde.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "June 4, 2025",
+          "events": [
+            {
+              "time": "09:00 AM",
+              "title": "Future of European Markets",
+              "speaker": "Christine Lagarde",
+              "location": "Main Hall"
+            },
+            {
+              "time": "11:30 AM",
+              "title": "Digital Euro Implementation",
+              "speaker": "CBDC Panel",
+              "location": "Policy Track"
+            },
+            {
+              "time": "02:30 PM",
+              "title": "Capital Markets Innovation",
+              "speaker": "Banking Panel",
+              "location": "Innovation Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Deutsche Bank", "Commerzbank", "BNP Paribas"],
+      "tags": ["finance", "capital markets", "banking"],
+      "capacity": 4000,
+      "registrationDeadline": "2025-06-02"
+    },
+    {
+      "id": "crypto-valley-conference",
+      "name": "Crypto Valley Conference",
+      "dates": "June 5–6, 2025",
+      "location": "Risch-Rotkreuz, Switzerland",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/switzerland.png",
+      "description": "Switzerland's premier blockchain conference in the heart of Crypto Valley, focusing on innovation and regulation.",
+      "venue": "Crypto Valley Labs",
+      "ticketPrice": {
+        "early": 599,
+        "regular": 899,
+        "vip": 1799
+      },
+      "organizer": "Crypto Valley Association",
+      "speakers": [
+        {
+          "name": "Niklas Nikolajsen",
+          "title": "Founder, Bitcoin Suisse",
+          "image": "/speakers/niklas.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "June 5, 2025",
+          "events": [
+            {
+              "time": "09:30 AM",
+              "title": "Swiss Crypto Ecosystem",
+              "speaker": "Niklas Nikolajsen",
+              "location": "Main Stage"
+            },
+            {
+              "time": "11:00 AM",
+              "title": "Regulatory Excellence",
+              "speaker": "FINMA Panel",
+              "location": "Regulatory Track"
+            },
+            {
+              "time": "02:00 PM",
+              "title": "Banking & Crypto",
+              "speaker": "Banking Panel",
+              "location": "Finance Track"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Bitcoin Suisse", "SwissBorg", "Sygnum"],
+      "tags": ["switzerland", "regulation", "banking"],
+      "capacity": 3000,
+      "registrationDeadline": "2025-06-03"
+    },
+    {
+      "id": "permissionless-iv",
+      "name": "Permissionless IV",
+      "dates": "June 24–26, 2025",
+      "location": "Brooklyn, New York",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/ny.png",
+      "description": "The world's largest DeFi conference, showcasing the latest in decentralized finance and Web3 innovation.",
+      "venue": "Brooklyn Navy Yard",
+      "ticketPrice": {
+        "early": 799,
+        "regular": 1199,
+        "vip": 2299
+      },
+      "organizer": "Blockworks",
+      "speakers": [
+        {
+          "name": "Andre Cronje",
+          "title": "DeFi Architect",
+          "image": "/speakers/andre-cronje.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "June 24, 2025",
+          "events": [
+            {
+              "time": "10:00 AM",
+              "title": "Future of DeFi",
+              "speaker": "Andre Cronje",
+              "location": "Main Stage"
+            },
+            {
+              "time": "01:30 PM",
+              "title": "DeFi Security",
+              "speaker": "Security Panel",
+              "location": "Security Track"
+            },
+            {
+              "time": "04:00 PM",
+              "title": "Institutional DeFi",
+              "speaker": "Finance Panel",
+              "location": "Finance Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Aave", "Compound", "MakerDAO"],
+      "tags": ["defi", "web3", "finance"],
+      "capacity": 7000,
+      "registrationDeadline": "2025-06-22"
+    },
+    {
+      "id": "ethereum-community-conference",
+      "name": "Ethereum Community Conference",
+      "dates": "June 30–July 3, 2025",
+      "location": "Cannes, France",
+      "url": "https://www.ethcc.io/",
+      "image": "/events/cannes.png",
+      "description": "Europe's largest annual Ethereum conference bringing together developers, researchers, and enthusiasts.",
+      "venue": "Palais des Festivals",
+      "ticketPrice": {
+        "early": 699,
+        "regular": 999,
+        "vip": 1899
+      },
+      "organizer": "Ethereum France",
+      "speakers": [
+        {
+          "name": "Juan Benet",
+          "title": "Founder, Protocol Labs",
+          "image": "/speakers/juan-benet.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "June 30, 2025",
+          "events": [
+            {
+              "time": "09:30 AM",
+              "title": "Future of Web3 Storage",
+              "speaker": "Juan Benet",
+              "location": "Main Stage"
+            },
+            {
+              "time": "11:30 AM",
+              "title": "Layer 2 Innovations",
+              "speaker": "Scaling Panel",
+              "location": "Tech Track"
+            },
+            {
+              "time": "02:30 PM",
+              "title": "Smart Contract Security",
+              "speaker": "Security Panel",
+              "location": "Developer Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Protocol Labs", "Ethereum Foundation", "ConsenSys"],
+      "tags": ["ethereum", "developers", "web3"],
+      "capacity": 5000,
+      "registrationDeadline": "2025-06-28"
+    },
+    {
+      "id": "rare-evo-2025",
+      "name": "Rare Evo 2025",
+      "dates": "August 6–10, 2025",
+      "location": "Las Vegas, Nevada",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/las-vegas.png",
+      "description": "The premier NFT and digital collectibles conference, exploring the evolution of digital ownership and creativity.",
+      "venue": "Caesars Palace",
+      "ticketPrice": {
+        "early": 599,
+        "regular": 899,
+        "vip": 1799
+      },
+      "organizer": "Rare Events DAO",
+      "speakers": [
+        {
+          "name": "Yat Siu",
+          "title": "Co-founder, Animoca Brands",
+          "image": "/speakers/yat-siu.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "August 6, 2025",
+          "events": [
+            {
+              "time": "10:00 AM",
+              "title": "Future of Digital Ownership",
+              "speaker": "Yat Siu",
+              "location": "Main Hall"
+            },
+            {
+              "time": "01:00 PM",
+              "title": "NFTs in Gaming",
+              "speaker": "Gaming Panel",
+              "location": "Gaming Track"
+            },
+            {
+              "time": "03:30 PM",
+              "title": "Digital Art Revolution",
+              "speaker": "Art Panel",
+              "location": "Creative Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Animoca Brands", "OpenSea", "Rarible"],
+      "tags": ["nft", "digital art", "gaming"],
+      "capacity": 4000,
+      "registrationDeadline": "2025-08-04"
+    },
+    {
+      "id": "cbdc-conference",
+      "name": "CBDC Conference",
+      "dates": "September 9–11, 2025",
+      "location": "Nassau, Bahamas",
+      "url": "https://ninjapromo.io/best-crypto-conferences",
+      "image": "/events/bahamas.png",
+      "description": "Global conference focusing on Central Bank Digital Currencies and the future of money.",
+      "venue": "Baha Mar Convention Center",
+      "ticketPrice": {
+        "early": 899,
+        "regular": 1399,
+        "vip": 2799
+      },
+      "organizer": "Central Bank of Bahamas",
+      "speakers": [
+        {
+          "name": "Agustín Carstens",
+          "title": "General Manager, BIS",
+          "image": "/speakers/carstens.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "September 9, 2025",
+          "events": [
+            {
+              "time": "09:00 AM",
+              "title": "Future of Money",
+              "speaker": "Agustín Carstens",
+              "location": "Main Hall"
+            },
+            {
+              "time": "11:30 AM",
+              "title": "CBDC Implementation",
+              "speaker": "Central Bank Panel",
+              "location": "Policy Track"
+            },
+            {
+              "time": "02:00 PM",
+              "title": "Digital Currency Privacy",
+              "speaker": "Privacy Panel",
+              "location": "Tech Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["IBM", "R3", "Accenture"],
+      "tags": ["cbdc", "central banks", "digital currency"],
+      "capacity": 3000,
+      "registrationDeadline": "2025-09-07"
+    },
+    {
+      "id": "korea-blockchain-week",
+      "name": "Korea Blockchain Week 2025",
+      "dates": "September 22–27, 2025",
+      "location": "Seoul, Korea",
+      "url": "https://koreablockchainweek.com/",
+      "image": "/events/seoul.png",
+      "description": "Asia's largest blockchain event showcasing Korean innovation and global blockchain developments.",
+      "venue": "COEX Convention Center",
+      "ticketPrice": {
+        "early": 699,
+        "regular": 999,
+        "vip": 1899
+      },
+      "organizer": "FactBlock",
+      "speakers": [
+        {
+          "name": "Do Kwon",
+          "title": "CEO, Terraform Labs",
+          "image": "/speakers/do-kwon.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "September 22, 2025",
+          "events": [
+            {
+              "time": "10:00 AM",
+              "title": "Asian Crypto Markets",
+              "speaker": "Market Panel",
+              "location": "Main Stage"
+            },
+            {
+              "time": "01:30 PM",
+              "title": "Korean Web3 Innovation",
+              "speaker": "Innovation Panel",
+              "location": "Tech Track"
+            },
+            {
+              "time": "04:00 PM",
+              "title": "Gaming & Blockchain",
+              "speaker": "Gaming Panel",
+              "location": "Gaming Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Kakao", "Line", "Samsung"],
+      "tags": ["korea", "asia", "blockchain"],
+      "capacity": 10000,
+      "registrationDeadline": "2025-09-20"
+    },
+    {
+      "id": "mainnet-2025",
+      "name": "Mainnet 2025 by Messari",
+      "dates": "September 22–24, 2025",
+      "location": "New York, NY",
+      "url": "https://mainnet.events/",
+      "image": "/events/ny-mainnet.png",
+      "description": "The institutional crypto conference bringing together traditional finance and digital asset innovators.",
+      "venue": "Pier 60",
+      "ticketPrice": {
+        "early": 899,
+        "regular": 1399,
+        "vip": 2799
+      },
+      "organizer": "Messari",
+      "speakers": [
+        {
+          "name": "Ryan Selkis",
+          "title": "CEO, Messari",
+          "image": "/speakers/ryan-selkis.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "September 22, 2025",
+          "events": [
+            {
+              "time": "09:30 AM",
+              "title": "State of Crypto",
+              "speaker": "Ryan Selkis",
+              "location": "Main Hall"
+            },
+            {
+              "time": "11:30 AM",
+              "title": "Institutional Adoption",
+              "speaker": "Investment Panel",
+              "location": "Finance Track"
+            },
+            {
+              "time": "02:30 PM",
+              "title": "Crypto Regulation",
+              "speaker": "Policy Panel",
+              "location": "Policy Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Messari", "Fireblocks", "Cumberland"],
+      "tags": ["institutional", "finance", "data"],
+      "capacity": 5000,
+      "registrationDeadline": "2025-09-20"
+    },
+    {
+      "id": "blockchain-life-2025",
+      "name": "Blockchain Life 2025",
+      "dates": "October 28–29, 2025",
+      "location": "Dubai, UAE",
+      "url": "https://blockchain-life.com/",
+      "image": "/events/dubai.png",
+      "description": "The largest blockchain event in the Middle East, bringing together industry leaders from traditional finance and crypto.",
+      "venue": "Dubai World Trade Centre",
+      "ticketPrice": {
+        "early": 899,
+        "regular": 1399,
+        "vip": 2899
+      },
+      "organizer": "Blockchain Life Events",
+      "speakers": [
+        {
+          "name": "Tim Draper",
+          "title": "Founder, Draper Associates",
+          "image": "/speakers/tim-draper.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "date": "October 28, 2025",
+          "events": [
+            {
+              "time": "10:00 AM",
+              "title": "Future of Digital Investments",
+              "speaker": "Tim Draper",
+              "location": "Sheikh Rashid Hall"
+            },
+            {
+              "time": "01:00 PM",
+              "title": "Middle East Crypto Hub",
+              "speaker": "Regional Panel",
+              "location": "Regional Track"
+            },
+            {
+              "time": "03:30 PM",
+              "title": "Islamic Finance & Crypto",
+              "speaker": "Finance Panel",
+              "location": "Finance Stage"
+            }
+          ]
+        }
+      ],
+      "sponsors": ["Emirates NBD", "Dubai Future Foundation", "Bybit"],
+      "tags": ["middle east", "blockchain", "finance"],
+      "capacity": 15000,
+      "registrationDeadline": "2025-10-25"
+    }
+  ]
+}

@@ -199,7 +199,7 @@ const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
   // Show a simple placeholder during SSR
   if (!isClient) {
     return (
-      <div className="relative min-h-screen w-full bg-black">
+      <div className="relative w-full bg-black">
         <div className="relative z-10">{children}</div>
       </div>
     );
@@ -207,7 +207,7 @@ const DarkGridBackground: React.FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <div
-      className="relative min-h-screen w-full bg-black overflow-hidden"
+      className="relative w-full bg-black"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >

@@ -10,28 +10,44 @@ const inter = Inter({
 
 interface NavItemProps {
   text: string;
+  href: string;
   isMobile?: boolean;
   onClick?: () => void;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ text, isMobile, onClick }) => (
-  <button
+const NavItem: React.FC<NavItemProps> = ({ text, href, isMobile, onClick }) => (
+  <Link
+    href={href}
+    scroll={false} // Disable scroll behavior
     className={`group relative px-4 py-2 ${
       isMobile ? "w-full text-center" : ""
     }`}
-    onClick={onClick}
+    onClick={(e) => {
+      if (onClick) {
+        e.preventDefault();
+        onClick();
+      }
+      // Force immediate navigation
+      window.location.href = href;
+    }}
   >
-    <span className="text-sm font-light tracking-widest text-amber-400/50 group-hover:text-amber-400/80 transition-colors duration-300">
+    <span className="text-sm font-light tracking-widest text-amber-400/50 group-hover:text-amber-400/80">
       {text}
     </span>
-    <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent group-hover:via-amber-400/70 transition-all duration-500" />
-  </button>
+    <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent group-hover:via-amber-400/70" />
+  </Link>
 );
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // Removed "HOME" from navItems since logo will act as home button
-  const navItems = ["ABOUT", "SERVICES", "PRESS RELEASES", "CONTACT"];
+
+  const navItems = [
+    { text: "ABOUT", href: "/about" },
+    { text: "EVENTS", href: "/events" },
+    { text: "SERVICES", href: "/services" },
+    { text: "PRESS RELEASES", href: "/press" },
+    { text: "CONTACT", href: "/contact" },
+  ];
 
   return (
     <nav
@@ -44,7 +60,7 @@ const Navbar: React.FC = () => {
             <img src="/logo-transparent.png" alt="Home" className="w-20" />
           </Link>
           {navItems.map((item) => (
-            <NavItem key={item} text={item} />
+            <NavItem key={item.text} text={item.text} href={item.href} />
           ))}
         </div>
 
@@ -75,8 +91,9 @@ const Navbar: React.FC = () => {
           <div className="flex flex-col items-center p-4 space-y-2">
             {navItems.map((item) => (
               <NavItem
-                key={item}
-                text={item}
+                key={item.text}
+                text={item.text}
+                href={item.href}
                 isMobile
                 onClick={() => setIsOpen(false)}
               />

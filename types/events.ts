@@ -1,0 +1,42 @@
+export interface EventScheduleItem {
+  time: string;
+  title: string;
+  speaker: string;
+  location: string;
+}
+
+export interface EventDay {
+  date: string;
+  events: EventScheduleItem[];
+}
+
+export interface Speaker {
+  name: string;
+  title: string;
+  image: string;
+}
+
+export interface TicketPrice {
+  early: number;
+  regular: number;
+  vip: number;
+}
+
+export interface Event {
+  id: string;
+  name: string;
+  dates: string;
+  location: string;
+  url: string;
+  image: string;
+  description: string;
+  venue: string;
+  ticketPrice: TicketPrice;
+  organizer: string;
+  speakers: Speaker[];
+  schedule: EventDay[];
+  sponsors: string[];
+  tags: string[];
+  capacity: number;
+  registrationDeadline: string;
+}
