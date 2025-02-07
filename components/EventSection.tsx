@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight, Calendar, MapPin } from "lucide-react";
 
 interface Event {
@@ -16,6 +16,7 @@ interface ScrollingRowProps {
 
 interface EventCardProps {
   event: Event;
+  index: number;
 }
 
 const EVENTS = [
@@ -227,151 +228,122 @@ interface EventCardProps {
   event: Event;
 }
 
-const EventCard: React.FC<EventCardProps> = ({ event }) => (
-  <div className="flex-shrink-0 w-[260px] sm:w-[400px] lg:w-[500px] h-auto sm:h-52 mx-3 sm:mx-6 relative group">
-    {/* Static border frame */}
-    <div className="absolute inset-0 rounded-lg sm:rounded-xl border border-[#ae904c]/30 transition-all duration-300 group-hover:border-[#ae904c]/50" />
-
-    {/* Card content */}
-    <div
-      className="relative h-full rounded-lg sm:rounded-xl flex flex-col sm:flex-row overflow-hidden bg-gradient-to-br from-[#ae904c]/10 to-black/40 
-            border border-[#ae904c]/30 backdrop-blur-md transform-gpu 
-            transition-all duration-300 -translate-x-1 -translate-y-1 sm:-translate-x-2 sm:-translate-y-2
-            group-hover:scale-[1.02] group-hover:-translate-x-2 group-hover:-translate-y-2 sm:group-hover:-translate-x-3 sm:group-hover:-translate-y-3
-            group-hover:from-[#ae904c]/20 group-hover:to-black/50
-            group-hover:border-[#ae904c]/50 group-hover:shadow-lg"
-    >
-      {/* Image section */}
-      <div className="w-full h-32 sm:h-48 sm:w-48 sm:h-full relative">
-        <img
-          src={event.image}
-          alt={event.name}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-transparent to-black/50" />
-      </div>
-
-      {/* Content section */}
-      <div className="flex-1 p-3 sm:p-6 flex flex-col justify-between">
-        <div>
-          <h3 className="text-base sm:text-xl font-semibold text-[#ae904c] mb-2 sm:mb-4 transition-colors duration-300 group-hover:text-[#d4b366] line-clamp-2">
-            {event.name}
-          </h3>
-
-          <div className="space-y-1.5 sm:space-y-3">
-            <div className="flex items-center text-white/70 transition-colors duration-300 group-hover:text-white/90">
-              <Calendar
-                className="w-3.5 h-3.5 sm:w-5 sm:h-5 mr-1.5 sm:mr-3 flex-shrink-0"
-                strokeWidth={1.5}
-              />
-              <span className="text-xs sm:text-base">{event.dates}</span>
-            </div>
-
-            <div className="flex items-center text-white/70 transition-colors duration-300 group-hover:text-white/90">
-              <MapPin
-                className="w-3.5 h-3.5 sm:w-5 sm:h-5 mr-1.5 sm:mr-3 flex-shrink-0"
-                strokeWidth={1.5}
-              />
-              <span className="text-xs sm:text-base truncate">
-                {event.location}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-row sm:flex-row gap-2 sm:gap-4 mt-3 sm:mt-4">
-          <button
-            className="flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-md sm:rounded-lg 
-                    bg-[#ae904c] text-white text-xs sm:text-base
-                    transition-all duration-300 hover:bg-[#d4b366] hover:scale-105 w-full sm:w-auto"
-          >
-            Register <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4" />
-          </button>
-          <button
-            className="flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-md sm:rounded-lg 
-                    border border-[#ae904c]/30 text-xs sm:text-base
-                    text-[#ae904c] transition-all duration-300 hover:bg-[#ae904c]/10 
-                    hover:border-[#ae904c]/50 hover:text-[#d4b366] hover:scale-105 w-full sm:w-auto"
-          >
-            Details <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4" />
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-const ScrollingRow: React.FC<ScrollingRowProps> = ({ events, direction }) => {
-  const [isPaused, setIsPaused] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    setIsPaused(true);
-    setStartX(e.pageX - (scrollRef.current?.offsetLeft || 0));
-    setScrollLeft(scrollRef.current?.scrollLeft || 0);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    setTimeout(() => setIsPaused(false), 100);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
-    e.preventDefault();
-
-    const x = e.pageX - (scrollRef.current?.offsetLeft || 0);
-    const walk = (x - startX) * -0.5;
-    if (scrollRef.current) {
-      scrollRef.current.scrollLeft = scrollLeft - walk;
-    }
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setIsPaused(true);
-    setStartX(e.touches[0].pageX - (scrollRef.current?.offsetLeft || 0));
-    setScrollLeft(scrollRef.current?.scrollLeft || 0);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!scrollRef.current) return;
-
-    const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    scrollRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleTouchEnd = () => {
-    setTimeout(() => setIsPaused(false), 100);
+const EventCard: React.FC<EventCardProps> = ({ event, index }) => {
+  // Function to truncate text with ellipsis
+  const truncateText = (text: string, maxLength: number) => {
+    if (text.length <= maxLength) return text;
+    return `${text.substring(0, maxLength)}...`;
   };
 
   return (
     <div
-      ref={scrollRef}
-      className="flex overflow-x-auto overflow-y-hidden py-6 no-scrollbar"
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      onMouseMove={handleMouseMove}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      className="flex-shrink-0 w-[260px] sm:w-[400px] lg:w-[500px] h-auto sm:h-52 mx-3 sm:mx-6 
+                    relative rounded-lg sm:rounded-xl bg-gradient-to-br from-[#ae904c]/10 group-hover:from-[#ae904c]/10 to-black/40 
+                    border border-[#ae904c]/30 group-hover:border-[#ae904c]/90 overflow-hidden transform-gpu hover:scale-[1.02] 
+                    transition-transform duration-300"
+    >
+      <div className="flex flex-col sm:flex-row h-full">
+        {/* Image section - Optimized with will-change */}
+        <div className="w-full h-32 sm:h-48 sm:w-48 sm:h-full relative will-change-transform">
+          <img
+            src={event.image}
+            alt={event.name}
+            className="w-full h-full object-cover"
+            loading={index < 4 ? "eager" : "lazy"}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-transparent to-black/50" />
+        </div>
+
+        {/* Content section */}
+        <div className="flex-1 p-3 sm:p-6 flex flex-col justify-between">
+          <div>
+            <h3 className="text-base sm:text-xl font-semibold text-[#ae904c] mb-2 sm:mb-4 line-clamp-2">
+              {truncateText(event.name, 18)}
+            </h3>
+
+            <div className="space-y-1.5 sm:space-y-3">
+              <div className="flex items-center text-white/70">
+                <Calendar
+                  className="w-3.5 h-3.5 sm:w-5 sm:h-5 mr-1.5 sm:mr-3 flex-shrink-0"
+                  strokeWidth={1.5}
+                />
+                <span className="text-xs sm:text-base">{event.dates}</span>
+              </div>
+
+              <div className="flex items-center text-white/70">
+                <MapPin
+                  className="w-3.5 h-3.5 sm:w-5 sm:h-5 mr-1.5 sm:mr-3 flex-shrink-0"
+                  strokeWidth={1.5}
+                />
+                <span className="text-xs sm:text-base truncate">
+                  {truncateText(event.location, 20)}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-row sm:flex-row gap-2 sm:gap-4 mt-3 sm:mt-4">
+            <button
+              className="flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 
+                               rounded-md sm:rounded-lg bg-[#ae904c] text-white text-xs sm:text-base w-full sm:w-auto 
+                               transition-colors duration-300 hover:bg-[#d4b366]"
+            >
+              Register <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4" />
+            </button>
+            <button
+              className="flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 
+                               rounded-md sm:rounded-lg border border-[#ae904c]/30 text-xs sm:text-base 
+                               text-[#ae904c] w-full sm:w-auto transition-colors duration-300 
+                               hover:bg-[#ae904c]/10"
+            >
+              Details <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ScrollingRow: React.FC<ScrollingRowProps> = ({ events, direction }) => {
+  const [isPaused, setIsPaused] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Intersection Observer to pause animations when not in viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById(`scroll-row-${direction}`);
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => observer.disconnect();
+  }, [direction]);
+
+  const animationClass = isVisible
+    ? direction === "right"
+      ? "animate-scroll-reverse"
+      : "animate-scroll-slow"
+    : "";
+
+  return (
+    <div
+      id={`scroll-row-${direction}`}
+      className="flex overflow-hidden py-6"
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
     >
       <div
-        className={`flex ${
-          direction === "right"
-            ? "animate-scroll-reverse"
-            : "animate-scroll-slow"
-        } ${
-          isPaused ? "animate-none" : ""
-        } sm:hover:[animation-play-state:paused]`}
+        className={`flex ${animationClass} ${isPaused ? "animate-none" : ""}`}
       >
-        {[...events, ...events, ...events].map((event, idx) => (
-          <EventCard key={`${event.name}-${idx}`} event={event} />
+        {events.map((event, idx) => (
+          <EventCard key={`${event.name}-${idx}`} event={event} index={idx} />
         ))}
       </div>
     </div>
@@ -384,7 +356,7 @@ const EventsSection: React.FC = () => {
   const bottomEvents = EVENTS.slice(mid);
 
   return (
-    <div className="w-full py-12 sm:py-20 overflow-hidden">
+    <section className="w-full py-12 sm:py-20">
       <div className="container mx-auto px-4 mb-8 sm:mb-12">
         <div className="flex flex-col items-center space-y-4 sm:space-y-6">
           <h2 className="text-3xl sm:text-4xl font-bold text-center">
@@ -395,19 +367,23 @@ const EventsSection: React.FC = () => {
           <p className="text-white/60 text-center max-w-2xl text-sm sm:text-base">
             Join us at these upcoming blockchain and technology events
           </p>
-          <button className="group inline-flex items-center gap-2 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-[#ae904c]/10 hover:bg-[#ae904c]/20 border border-[#ae904c]/20 hover:border-[#ae904c]/40 transition-all duration-300">
+          <button
+            className="inline-flex items-center gap-2 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full 
+                           bg-[#ae904c]/10 hover:bg-[#ae904c]/20 border border-[#ae904c]/20 
+                           hover:border-[#ae904c]/40 transition-colors duration-300"
+          >
             <span className="text-[#ae904c] font-medium text-sm sm:text-base">
               View All
             </span>
-            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ae904c] transition-transform duration-300 group-hover:translate-x-1" />
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ae904c]" />
           </button>
         </div>
       </div>
-      <div className="w-[98vw] mx-auto">
+      <div className="w-full overflow-hidden">
         <ScrollingRow events={topEvents} direction="left" />
         <ScrollingRow events={bottomEvents} direction="right" />
       </div>
-    </div>
+    </section>
   );
 };
 

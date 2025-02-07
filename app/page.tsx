@@ -109,6 +109,7 @@ export default function Home() {
       <FadeInSection>
         <VideoSection />
       </FadeInSection>
+
       <DarkGridBackground2>
         <FadeInSection>
           <EventSection />
