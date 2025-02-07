@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowUpRight, Calendar, MapPin } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Calendar, MapPin } from "lucide-react";
 
 interface Event {
   name: string;
@@ -211,62 +211,68 @@ const EVENTS = [
 ];
 
 const EventCard: React.FC<EventCardProps> = ({ event }) => (
-  <div className="flex-shrink-0 w-[600px] h-52 mx-6 relative group">
+  <div className="flex-shrink-0 min-w-[280px] sm:min-w-[400px] md:min-w-[500px] lg:min-w-[600px] h-auto sm:h-52 mx-2 sm:mx-6 relative group">
     {/* Static border frame */}
     <div className="absolute inset-0 rounded-xl border border-[#ae904c]/30 transition-all duration-300 group-hover:border-[#ae904c]/50" />
 
     {/* Card content */}
     <div
-      className="relative h-full rounded-xl flex overflow-hidden bg-gradient-to-br from-[#ae904c]/10 to-black/40 
-          border border-[#ae904c]/30 backdrop-blur-md transform-gpu 
-          transition-all duration-300 -translate-x-2 -translate-y-2
-          group-hover:scale-[1.02] group-hover:-translate-x-3 group-hover:-translate-y-3
-          group-hover:from-[#ae904c]/20 group-hover:to-black/50
-          group-hover:border-[#ae904c]/50 group-hover:shadow-lg"
+      className="relative h-full rounded-xl flex flex-col sm:flex-row overflow-hidden bg-gradient-to-br from-[#ae904c]/10 to-black/40 
+            border border-[#ae904c]/30 backdrop-blur-md transform-gpu 
+            transition-all duration-300 -translate-x-1 -translate-y-1 sm:-translate-x-2 sm:-translate-y-2
+            group-hover:scale-[1.02] group-hover:-translate-x-2 group-hover:-translate-y-2 sm:group-hover:-translate-x-3 sm:group-hover:-translate-y-3
+            group-hover:from-[#ae904c]/20 group-hover:to-black/50
+            group-hover:border-[#ae904c]/50 group-hover:shadow-lg"
     >
       {/* Image section */}
-      <div className="w-48 relative">
+      <div className="w-full h-48 sm:w-48 sm:h-full relative">
         <img
           src={event.image}
           alt={event.name}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-transparent to-black/50" />
       </div>
 
       {/* Content section */}
-      <div className="flex-1 p-6 flex flex-col justify-between">
+      <div className="flex-1 p-4 sm:p-6 flex flex-col justify-between">
         <div>
-          <h3 className="text-xl font-semibold text-[#ae904c] mb-4 transition-colors duration-300 group-hover:text-[#d4b366]">
+          <h3 className="text-lg sm:text-xl font-semibold text-[#ae904c] mb-2 sm:mb-4 transition-colors duration-300 group-hover:text-[#d4b366] line-clamp-2">
             {event.name}
           </h3>
 
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             <div className="flex items-center text-white/70 transition-colors duration-300 group-hover:text-white/90">
-              <Calendar className="w-5 h-5 mr-3" strokeWidth={1.5} />
-              <span>{event.dates}</span>
+              <Calendar
+                className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0"
+                strokeWidth={1.5}
+              />
+              <span className="text-sm sm:text-base">{event.dates}</span>
             </div>
 
             <div className="flex items-center text-white/70 transition-colors duration-300 group-hover:text-white/90">
-              <MapPin className="w-5 h-5 mr-3" strokeWidth={1.5} />
-              <span>{event.location}</span>
+              <MapPin
+                className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0"
+                strokeWidth={1.5}
+              />
+              <span className="text-sm sm:text-base">{event.location}</span>
             </div>
           </div>
         </div>
 
-        <div className="flex gap-4 mt-4">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-4">
           <button
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#ae904c] text-white
-                transition-all duration-300 hover:bg-[#d4b366] hover:scale-105"
+            className="flex items-center justify-center sm:justify-start gap-2 px-4 py-2 rounded-lg bg-[#ae904c] text-white text-sm sm:text-base
+                  transition-all duration-300 hover:bg-[#d4b366] hover:scale-105 w-full sm:w-auto"
           >
-            Register <ArrowUpRight className="w-4 h-4" />
+            Register <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
           <button
-            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[#ae904c]/30
-                text-[#ae904c] transition-all duration-300 hover:bg-[#ae904c]/10 
-                hover:border-[#ae904c]/50 hover:text-[#d4b366] hover:scale-105"
+            className="flex items-center justify-center sm:justify-start gap-2 px-4 py-2 rounded-lg border border-[#ae904c]/30 text-sm sm:text-base
+                  text-[#ae904c] transition-all duration-300 hover:bg-[#ae904c]/10 
+                  hover:border-[#ae904c]/50 hover:text-[#d4b366] hover:scale-105 w-full sm:w-auto"
           >
-            Learn More <ArrowUpRight className="w-4 h-4" />
+            Details <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
         </div>
       </div>
@@ -293,16 +299,22 @@ const EventsSection: React.FC = () => {
   const bottomEvents = EVENTS.slice(mid);
 
   return (
-    <div className="w-full py-20 overflow-hidden ">
+    <div className="w-full py-20 overflow-hidden">
       <div className="container mx-auto px-4 mb-12">
-        <h2 className="text-4xl font-bold text-center mb-6">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ae904c]/80 via-[#ae904c] to-[#ae904c]/80">
-            Upcoming Events
-          </span>
-        </h2>
-        <p className="text-white/60 text-center max-w-2xl mx-auto">
-          Join us at these upcoming blockchain and technology events
-        </p>
+        <div className="flex flex-col items-center space-y-6">
+          <h2 className="text-4xl font-bold text-center">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ae904c]/80 via-[#ae904c] to-[#ae904c]/80">
+              Upcoming Events
+            </span>
+          </h2>
+          <p className="text-white/60 text-center max-w-2xl">
+            Join us at these upcoming blockchain and technology events
+          </p>
+          <button className="group inline-flex items-center gap-2 px-6 py-2 rounded-full bg-[#ae904c]/10 hover:bg-[#ae904c]/20 border border-[#ae904c]/20 hover:border-[#ae904c]/40 transition-all duration-300">
+            <span className="text-[#ae904c] font-medium">View All</span>
+            <ArrowRight className="w-4 h-4 text-[#ae904c] transition-transform duration-300 group-hover:translate-x-1" />
+          </button>
+        </div>
       </div>
       <div className="w-[98vw] mx-auto">
         <ScrollingRow events={topEvents} direction="left" />
