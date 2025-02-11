@@ -16,6 +16,7 @@ import Navbar from "@/components/Navbar";
 import eventsData from "@/data/events.json";
 import Footer from "@/components/Footer";
 import DarkGridBackground from "@/components/DarkGridBackground3";
+import DateRangePicker from "@/components/ui/DateRangePicker";
 
 interface EventCardProps {
   event: (typeof eventsData.events)[0];
@@ -323,21 +324,70 @@ const LocationFilter = ({
 export default function EventsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("all");
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
 
+  const filteredEvents = eventsData.events.filter((event) => {
+    // Helper to parse dates from the format "Month Day–Day, Year" or "Month Day, Year"
+    const parseDateRange = (dateStr: string) => {
+      const [monthYear, yearPart] = dateStr.split(", ");
+      const year = yearPart;
+      const [month, days] = monthYear.split(" ");
+
+      const [startDay, endDay] = days.split("–").map((d) => d.trim());
+
+      // If there's no end day (single day event), use the start day
+      const endDayValue = endDay || startDay;
+
+      // Create date objects
+      const startDate = new Date(`${month} ${startDay}, ${year}`);
+      const endDate = new Date(`${month} ${endDayValue}, ${year}`);
+
+      return { startDate, endDate };
+    };
+
+    // Search filter
+    const matchesSearch =
+      event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      event.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+    // Location filter
+    const matchesLocation =
+      selectedLocation === "all" || event.location === selectedLocation;
+
+    // Date range filter
+    const matchesDateRange = (() => {
+      if (!startDate && !endDate) return true;
+
+      const { startDate: eventStart, endDate: eventEnd } = parseDateRange(
+        event.dates
+      );
+
+      if (startDate && !endDate) {
+        return eventStart >= startDate || eventEnd >= startDate;
+      }
+
+      if (!startDate && endDate) {
+        return eventStart <= endDate || eventEnd <= endDate;
+      }
+
+      if (startDate && endDate) {
+        return (
+          (eventStart >= startDate && eventStart <= endDate) ||
+          (eventEnd >= startDate && eventEnd <= endDate) ||
+          (eventStart <= startDate && eventEnd >= endDate)
+        );
+      }
+
+      return true;
+    })();
+
+    return matchesSearch && matchesLocation && matchesDateRange;
+  });
   const locations = [
     "all",
     ...new Set(eventsData.events.map((event) => event.location)),
   ];
-
-  // Filter events
-  const filteredEvents = eventsData.events.filter((event) => {
-    const matchesSearch =
-      event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      event.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesLocation =
-      selectedLocation === "all" || event.location === selectedLocation;
-    return matchesSearch && matchesLocation;
-  });
 
   // Split events for different sections
   const featuredEvents = filteredEvents.slice(0, 3);
@@ -384,15 +434,25 @@ export default function EventsPage() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full pl-12 pr-4 py-3 rounded-lg bg-white/5 border border-white/10 
-                            text-white placeholder:text-white/40 focus:outline-none focus:border-[#ae904c]/40"
+                  text-white placeholder:text-white/40 focus:outline-none focus:border-[#ae904c]/40"
                   />
                 </div>
 
-                <LocationFilter
-                  selectedLocation={selectedLocation}
-                  locations={locations}
-                  onChange={setSelectedLocation}
-                />
+                <div className="flex flex-col md:flex-row gap-4">
+                  <LocationFilter
+                    selectedLocation={selectedLocation}
+                    locations={locations}
+                    onChange={setSelectedLocation}
+                  />
+                  <DateRangePicker
+                    startDate={startDate}
+                    endDate={endDate}
+                    onDateChange={(start, end) => {
+                      setStartDate(start);
+                      setEndDate(end);
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>

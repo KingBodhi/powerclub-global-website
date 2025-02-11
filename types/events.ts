@@ -10,16 +10,16 @@ export interface EventDay {
   events: EventScheduleItem[];
 }
 
-export interface Speaker {
-  name: string;
-  title: string;
-  image: string;
-}
-
 export interface TicketPrice {
   early: number;
   regular: number;
   vip: number;
+}
+
+export interface Speaker {
+  name: string;
+  title: string;
+  image: string;
 }
 
 export interface Event {
@@ -39,4 +39,12 @@ export interface Event {
   tags: string[];
   capacity: number;
   registrationDeadline: string;
+  dateRange?: {
+    start: string;
+    end: string;
+  };
+}
+
+export interface EventsData {
+  events: Event[];
 }

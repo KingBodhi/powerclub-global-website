@@ -1,6 +1,8 @@
+"use client";
 import React, { useState } from "react";
 import { Inter } from "next/font/google";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Facebook, Instagram, Linkedin } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 
 const inter = Inter({
@@ -12,29 +14,83 @@ interface NavItemProps {
   text: string;
   href: string;
   isMobile?: boolean;
+  isContact?: boolean;
   onClick?: () => void;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ text, href, isMobile, onClick }) => (
+const NavItem: React.FC<NavItemProps> = ({
+  text,
+  href,
+  isMobile,
+  isContact,
+  onClick,
+}) => (
   <button
-    // scroll={false} // Disable scroll behavior
-    className={`group relative px-4 py-2 ${
-      isMobile ? "w-full text-center" : ""
+    className={`group relative ${
+      isContact
+        ? "bg-[#ae904c] text-white px-6 py-2 rounded-md hover:bg-[#98803f] transition-colors duration-300"
+        : `px-4 py-2 ${isMobile ? "w-full text-center" : ""}`
     }`}
     onClick={(e) => {
       if (onClick) {
         e.preventDefault();
         onClick();
       }
-      // Force immediate navigation
       window.location.href = href;
     }}
   >
-    <span className="text-sm font-light tracking-widest text-amber-400/50 group-hover:text-amber-400/80">
+    <span
+      className={`text-sm font-light tracking-widest ${
+        isContact
+          ? "text-white"
+          : isMobile
+          ? "text-amber-400/90"
+          : "text-amber-400/50 group-hover:text-amber-400/80"
+      }`}
+    >
       {text}
     </span>
-    <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent group-hover:via-amber-400/70" />
+    {!isContact && (
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent group-hover:via-amber-400/70" />
+    )}
   </button>
+);
+
+const SocialLinks = () => (
+  <div className="flex space-x-6">
+    <a
+      href="https://www.facebook.com/p/Powerclub-Global-100093219199164/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
+    >
+      <Facebook className="w-5 h-5" />
+    </a>
+    <a
+      href="https://x.com/powerclubglobal"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
+    >
+      <FaXTwitter className="w-5 h-5" />
+    </a>
+    <a
+      href="https://www.instagram.com/powerclub.global/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
+    >
+      <Instagram className="w-5 h-5" />
+    </a>
+    <a
+      href="https://www.linkedin.com/company/powerclub-global-usa"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
+    >
+      <Linkedin className="w-5 h-5" />
+    </a>
+  </div>
 );
 
 const Navbar: React.FC = () => {
@@ -45,7 +101,7 @@ const Navbar: React.FC = () => {
     { text: "EVENTS", href: "/events" },
     { text: "SERVICES", href: "/services" },
     { text: "PRESS RELEASES", href: "/press" },
-    { text: "CONTACT", href: "/contact" },
+    { text: "CONTACT", href: "/contact", isContact: true },
   ];
 
   return (
@@ -59,12 +115,17 @@ const Navbar: React.FC = () => {
             <img src="/logo-transparent.png" alt="Home" className="w-20" />
           </Link>
           {navItems.map((item) => (
-            <NavItem key={item.text} text={item.text} href={item.href} />
+            <NavItem
+              key={item.text}
+              text={item.text}
+              href={item.href}
+              isContact={item.isContact}
+            />
           ))}
         </div>
 
         {/* Mobile Layout */}
-        <div className="flex md:hidden justify-between items-center">
+        <div className="flex md:hidden justify-between items-center relative z-50">
           <Link href="/" className="cursor-pointer">
             <img src="/logo-transparent.png" alt="Home" className="w-16" />
           </Link>
@@ -77,26 +138,46 @@ const Navbar: React.FC = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* Full-screen Mobile Navigation Menu */}
         <div
           className={`
-          md:hidden 
-          fixed left-0 right-0 
-          bg-black/95 
-          transition-all duration-300 ease-in-out
-          ${isOpen ? "top-16 opacity-100" : "-top-full opacity-0"}
-        `}
+            md:hidden 
+            fixed left-0 right-0 bottom-0
+            bg-black 
+            transition-all duration-300 ease-in-out
+            ${
+              isOpen
+                ? "top-16 opacity-100 pointer-events-auto"
+                : "-top-full opacity-0 pointer-events-none"
+            }
+            flex flex-col
+            z-40
+          `}
         >
-          <div className="flex flex-col items-center p-4 space-y-2">
-            {navItems.map((item) => (
-              <NavItem
+          {/* Main navigation items */}
+          <div className="flex-grow flex flex-col items-center justify-center p-4 space-y-8">
+            {navItems.map((item, index) => (
+              <div
                 key={item.text}
-                text={item.text}
-                href={item.href}
-                isMobile
-                onClick={() => setIsOpen(false)}
-              />
+                className={`transform transition-all duration-300 delay-${
+                  index * 100
+                }`}
+              >
+                <NavItem
+                  text={item.text}
+                  href={item.href}
+                  isMobile
+                  isContact={item.isContact}
+                  onClick={() => setIsOpen(false)}
+                />
+              </div>
             ))}
+          </div>
+
+          {/* Social Links at Bottom */}
+          <div className="p-8 flex flex-col items-center space-y-6 mt-auto">
+            <img src="/logo-transparent.png" alt="Logo" className="w-20 mb-4" />
+            <SocialLinks />
           </div>
         </div>
       </div>

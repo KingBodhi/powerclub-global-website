@@ -1,0 +1,90 @@
+import {
+  Car,
+  Code,
+  Users,
+  Palette,
+  Share2,
+  MessageSquare,
+  Newspaper,
+} from "lucide-react";
+
+export const services = [
+  {
+    id: "roadshow-management",
+    title: "Roadshow Management",
+    prefix: "Organizing & Managing",
+    suffix: "for you",
+    description:
+      "End-to-end roadshow orchestration delivering your message across global markets with maximum impact and engagement.",
+    longDescription: `Our comprehensive roadshow management service ensures your message reaches the right audience across multiple locations with maximum impact. We handle everything from venue selection and logistics to audience engagement and follow-up.`,
+    icon: Car,
+    isMain: true,
+    image: "/services/roadshow.jpg",
+  },
+  {
+    id: "blockchain-consulting",
+    title: "Blockchain and Web3 Consulting",
+    prefix: "Transforming Business",
+    suffix: "with blockchain",
+    description:
+      "Strategic guidance for blockchain integration and Web3 transformation.",
+    longDescription: `Our blockchain consulting service provides comprehensive guidance for businesses looking to integrate blockchain technology and transition into Web3. We offer strategic planning, technical architecture design, and implementation roadmaps tailored to your specific needs.`,
+    icon: Code,
+  },
+  {
+    id: "experiences",
+    title: "Experiences",
+    prefix: "Creating Memorable",
+    suffix: "that last",
+    description:
+      "Creating memorable brand experiences that resonate with your audience.",
+    longDescription: `We craft unforgettable brand experiences that leave a lasting impression on your audience. Our team combines creativity, strategy, and execution to design and deliver experiences that strengthen brand connections and drive engagement.`,
+    icon: Users,
+  },
+  {
+    id: "development",
+    title: "Web, App, & Blockchain Development",
+    prefix: "Building Digital",
+    suffix: "of tomorrow",
+    description:
+      "Full-stack development solutions from web apps to smart contracts.",
+    longDescription: `Our development team delivers cutting-edge solutions across web, mobile, and blockchain platforms. We specialize in creating scalable, secure, and user-friendly applications that drive your business forward in the digital age.`,
+    icon: Code,
+  },
+  {
+    id: "branding",
+    title: "Branding",
+    prefix: "Elevating Your",
+    suffix: "identity",
+    description: "Comprehensive brand strategy and identity development.",
+    longDescription: `We help businesses build and evolve their brand identity through strategic thinking and creative execution. Our branding service covers everything from visual identity and messaging to brand guidelines and implementation strategies.`,
+    icon: Palette,
+  },
+  {
+    id: "social-media",
+    title: "Social Media Management",
+    prefix: "Amplifying Your",
+    suffix: "presence",
+    description: "Strategic social presence management and community building.",
+    longDescription: `Our social media management service helps you build and maintain a strong online presence. We develop content strategies, manage communities, and drive engagement across all major social platforms to strengthen your brand's digital footprint.`,
+    icon: Share2,
+  },
+  {
+    id: "influencer-relations",
+    title: "Influencer Relations",
+    prefix: "Connecting With",
+    suffix: "authentically",
+    description: "Connecting brands with authentic voices in the industry.",
+    longDescription: `We connect your brand with influential voices that align with your values and objectives. Our influencer relations service focuses on building authentic partnerships that drive meaningful engagement and brand advocacy.`,
+    icon: MessageSquare,
+  },
+  {
+    id: "press-relations",
+    title: "Press Relations",
+    prefix: "Managing Your",
+    suffix: "effectively",
+    description: "Strategic media coverage and PR campaign management.",
+    longDescription: `Our press relations service helps you build and maintain strong relationships with media outlets and journalists. We develop and execute PR strategies that enhance your brand's visibility and reputation through strategic media placements and communication.`,
+    icon: Newspaper,
+  },
+];

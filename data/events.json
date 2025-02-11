@@ -4,6 +4,10 @@
       "id": "ces-2025",
       "name": "CES 2025",
       "dates": "January 7–10, 2025",
+      "dateRange": {
+        "start": "2025-01-07",
+        "end": "2025-01-10"
+      },
       "location": "Las Vegas, Nevada",
       "url": "https://www.ces.tech/",
       "image": "/events/ces.png",
@@ -61,6 +65,10 @@
       "id": "wagmi-miami-2025",
       "name": "WAGMI Miami 2025",
       "dates": "January 21–24, 2025",
+      "dateRange": {
+        "start": "2025-01-21",
+        "end": "2025-01-24"
+      },
       "location": "Miami, Florida",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/wagmi.png",
@@ -113,6 +121,10 @@
       "id": "crypto-gathering-2025",
       "name": "Crypto Gathering 2025",
       "dates": "January 30–February 1, 2025",
+      "dateRange": {
+        "start": "2025-01-30",
+        "end": "2025-02-01"
+      },
       "location": "Miami Beach, Florida",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/crypto-gathering.png",
@@ -165,6 +177,10 @@
       "id": "digital-assets-forum",
       "name": "Digital Assets Forum",
       "dates": "February 3, 2025",
+      "dateRange": {
+        "start": "2025-02-03",
+        "end": "2025-02-03"
+      },
       "location": "London, UK",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/london.png",
@@ -217,6 +233,10 @@
       "id": "consensus-hongkong",
       "name": "Consensus Hong Kong",
       "dates": "February 18–20, 2025",
+      "dateRange": {
+        "start": "2025-02-18",
+        "end": "2025-02-20"
+      },
       "location": "Hong Kong, HK",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/hongkong.png",
@@ -269,6 +289,10 @@
       "id": "digital-assets-week-hongkong",
       "name": "Digital Assets Week - Hong Kong",
       "dates": "February 27, 2025",
+      "dateRange": {
+        "start": "2025-02-27",
+        "end": "2025-02-27"
+      },
       "location": "Kowloon, Hong Kong",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/hongkong-daw.png",
@@ -321,6 +345,10 @@
       "id": "crypto-expo-europe",
       "name": "Crypto Expo - Europe",
       "dates": "March 2–3, 2025",
+      "dateRange": {
+        "start": "2025-03-02",
+        "end": "2025-03-03"
+      },
       "location": "Bucharest, Romania",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/bucharest.png",
@@ -373,6 +401,10 @@
       "id": "web3-amsterdam",
       "name": "Web3 Amsterdam",
       "dates": "March 13–14, 2025",
+      "dateRange": {
+        "start": "2025-03-13",
+        "end": "2025-03-14"
+      },
       "location": "Amsterdam, Netherlands",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/amsterdam.png",
@@ -425,6 +457,10 @@
       "id": "next-block-expo",
       "name": "Next Block Expo",
       "dates": "March 19–20, 2025",
+      "dateRange": {
+        "start": "2025-03-19",
+        "end": "2025-03-20"
+      },
       "location": "Warsaw, Poland",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/warsaw.png",
@@ -477,6 +513,10 @@
       "id": "dc-blockchain-summit",
       "name": "DC Blockchain Summit 2025",
       "dates": "March 26, 2025",
+      "dateRange": {
+        "start": "2025-03-26",
+        "end": "2025-03-26"
+      },
       "location": "Washington, DC",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/dc.png",
@@ -529,6 +569,10 @@
       "id": "paris-blockchain-week",
       "name": "Paris Blockchain Week",
       "dates": "April 8–10, 2025",
+      "dateRange": {
+        "start": "2025-04-08",
+        "end": "2025-04-10"
+      },
       "location": "Paris, France",
       "url": "https://www.blockchainweek.fr/",
       "image": "/events/paris.png",
@@ -581,6 +625,10 @@
       "id": "canada-crypto-week",
       "name": "Canada Crypto Week",
       "dates": "May 11–17, 2025",
+      "dateRange": {
+        "start": "2025-05-11",
+        "end": "2025-05-17"
+      },
       "location": "Toronto, Canada",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/toronto.png",
@@ -633,6 +681,10 @@
       "id": "blockchain-futurist-toronto",
       "name": "Blockchain Futurist Conference Toronto",
       "dates": "May 13, 2025",
+      "dateRange": {
+        "start": "2025-05-13",
+        "end": "2025-05-13"
+      },
       "location": "Toronto, Canada",
       "url": "https://www.blockchainfuturistconference.com/",
       "image": "/events/toronto-bfc.png",
@@ -685,6 +737,10 @@
       "id": "ethwomen",
       "name": "ETHWomen",
       "dates": "May 13, 2025",
+      "dateRange": {
+        "start": "2025-05-13",
+        "end": "2025-05-13"
+      },
       "location": "Toronto, Canada",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/ethwomen.png",
@@ -737,6 +793,10 @@
       "id": "consensus-toronto",
       "name": "Consensus Toronto",
       "dates": "May 14–16, 2025",
+      "dateRange": {
+        "start": "2025-05-14",
+        "end": "2025-05-16"
+      },
       "location": "Toronto, Canada",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/toronto-consensus.png",
@@ -789,6 +849,10 @@
       "id": "digital-assets-week-ny",
       "name": "Digital Assets Week - New York",
       "dates": "May 20–21, 2025",
+      "dateRange": {
+        "start": "2025-05-20",
+        "end": "2025-05-21"
+      },
       "location": "New York, NY",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/ny-daw.png",
@@ -841,6 +905,10 @@
       "id": "bitcoin-2025",
       "name": "Bitcoin 2025 Conference",
       "dates": "May 27–29, 2025",
+      "dateRange": {
+        "start": "2025-05-27",
+        "end": "2025-05-29"
+      },
       "location": "Las Vegas, Nevada",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/bitcoin.png",
@@ -893,6 +961,10 @@
       "id": "icma-conference",
       "name": "ICMA Annual General Meeting & Conference 2025",
       "dates": "June 4–6, 2025",
+      "dateRange": {
+        "start": "2025-06-04",
+        "end": "2025-06-06"
+      },
       "location": "Frankfurt, Germany",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/frankfurt.png",
@@ -945,6 +1017,10 @@
       "id": "crypto-valley-conference",
       "name": "Crypto Valley Conference",
       "dates": "June 5–6, 2025",
+      "dateRange": {
+        "start": "2025-06-05",
+        "end": "2025-06-06"
+      },
       "location": "Risch-Rotkreuz, Switzerland",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/switzerland.png",
@@ -997,6 +1073,10 @@
       "id": "permissionless-iv",
       "name": "Permissionless IV",
       "dates": "June 24–26, 2025",
+      "dateRange": {
+        "start": "2025-06-24",
+        "end": "2025-06-26"
+      },
       "location": "Brooklyn, New York",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/ny.png",
@@ -1049,6 +1129,10 @@
       "id": "ethereum-community-conference",
       "name": "Ethereum Community Conference",
       "dates": "June 30–July 3, 2025",
+      "dateRange": {
+        "start": "2025-06-30",
+        "end": "2025-07-03"
+      },
       "location": "Cannes, France",
       "url": "https://www.ethcc.io/",
       "image": "/events/cannes.png",
@@ -1101,6 +1185,10 @@
       "id": "rare-evo-2025",
       "name": "Rare Evo 2025",
       "dates": "August 6–10, 2025",
+      "dateRange": {
+        "start": "2025-08-06",
+        "end": "2025-08-10"
+      },
       "location": "Las Vegas, Nevada",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/las-vegas.png",
@@ -1153,6 +1241,10 @@
       "id": "cbdc-conference",
       "name": "CBDC Conference",
       "dates": "September 9–11, 2025",
+      "dateRange": {
+        "start": "2025-09-09",
+        "end": "2025-09-11"
+      },
       "location": "Nassau, Bahamas",
       "url": "https://ninjapromo.io/best-crypto-conferences",
       "image": "/events/bahamas.png",
@@ -1205,6 +1297,10 @@
       "id": "korea-blockchain-week",
       "name": "Korea Blockchain Week 2025",
       "dates": "September 22–27, 2025",
+      "dateRange": {
+        "start": "2025-09-22",
+        "end": "2025-09-27"
+      },
       "location": "Seoul, Korea",
       "url": "https://koreablockchainweek.com/",
       "image": "/events/seoul.png",
@@ -1257,6 +1353,10 @@
       "id": "mainnet-2025",
       "name": "Mainnet 2025 by Messari",
       "dates": "September 22–24, 2025",
+      "dateRange": {
+        "start": "2025-09-22",
+        "end": "2025-09-24"
+      },
       "location": "New York, NY",
       "url": "https://mainnet.events/",
       "image": "/events/ny-mainnet.png",
@@ -1309,6 +1409,10 @@
       "id": "blockchain-life-2025",
       "name": "Blockchain Life 2025",
       "dates": "October 28–29, 2025",
+      "dateRange": {
+        "start": "2025-10-28",
+        "end": "2025-10-29"
+      },
       "location": "Dubai, UAE",
       "url": "https://blockchain-life.com/",
       "image": "/events/dubai.png",
