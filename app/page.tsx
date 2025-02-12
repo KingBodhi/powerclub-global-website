@@ -1,6 +1,5 @@
 "use client";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import VideoSection from "@/components/AboutSection";
 import Partners from "@/components/Carousel";
 import ContactSection from "@/components/ContactSection";
@@ -12,31 +11,6 @@ import PressReleaseSection from "@/components/PressReleaseSection";
 import ServicesSection from "@/components/ServicesSection";
 import { Sparkles } from "lucide-react";
 import EventSection from "@/components/EventSection";
-interface FadeInSectionProps {
-  children: React.ReactNode;
-  delay?: number;
-}
-
-const FadeInSection: React.FC<FadeInSectionProps> = ({
-  children,
-  delay = 0,
-}) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.7, delay }}
-      // Add this to disable exit animations
-      exit={{ opacity: 0, transition: { duration: 0 } }}
-    >
-      {children}
-    </motion.div>
-  );
-};
 
 export default function Home() {
   const handleGetStarted = () => {
@@ -104,33 +78,21 @@ export default function Home() {
         </div>
       </DarkGridBackground>
 
-      <FadeInSection>
-        <Partners />
-      </FadeInSection>
+      <Partners />
 
-      <FadeInSection>
-        <VideoSection />
-      </FadeInSection>
+      <VideoSection />
 
       <DarkGridBackground2>
-        <FadeInSection>
-          <EventSection />
-        </FadeInSection>
+        <EventSection />
       </DarkGridBackground2>
 
       <DarkGridBackground2>
-        <FadeInSection>
-          <ServicesSection />
-        </FadeInSection>
+        <ServicesSection />
       </DarkGridBackground2>
 
-      <FadeInSection>
-        <PressReleaseSection />
-      </FadeInSection>
+      <PressReleaseSection />
 
-      <FadeInSection>
-        <ContactSection />
-      </FadeInSection>
+      <ContactSection />
 
       <Footer />
     </main>

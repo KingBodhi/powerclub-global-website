@@ -169,7 +169,10 @@ const ServicesSection: React.FC = () => {
               Comprehensive solutions tailored to elevate your brand and create
               memorable experiences
             </p>
-            <button className="group flex items-center gap-2 px-6 py-2 rounded-full bg-[#ae904c]/10 hover:bg-[#ae904c]/20 border border-[#ae904c]/20 hover:border-[#ae904c]/40 transition-all duration-300">
+            <button
+              onClick={() => (window.location.href = "/services")}
+              className="group flex items-center gap-2 px-6 py-2 rounded-full bg-[#ae904c]/10 hover:bg-[#ae904c]/20 border border-[#ae904c]/20 hover:border-[#ae904c]/40 transition-all duration-300"
+            >
               <span className="text-[#ae904c] font-medium">View All</span>
               <ArrowRight className="w-4 h-4 text-[#ae904c] transition-transform duration-300 group-hover:translate-x-1" />
             </button>

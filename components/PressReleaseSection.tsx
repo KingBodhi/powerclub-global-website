@@ -214,7 +214,10 @@ const PressReleaseSection: React.FC = () => {
                   Stay updated with our latest announcements and company news
                 </p>
               </div>
-              <button className="hidden md:flex items-center text-[#ae904c]/80 hover:text-[#ae904c] transition-colors duration-300">
+              <button
+                onClick={() => (window.location.href = "/press")}
+                className="hidden md:flex items-center text-[#ae904c]/80 hover:text-[#ae904c] transition-colors duration-300"
+              >
                 View All <ArrowRight className="w-4 h-4 ml-2" />
               </button>
             </div>

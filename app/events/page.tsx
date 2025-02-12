@@ -9,7 +9,6 @@ import {
   MapPin,
   ArrowUpRight,
   Search,
-  Users,
   ChevronDown,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -81,116 +80,6 @@ const FeaturedEventCard = ({ event }: EventCardProps) => (
       </div>
     </div>
   </motion.div>
-);
-
-const truncateText = (text: string, maxLength: number) => {
-  if (text.length <= maxLength) return text;
-  return `${text.substring(0, maxLength)}...`;
-};
-
-const CompactEventCard = ({ event }: EventCardProps) => (
-  <div className="group relative h-[200px] perspective-1000">
-    <div className="preserve-3d transition-transform duration-500 ease-out group-hover:[transform:rotateX(2deg)_rotateY(-2deg)]">
-      {/* Card Shadow */}
-      <div
-        className="absolute inset-0 rounded-xl bg-black/30 blur-xl transform translate-y-4 scale-95 
-                      transition-all duration-500 group-hover:translate-y-8 group-hover:scale-90"
-      />
-
-      {/* Card Content */}
-      <div
-        className="relative h-[200px] rounded-xl bg-gradient-to-br from-[#ae904c]/5 to-[#ae904c]/0 
-                     backdrop-blur-sm border border-[#ae904c]/20 group-hover:border-[#ae904c]/40
-                     transition-all duration-500 overflow-hidden"
-      >
-        {/* Hover Gradient Effect */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#ae904c]/20 via-transparent to-[#ae904c]/20 animate-gradient-shift" />
-          <div
-            className="absolute -inset-px rounded-xl bg-gradient-to-r from-[#ae904c]/30 via-[#ae904c]/10 to-[#ae904c]/30 
-                          blur-sm group-hover:animate-pulse"
-          />
-        </div>
-
-        <div className="flex h-full">
-          {/* Image Section */}
-          <div className="relative w-56 flex-shrink-0">
-            <Image
-              src={event.image}
-              alt={event.name}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
-            />
-            {/* <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/80 " /> */}
-
-            {/* Event Tags - Moved to bottom left of image */}
-            <div className="absolute bottom-4 left-4 flex gap-2">
-              {event.tags.slice(0, 2).map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 rounded-full text-xs bg-black/50 text-white/90 
-                                         border border-white/10"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Content Section */}
-          <div className="relative flex-1 p-6 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-4 text-sm text-white/60 mb-2">
-                <div className="flex items-center">
-                  <Calendar className="w-4 h-4 mr-2 text-[#ae904c]" />
-                  <span className="truncate">{event.dates}</span>
-                </div>
-                <div className="flex items-center">
-                  <MapPin className="w-4 h-4 mr-2 text-[#ae904c]" />
-                  <span className="truncate">
-                    {truncateText(event.location, 10)}
-                  </span>
-                </div>
-              </div>
-              <h3 className="text-xl font-semibold text-[#ae904c] mb-2">
-                {truncateText(event.name, 26)}
-              </h3>
-              <p className="text-white/60 text-sm line-clamp-2">
-                {event.description}
-              </p>
-            </div>
-
-            {/* Bottom Info & Buttons */}
-            <div className="flex items-center justify-between mt-4">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center text-white/60 text-sm">
-                  <Users className="w-4 h-4 mr-2 text-[#ae904c]" />
-                  {event.capacity.toLocaleString()}
-                </div>
-                <div className="text-[#ae904c] text-sm">
-                  <span className="text-white/50">From </span>
-                  <span className="font-semibold">
-                    ${event.ticketPrice.early}
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex gap-3">
-                <Link
-                  href={`/events/${event.id}`}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#ae904c]/10 
-                             border border-[#ae904c]/30 text-[#ae904c] text-sm
-                             hover:bg-[#ae904c]/20 transition-all duration-300"
-                >
-                  Details <ArrowUpRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 );
 
 const SmallEventCard = ({ event }: EventCardProps) => (
@@ -391,8 +280,7 @@ export default function EventsPage() {
 
   // Split events for different sections
   const featuredEvents = filteredEvents.slice(0, 3);
-  const compactEvents = filteredEvents.slice(3, 7);
-  const remainingEvents = filteredEvents.slice(7);
+  const remainingEvents = filteredEvents.slice(3);
 
   return (
     <main className="min-h-screen bg-black">
@@ -466,13 +354,13 @@ export default function EventsPage() {
         </div>
 
         {/* Compact Events Grid */}
-        {compactEvents.length > 0 && (
+        {/* {compactEvents.length > 0 && (
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {compactEvents.map((event) => (
-              <CompactEventCard key={event.id} event={event} />
+              <SmallEventCard key={event.id} event={event} />
             ))}
           </div>
-        )}
+        )} */}
 
         {/* Remaining Events Grid */}
         {remainingEvents.length > 0 && (
