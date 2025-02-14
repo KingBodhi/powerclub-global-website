@@ -18,7 +18,7 @@ const CTASection: React.FC<CTASectionProps> = ({
   onPrimaryClick,
   onSecondaryClick,
 }) => (
-  <div className="relative w-full bg-black/95 py-32">
+  <div className="relative w-full bg-black/95 py-24">
     {/* Background Pattern */}
     <div className="absolute inset-0 opacity-30 w-full">
       <div

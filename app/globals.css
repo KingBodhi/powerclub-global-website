@@ -46,3 +46,7 @@ body {
 .animation-delay-4000 {
   animation-delay: 4s;
 }
+
+.shadow-glow {
+  box-shadow: 0 0 8px 2px #ae904c;
+}

@@ -2,11 +2,25 @@ import React from "react";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
-import { ArrowUpRight, Phone, Sparkles } from "lucide-react";
+
+import {
+  ArrowUpRight,
+  Check,
+  Globe,
+  MessageCircle,
+  Lightbulb,
+  Phone,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import CTASection from "@/components/CTASection";
 import { services } from "@/data/services";
+import Partners from "@/components/Carousel";
+import { cn } from "@/lib/utils";
+import FAQSection from "@/components/FAQSection";
+import WorkflowSection from "@/components/WorkflowSection";
 
 const people = [
   {
@@ -59,8 +73,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   description,
   id,
 }) => (
-  <Link href={`/services/${id}`}>
-    <div className="relative group rounded-2xl overflow-hidden min-w-48 h-48 flex-1 cursor-pointer">
+  <Link href={`/services/${id}`} className="block">
+    <div className="relative group rounded-2xl overflow-hidden h-48 cursor-pointer">
       <img
         src={image}
         alt={title}
@@ -80,12 +94,83 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   </Link>
 );
 
+interface FeatureCard {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+}
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+const features: FeatureCard[] = [
+  {
+    title: "Expert Team",
+    description:
+      "Our team brings decades of combined experience in the industry.",
+    icon: <Users className="w-6 h-6 text-[#ae904c]" />,
+  },
+  {
+    title: "Global Reach",
+    description:
+      "Connect with audiences worldwide through our extensive network.",
+    icon: <Globe className="w-6 h-6 text-[#ae904c]" />,
+  },
+  {
+    title: "Innovative Solutions",
+    description: "Cutting-edge approaches tailored to your unique needs.",
+    icon: <Lightbulb className="w-6 h-6 text-[#ae904c]" />,
+  },
+  {
+    title: "Transparent Communication",
+    description: "Open lines of communication for clarity and peace of mind.",
+    icon: <MessageCircle className="w-6 h-6 text-[#ae904c]" />,
+  },
+];
+
+const faqs: FAQ[] = [
+  {
+    question: "How long does the process typically take?",
+    answer:
+      "The timeline varies depending on project scope, but typically ranges from 4-12 weeks.",
+  },
+  {
+    question: "What makes your approach unique?",
+    answer:
+      "We combine industry expertise with innovative technology and personalized service.",
+  },
+  // Add more FAQs as needed
+];
 interface PageProps {
   params: Promise<{
     serviceId: string;
   }>;
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
+
+// const HighlightCard: React.FC<FeatureCard> = ({ title, description, icon }) => (
+//   <div className="relative h-full">
+//     {/* Static border frame */}
+//     <div className="absolute inset-0 rounded-xl border border-[#ae904c]/30" />
+
+//     {/* Card content */}
+//     <div
+//       className="relative p-8 rounded-xl bg-gradient-to-br from-[#ae904c]/20 to-black/40
+//       border border-[#ae904c]/30 backdrop-blur-md transform-gpu h-full
+//       transition-all duration-300 hover:-translate-x-2 hover:-translate-y-2"
+//     >
+//       <div className="flex flex-col gap-6">
+//         <div className="flex items-center gap-3">
+//           {icon}
+//           <h3 className="text-xl font-semibold text-[#ae904c]">{title}</h3>
+//         </div>
+//         <p className="text-white/70">{description}</p>
+//       </div>
+//     </div>
+//   </div>
+// );
 
 export default async function ServicePage({ params }: PageProps) {
   // Await both params and searchParams
@@ -131,8 +216,10 @@ export default async function ServicePage({ params }: PageProps) {
             <div className="flex gap-3 mt-8 lg:mt-12">
               <AnimatedTooltip items={people} />
             </div>
-
             <p className="text-white/70 text-base lg:text-lg max-w-xl mt-8 lg:mt-12">
+              {service.description}
+            </p>
+            <p className="text-white/70 text-base lg:text-lg max-w-xl mt-6 lg:mt-8">
               {service.longDescription}
             </p>
 
@@ -140,33 +227,6 @@ export default async function ServicePage({ params }: PageProps) {
               <Phone className="w-4 h-4" />
               Book a call
             </button>
-
-            <h2 className="text-4xl lg:text-5xl font-semibold text-[#ae904c] mt-16 lg:mt-28">
-              Other Services
-            </h2>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex gap-4 lg:gap-5 my-8 lg:my-12">
-              {relatedServices.map((service) => (
-                <ServiceCard
-                  key={service.id}
-                  id={service.id}
-                  title={service.title}
-                  image={`/services/${service.id}-cover.webp`}
-                  description={service.description}
-                />
-              ))}
-              <Link
-                href="/services"
-                className="lg:col-span-1 lg:flex-1 min-w-48"
-              >
-                <div className="h-48 rounded-2xl border border-[#ae904c] flex items-center justify-between p-4 group cursor-pointer hover:bg-[#ae904c]/10 transition-colors">
-                  <p className="text-white text-lg font-medium group-hover:text-[#ae904c] transition-colors flex items-center gap-2 self-end">
-                    See all
-                    <ArrowUpRight className="w-4 h-4" />
-                  </p>
-                </div>
-              </Link>
-            </div>
           </div>
         </div>
 
@@ -202,7 +262,172 @@ export default async function ServicePage({ params }: PageProps) {
           </div>
         </div>
       </div>
+      {/* Additional Information Section */}
+      <section className="py-16 lg:py-24 px-4 md:px-8 lg:px-16 xl:px-32">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div>
+              <h3 className="text-3xl lg:text-5xl font-semibold text-[#ae904c] mb-8">
+                Lorem Ipsum
+              </h3>
+              <p className="text-white/70 text-base lg:text-lg">
+                We believe in a collaborative approach that puts your goals
+                first. Our team works closely with you to understand your unique
+                challenges and opportunities, developing tailored solutions that
+                drive real results.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-3xl lg:text-5xl font-semibold text-[#ae904c] mb-8">
+                Lorem Ipsum
+              </h3>
+              <p className="text-white/70 text-base lg:text-lg">
+                In today&apos;s fast-paced digital landscape, having a strong
+                presence and clear strategy is more important than ever. Our
+                solutions help you stay ahead of the curve and maintain a
+                competitive edge.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Feature cards 2 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 md:py-10 max-w-7xl mx-auto">
+        {features.map((feature, index) => (
+          <div
+            key={feature.title}
+            className={cn(
+              "flex flex-col lg:border-r border-[#ae904c]/20 py-10 relative group/feature",
+              (index === 0 || index === 4) && "lg:border-l border-[#ae904c]/50",
+              index < 4 && "lg:border-b border-[#ae904c]/50"
+            )}
+          >
+            {index < 4 && (
+              <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-[#ae904c]/5 to-transparent pointer-events-none" />
+            )}
+            {index >= 4 && (
+              <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-[#ae904c]/5 to-transparent pointer-events-none" />
+            )}
+            <div className="mb-4 relative z-10 px-10 text-[#ae904c]">
+              {feature.icon}
+            </div>
+            <div className="text-lg font-bold mb-2 relative z-10 px-10">
+              <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-[#ae904c]/20 group-hover/feature:bg-[#ae904c] transition-all duration-200 origin-center" />
+              <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-white">
+                {feature.title}
+              </span>
+            </div>
+            <p className="text-sm text-white/70 max-w-xs relative z-10 px-10">
+              {feature.description}
+            </p>
+          </div>
+        ))}
+      </div>
+      {/* Workflow Section */}
+      <section className="w-full flex flex-col items-center justify-between">
+        <WorkflowSection />
+      </section>
+      {/* FAQ Section */}
+      <FAQSection faqs={faqs} />
+      {/* Partner Logos Section */}
+      <section className="pt-16 lg:pt-24">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="flex flex-col lg:flex-row gap-12 items-center mb-16">
+            <div className="lg:w-1/2">
+              <h3 className="text-4xl lg:text-5xl font-semibold text-[#ae904c] mb-8">
+                Why Choose Us
+              </h3>
+              <p className="text-white/70 text-lg leading-relaxed mb-8">
+                With years of experience and a track record of success,
+                we&apos;ve helped countless businesses achieve their goals. Our
+                unique approach combines innovative strategies with proven
+                methodologies to deliver exceptional results.
+              </p>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
+                    <Check className="w-6 h-6 text-[#ae904c]" />
+                  </div>
+                  <span className="text-white">98% Success Rate</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
+                    <Users className="w-6 h-6 text-[#ae904c]" />
+                  </div>
+                  <span className="text-white">500+ Clients</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
+                    <Check className="w-6 h-6 text-[#ae904c]" />
+                  </div>
+                  <span className="text-white">98% Success Rate</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
+                    <Users className="w-6 h-6 text-[#ae904c]" />
+                  </div>
+                  <span className="text-white">500+ Clients</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
+                    <Check className="w-6 h-6 text-[#ae904c]" />
+                  </div>
+                  <span className="text-white">98% Success Rate</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
+                    <Users className="w-6 h-6 text-[#ae904c]" />
+                  </div>
+                  <span className="text-white">500+ Clients</span>
+                </div>
+              </div>
+            </div>
+            <div className="lg:w-1/2 grid grid-cols-2 gap-4">
+              <img
+                src="/team-at-work.jpeg"
+                alt="Team at work"
+                className="rounded-2xl object-cover w-full h-[400px] brightness-75"
+              />
+              <img
+                src="/services/press-relations3.jpeg"
+                alt="Office space"
+                className="rounded-2xl object-cover w-full h-[400px] mt-8 brightness-75"
+              />
+            </div>
+          </div>
+        </div>
+      </section>{" "}
+      <section className="w-full flex flex-col items-center justify-center md:pt-16 ">
+        <div className="mt-28 md:mt-40">
+          <Partners />
+        </div>
+      </section>
       <CTASection />
+      <section className="max-w-7xl mx-auto px-4 md:px-8 mb-24">
+        <h2 className="text-4xl lg:text-5xl font-semibold text-[#ae904c] mb-16">
+          Other Services
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 my-8 lg:my-12">
+          {relatedServices.map((service) => (
+            <ServiceCard
+              key={service.id}
+              id={service.id}
+              title={service.title}
+              image={`/services/${service.id}-cover.webp`}
+              description={service.description}
+            />
+          ))}
+          <Link href="/services" className="block">
+            <div className="h-48 rounded-2xl border border-[#ae904c] flex items-center justify-between p-4 group cursor-pointer hover:bg-[#ae904c]/10 transition-colors">
+              <p className="text-white text-lg font-medium group-hover:text-[#ae904c] transition-colors flex items-center gap-2 self-end">
+                See all
+                <ArrowUpRight className="w-4 h-4" />
+              </p>
+            </div>
+          </Link>
+        </div>
+      </section>
       <Footer />
     </main>
   );
