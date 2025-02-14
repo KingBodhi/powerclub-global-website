@@ -297,7 +297,7 @@ export default function EventsPage() {
                 className="text-5xl md:text-6xl font-bold mb-6"
               >
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ae904c]/90 via-[#ae904c] to-[#ae904c]/90">
-                  Upcoming Events
+                  Upcoming Conferences
                 </span>
               </motion.h1>
               <motion.p
@@ -306,7 +306,7 @@ export default function EventsPage() {
                 transition={{ delay: 0.2 }}
                 className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto"
               >
-                Join us at these upcoming blockchain and technology events
+                Join us at these upcoming blockchain and technology conferences
                 around the world
               </motion.p>
             </div>

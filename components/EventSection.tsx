@@ -173,9 +173,9 @@ const EventsSection: React.FC = () => {
     return dateA.getTime() - dateB.getTime();
   });
 
-  const mid = Math.ceil(sortedEvents.length / 2);
-  const topEvents = sortedEvents.slice(0, mid);
-  const bottomEvents = sortedEvents.slice(mid);
+  // const mid = Math.ceil(sortedEvents.length / 2);
+  const topEvents = sortedEvents;
+  // const bottomEvents = sortedEvents.slice(mid);
 
   return (
     <section className="w-full py-12 sm:py-20">
@@ -183,11 +183,12 @@ const EventsSection: React.FC = () => {
         <div className="flex flex-col items-center space-y-4 sm:space-y-6">
           <h2 className="text-3xl sm:text-4xl font-bold text-center">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ae904c]/80 via-[#ae904c] to-[#ae904c]/80">
-              Upcoming Events
+              Upcoming Conferences
             </span>
           </h2>
           <p className="text-white/60 text-center max-w-2xl text-sm sm:text-base">
-            Join us at these upcoming blockchain and technology events
+            Join us at these upcoming blockchain and technology conferences
+            around the world
           </p>
           <Link
             href="/events"
@@ -208,7 +209,7 @@ const EventsSection: React.FC = () => {
       </div>
       <div className="w-full overflow-hidden">
         <ScrollingRow events={topEvents} direction="left" />
-        <ScrollingRow events={bottomEvents} direction="right" />
+        {/* <ScrollingRow events={bottomEvents} direction="right" /> */}
       </div>
     </section>
   );

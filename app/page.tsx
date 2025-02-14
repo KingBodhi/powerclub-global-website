@@ -11,6 +11,8 @@ import PressReleaseSection from "@/components/PressReleaseSection";
 import ServicesSection from "@/components/ServicesSection";
 import { Sparkles } from "lucide-react";
 import EventSection from "@/components/EventSection";
+import DarkGridBackground3 from "@/components/DarkGridBackground3";
+// import FeaturedEventSection from "@/components/FeaturedEventSection";
 
 export default function Home() {
   const handleGetStarted = () => {
@@ -82,9 +84,11 @@ export default function Home() {
 
       <VideoSection />
 
-      <DarkGridBackground2>
+      {/* <FeaturedEventSection /> */}
+
+      <DarkGridBackground3>
         <EventSection />
-      </DarkGridBackground2>
+      </DarkGridBackground3>
 
       <DarkGridBackground2>
         <ServicesSection />
