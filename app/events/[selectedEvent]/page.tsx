@@ -19,7 +19,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 // import eventsData from "@/data/events.json";
-import type { Event } from "@/types/events";
+import type { Event, EventListItem } from "@/types/events";
 import { Skeleton } from "@/components/ui/Skeleton";
 import Footer from "@/components/Footer";
 
@@ -184,6 +184,70 @@ const LoadingState = () => (
   </div>
 );
 
+interface EventListCardProps {
+  event: EventListItem;
+}
+const SmallEventListCard = ({ event }: EventListCardProps) => (
+  <div
+    className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#ae904c]/5 to-black/40 
+                    border border-[#ae904c]/20 hover:border-[#ae904c]/40 transition-all duration-300"
+  >
+    <div className="relative h-48">
+      {event.image ? (
+        <Image
+          src={event.image}
+          alt={event.name || "Event"}
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-110"
+        />
+      ) : (
+        <div className="w-full h-full bg-[#ae904c]/5 flex items-center justify-center">
+          <Calendar className="w-12 h-12 text-[#ae904c]/30" />
+        </div>
+      )}
+    </div>
+
+    <div className="p-4">
+      <h3 className="text-lg font-semibold text-[#ae904c] mb-2 line-clamp-1">
+        {event.name || "Unnamed Event"}
+      </h3>
+
+      {event.description && (
+        <p className="text-white/70 text-sm mb-3 line-clamp-2">
+          {event.description}
+        </p>
+      )}
+
+      <div className="space-y-1 mb-3">
+        {event.date && (
+          <div className="flex items-center text-white/70 text-sm">
+            <Calendar className="w-3 h-3 mr-1.5" />
+            <span className="truncate">{event.date}</span>
+          </div>
+        )}
+        {event.time && (
+          <div className="flex items-center text-white/70 text-sm">
+            <Clock className="w-3 h-3 mr-1.5" />
+            <span className="truncate">{event.time}</span>
+          </div>
+        )}
+      </div>
+
+      {event.applyLink && (
+        <Link
+          href={event.applyLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 w-full px-3 py-1.5 rounded-lg 
+                     bg-[#ae904c]/10 border border-[#ae904c]/30 text-[#ae904c] text-sm
+                     hover:bg-[#ae904c]/20 transition-all duration-300"
+        >
+          Apply Now <ArrowUpRight className="w-3 h-3" />
+        </Link>
+      )}
+    </div>
+  </div>
+);
 export default function EventDetailPage({ params }: PageProps) {
   const { selectedEvent } = use(params);
   const [event, setEvent] = useState<Event | null>(null);
@@ -485,6 +549,23 @@ export default function EventDetailPage({ params }: PageProps) {
                 </motion.div>
               </div>
             </div>
+
+            {event.eventList && event.eventList.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                <h2 className="text-xl font-semibold text-[#ae904c] mb-6">
+                  Events to Attend
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  {event.eventList.map((eventItem, index) => (
+                    <SmallEventListCard key={index} event={eventItem} />
+                  ))}
+                </div>
+              </motion.div>
+            )}
           </div>
         </div>
 

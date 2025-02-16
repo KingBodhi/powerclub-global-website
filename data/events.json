@@ -59,7 +59,33 @@
       "sponsors": ["Samsung", "Intel", "Google", "AMD", "NVIDIA"],
       "tags": ["technology", "innovation", "consumer electronics"],
       "capacity": 180000,
-      "registrationDeadline": "2025-01-05"
+      "registrationDeadline": "2025-01-05",
+      "eventList": [
+        {
+          "name": "AI Innovation Workshop",
+          "description": "Hands-on workshop exploring latest AI developments",
+          "date": "2025-01-08",
+          "time": "10:00 AM",
+          "image": "/events/ai-workshop.png",
+          "applyLink": "https://ces.tech/workshops/ai-innovation"
+        },
+        {
+          "name": "Startup Pitch Competition",
+          "description": "Tech startups compete for investment opportunities",
+          "date": "2025-01-09",
+          "time": "12:00 PM",
+          "image": "/events/startup-competition.png",
+          "applyLink": "https://ces.tech/startup-pitch"
+        },
+        {
+          "name": "Startup Pitch Competition",
+          "description": "Tech startups compete for investment opportunities",
+          "date": "2025-01-09",
+          "time": "2:00 PM",
+          "image": "/events/startup-pitch.png",
+          "applyLink": "https://ces.tech/startup-pitch"
+        }
+      ]
     },
     {
       "id": "wagmi-miami-2025",
@@ -115,7 +141,33 @@
       "sponsors": ["Binance", "Coinbase", "FTX"],
       "tags": ["blockchain", "crypto", "web3", "defi"],
       "capacity": 15000,
-      "registrationDeadline": "2025-01-19"
+      "registrationDeadline": "2025-01-19",
+      "eventList": [
+        {
+          "name": "AI Innovation Workshop",
+          "description": "Hands-on workshop exploring latest AI developments",
+          "date": "2025-01-08",
+          "time": "10:00 AM",
+          "image": "/events/ai-workshop.png",
+          "applyLink": "https://ces.tech/workshops/ai-innovation"
+        },
+        {
+          "name": "Startup Pitch Competition",
+          "description": "Tech startups compete for investment opportunities",
+          "date": "2025-01-09",
+          "time": "12:00 PM",
+          "image": "/events/startup-competition.png",
+          "applyLink": "https://ces.tech/startup-pitch"
+        },
+        {
+          "name": "Startup Pitch Competition",
+          "description": "Tech startups compete for investment opportunities",
+          "date": "2025-01-09",
+          "time": "2:00 PM",
+          "image": "/events/startup-pitch.png",
+          "applyLink": "https://ces.tech/startup-pitch"
+        }
+      ]
     },
     {
       "id": "crypto-gathering-2025",

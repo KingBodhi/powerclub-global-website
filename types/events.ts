@@ -43,6 +43,16 @@ export interface Event {
     start: string;
     end: string;
   };
+  eventList?: EventListItem[];
+}
+
+export interface EventListItem {
+  name?: string;
+  description?: string;
+  date?: string;
+  time?: string;
+  image?: string;
+  applyLink?: string;
 }
 
 export interface EventsData {
