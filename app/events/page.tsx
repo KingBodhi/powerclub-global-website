@@ -16,6 +16,7 @@ import eventsData from "@/data/events.json";
 import Footer from "@/components/Footer";
 import DarkGridBackground from "@/components/DarkGridBackground3";
 import DateRangePicker from "@/components/ui/DateRangePicker";
+import CountdownBanner from "@/components/CountdownBanner";
 
 interface EventCardProps {
   event: (typeof eventsData.events)[0];
@@ -285,11 +286,10 @@ export default function EventsPage() {
   return (
     <main className="min-h-screen bg-black">
       <Navbar />
-
+      <CountdownBanner />
       <div className="container mx-auto px-4 md:pt-12 pb-12">
-        {/* Header */}
         <DarkGridBackground>
-          <div className="container mx-auto px-4 pt-24 pb-12">
+          <div className="container mx-auto px-4 pt-16 pb-12">
             <div className="max-w-6xl mx-auto text-center py-16">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}

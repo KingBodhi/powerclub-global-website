@@ -12,7 +12,7 @@ import ServicesSection from "@/components/ServicesSection";
 import { Sparkles } from "lucide-react";
 import EventSection from "@/components/EventSection";
 import DarkGridBackground3 from "@/components/DarkGridBackground3";
-// import FeaturedEventSection from "@/components/FeaturedEventSection";
+import CountdownBanner from "@/components/CountdownBanner";
 
 export default function Home() {
   const handleGetStarted = () => {
@@ -84,8 +84,7 @@ export default function Home() {
 
       <VideoSection />
 
-      {/* <FeaturedEventSection /> */}
-
+      <CountdownBanner />
       <DarkGridBackground3>
         <EventSection />
       </DarkGridBackground3>
