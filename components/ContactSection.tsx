@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import {
   Mail,
-  Phone,
   Send,
   LucideIcon,
   MessageCircle,
@@ -30,7 +29,7 @@ const ContactCard: React.FC<ContactCardProps> = ({
           ? "bg-[#ae904c] border-none"
           : "bg-black/20 border border-[#ae904c]/20"
       } 
-      hover:scale-105 transition-all duration-300`}
+      hover:scale-105 transition-all duration-300 h-full`}
   >
     <div className="flex items-start gap-4">
       <div
@@ -56,6 +55,9 @@ const ContactCard: React.FC<ContactCardProps> = ({
         </p>
       </div>
     </div>
+    <p className="text-white/60 mt-2">
+      We&apos;re here to answer any questions you may have.
+    </p>
   </div>
 );
 
@@ -81,6 +83,7 @@ const HighlightCard: React.FC = () => (
           We typically respond within 2 hours during business hours. Schedule a
           call or send us a message - we&apos;re here to help!
         </p>
+        <p className="text-white/70">We&apos;d love to hear from you.</p>
         <div className="flex gap-4">
           <button
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#ae904c] text-white
@@ -136,19 +139,16 @@ const ContactSection: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Left Column */}
-            <div className="lg:col-span-5 space-y-6">
+            <div className="lg:col-span-5 grid grid-rows-2 gap-6">
               <HighlightCard />
-              <ContactCard
-                icon={Mail}
-                title="Email Us"
-                info="contact@example.com"
-                primary
-              />
-              <ContactCard
-                icon={Phone}
-                title="Call Us"
-                info="+1 (555) 123-4567"
-              />
+              <div className="grid grid-rows-2 gap-6">
+                <ContactCard
+                  icon={Mail}
+                  title="Email Us"
+                  info="contact@example.com"
+                  primary
+                />
+              </div>
             </div>
 
             {/* Right Column - Contact Form */}

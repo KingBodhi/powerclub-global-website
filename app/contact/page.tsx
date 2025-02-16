@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import {
   Mail,
-  Phone,
   Send,
   MessageCircle,
   ArrowRight,
@@ -59,6 +58,9 @@ const ContactCard: React.FC<ContactCardProps> = ({
         </p>
       </div>
     </div>
+    <p className="text-white/60 mt-2">
+      We&apos;re here to answer any questions you may have.
+    </p>
   </div>
 );
 
@@ -84,6 +86,7 @@ const HighlightCard: React.FC = () => (
           We typically respond within 2 hours during business hours. Schedule a
           call or send us a message - we&apos;re here to help!
         </p>
+        <p className="text-white/70">We&apos;d love to hear from you.</p>
         <div className="flex gap-4">
           <button
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#ae904c] text-white
@@ -235,11 +238,6 @@ export default function ContactPage() {
                     info="contact@example.com"
                     primary
                   />
-                  <ContactCard
-                    icon={Phone}
-                    title="Call Us"
-                    info="+1 (555) 123-4567"
-                  />
                 </div>
               </div>
 
@@ -277,7 +275,7 @@ export default function ContactPage() {
                       />
                       <textarea
                         placeholder="Your Message"
-                        rows={6}
+                        rows={4}
                         className="w-full p-4 rounded-lg bg-black/40 border border-[#ae904c]/50 
                           text-white/90 placeholder:text-white/40 focus:outline-none focus:border-[#ae904c]/40
                           focus:ring-1 focus:ring-[#ae904c]/40 transition-all duration-300 resize-none"
