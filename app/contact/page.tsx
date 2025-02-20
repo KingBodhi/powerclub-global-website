@@ -8,9 +8,13 @@ import {
   ArrowRight,
   Sparkles,
   LucideIcon,
+  CheckCircle,
+  AlertCircle,
+  Loader,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { submitContactForm, ContactFormData } from "@/app/contact/contact";
 
 interface ContactCardProps {
   icon: LucideIcon;
@@ -89,17 +93,18 @@ const HighlightCard: React.FC = () => (
         <p className="text-white/70">We&apos;d love to hear from you.</p>
         <div className="flex gap-4">
           <button
+            onClick={onScheduleCall}
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#ae904c] text-white
             hover:bg-[#ae904c]/90 transition-colors duration-300"
           >
             Schedule Call <ArrowRight className="w-4 h-4" />
           </button>
-          <button
+          {/* <button
             className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[#ae904c]/30
             text-[#ae904c] hover:bg-[#ae904c]/10 transition-colors duration-300"
           >
             Learn More <ArrowRight className="w-4 h-4" />
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
@@ -111,6 +116,19 @@ export default function ContactPage() {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [isClient, setIsClient] = useState(false);
   const gridSize = 60;
+
+  // Form state
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formStatus, setFormStatus] = useState<{
+    success: boolean;
+    message: string;
+  } | null>(null);
 
   useEffect(() => {
     setIsClient(true);
@@ -134,6 +152,17 @@ export default function ContactPage() {
     };
   }, []);
 
+  // Effect to clear form status after 5 seconds
+  useEffect(() => {
+    if (formStatus) {
+      const timer = setTimeout(() => {
+        setFormStatus(null);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [formStatus]);
+
   const cols = Math.ceil(dimensions.width / gridSize) || 0;
   const rows = Math.ceil(dimensions.height / gridSize) || 0;
 
@@ -143,6 +172,46 @@ export default function ContactPage() {
     const baseOpacity = (waveX + waveY + 2) / 4;
     const pulse = Math.sin(time * 0.5) * 0.1 + 0.9;
     return Math.min(0.3, Math.max(0.1, baseOpacity * 0.2 * pulse));
+  };
+
+  // Form handlers
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setFormStatus(null);
+
+    try {
+      await submitContactForm(formData);
+      setFormStatus({
+        success: true,
+        message: "Thank you! Your message has been sent successfully.",
+      });
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Failed to submit form:", error);
+      setFormStatus({
+        success: false,
+        message: "Failed to send your message. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isClient) {
@@ -249,44 +318,94 @@ export default function ContactPage() {
                     className="relative rounded-xl backdrop-blur-sm bg-black/20 border border-[#ae904c]/90 p-8
                     transform-gpu transition-all duration-300 hover:-translate-x-2 hover:-translate-y-2"
                   >
-                    <form className="space-y-6">
+                    {formStatus && (
+                      <div
+                        className={`mb-6 p-4 rounded-lg flex items-start gap-3 
+                          ${
+                            formStatus.success
+                              ? "bg-green-900/20 border border-green-500/30 text-green-200"
+                              : "bg-red-900/20 border border-red-500/30 text-red-200"
+                          }
+                          animate-fadeIn`}
+                      >
+                        {formStatus.success ? (
+                          <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" />
+                        ) : (
+                          <AlertCircle className="w-5 h-5 mt-0.5 flex-shrink-0" />
+                        )}
+                        <p>{formStatus.message}</p>
+                      </div>
+                    )}
+
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <input
                           type="text"
+                          name="name"
                           placeholder="Your Name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
                           className="p-4 rounded-lg bg-black/40 border border-[#ae904c]/50 
                             text-white/90 placeholder:text-white/40 focus:outline-none focus:border-[#ae904c]/40
-                            focus:ring-1 focus:ring-[#ae904c]/40 transition-all duration-300"
+                            focus:ring-1 focus:ring-[#ae904c]/40 transition-all duration-300
+                            focus:bg-black/40"
                         />
                         <input
                           type="email"
+                          name="email"
                           placeholder="Your Email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
                           className="p-4 rounded-lg bg-black/40 border border-[#ae904c]/50 
                             text-white/90 placeholder:text-white/40 focus:outline-none focus:border-[#ae904c]/40
-                            focus:ring-1 focus:ring-[#ae904c]/40 transition-all duration-300"
+                            focus:ring-1 focus:ring-[#ae904c]/40 transition-all duration-300
+                            focus:bg-black/40"
                         />
                       </div>
                       <input
                         type="text"
+                        name="subject"
                         placeholder="Subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
                         className="w-full p-4 rounded-lg bg-black/40 border border-[#ae904c]/50 
                           text-white/90 placeholder:text-white/40 focus:outline-none focus:border-[#ae904c]/40
-                          focus:ring-1 focus:ring-[#ae904c]/40 transition-all duration-300"
+                          focus:ring-1 focus:ring-[#ae904c]/40 transition-all duration-300
+                          focus:bg-black/40"
                       />
                       <textarea
+                        name="message"
                         placeholder="Your Message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
                         rows={4}
                         className="w-full p-4 rounded-lg bg-black/40 border border-[#ae904c]/50 
                           text-white/90 placeholder:text-white/40 focus:outline-none focus:border-[#ae904c]/40
-                          focus:ring-1 focus:ring-[#ae904c]/40 transition-all duration-300 resize-none"
+                          focus:ring-1 focus:ring-[#ae904c]/40 transition-all duration-300 resize-none
+                          focus:bg-black/40"
                       />
                       <button
                         type="submit"
+                        disabled={isSubmitting}
                         className="w-full py-4 px-8 rounded-lg bg-[#ae904c] text-white
-                          hover:bg-[#ae904c]/90 transition-colors duration-300 flex items-center justify-center gap-2"
+                          hover:bg-[#ae904c]/90 transition-colors duration-300 flex items-center justify-center gap-2
+                          disabled:opacity-70 disabled:cursor-not-allowed"
                       >
-                        Send Message
-                        <Send className="w-4 h-4" />
+                        {isSubmitting ? (
+                          <>
+                            <Loader className="w-4 h-4 animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            Send Message
+                            <Send className="w-4 h-4" />
+                          </>
+                        )}
                       </button>
                     </form>
                   </div>
@@ -300,3 +419,9 @@ export default function ContactPage() {
     </main>
   );
 }
+const onScheduleCall = () => {
+  window.open(
+    "https://calendly.com/powerclub-global/business-interaction",
+    "_blank"
+  );
+};

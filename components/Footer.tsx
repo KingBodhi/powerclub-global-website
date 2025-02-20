@@ -80,12 +80,6 @@ const Footer: React.FC = () => {
               >
                 Terms of Service
               </a>
-              <a
-                href="#"
-                className="hover:text-amber-400 transition-colors duration-300"
-              >
-                Cookie Policy
-              </a>
             </div>
           </div>
         </div>
