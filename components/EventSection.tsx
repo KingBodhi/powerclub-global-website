@@ -20,6 +20,7 @@ interface ScrollingRowProps {
 
 interface EventCardProps {
   event: Event;
+  index: number;
 }
 
 const EventCard: React.FC<EventCardProps> = ({ event, index }) => {
@@ -48,15 +49,16 @@ const EventCard: React.FC<EventCardProps> = ({ event, index }) => {
 
           {/* Tags */}
           <div className="absolute bottom-2 left-2 flex flex-wrap gap-1">
-            {event.tags.slice(0, 2).map((tag) => (
-              <span
-                key={tag}
-                className="px-2 py-0.5 text-xs bg-black/50 text-white/90 rounded-full 
+            {event.tags &&
+              event.tags.slice(0, 2).map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2 py-0.5 text-xs bg-black/50 text-white/90 rounded-full 
                                      border border-white/10"
-              >
-                {tag}
-              </span>
-            ))}
+                >
+                  {tag}
+                </span>
+              ))}
           </div>
         </div>
 
@@ -166,16 +168,86 @@ const ScrollingRow: React.FC<ScrollingRowProps> = ({ events, direction }) => {
 };
 
 const EventsSection: React.FC = () => {
-  // Sort events by date
-  const sortedEvents = [...eventsData.events].sort((a, b) => {
-    const dateA = new Date(a.dates.split("–")[0]);
-    const dateB = new Date(b.dates.split("–")[0]);
+  // Filter out past events
+  const currentDate = new Date();
+
+  const upcomingEvents = eventsData.events.filter((event) => {
+    // Check if the event has dateRange property
+    if (event.dateRange && event.dateRange.end) {
+      const eventEndDate = new Date(event.dateRange.end);
+      return eventEndDate >= currentDate;
+    }
+
+    // Fallback: Try to extract date from the dates string
+    if (event.dates) {
+      const dateParts = event.dates.split("–");
+      if (dateParts.length > 0) {
+        // Take the last part as end date (or the only part if there's just one)
+        const endDateStr =
+          dateParts.length > 1 ? dateParts[1].trim() : dateParts[0].trim();
+
+        // Try to parse the date - this is simplified and might need adjustment based on format
+        try {
+          // For formats like "January 10, 2025" or similar
+          const parsedDate = new Date(endDateStr);
+          if (!isNaN(parsedDate.getTime())) {
+            return parsedDate >= currentDate;
+          }
+        } catch (e) {
+          // Parsing failed, keep the event to be safe
+          console.error("Error parsing date:", e);
+          return true;
+        }
+      }
+    }
+
+    // If we can't determine the date, include the event by default
+    return true;
+  });
+
+  // Sort upcoming events by start date
+  const sortedEvents = [...upcomingEvents].sort((a, b) => {
+    let dateA, dateB;
+
+    // Use dateRange if available
+    if (a.dateRange && a.dateRange.start && b.dateRange && b.dateRange.start) {
+      dateA = new Date(a.dateRange.start);
+      dateB = new Date(b.dateRange.start);
+    } else {
+      // Try to parse from dates string
+      const dateStrA = a.dates ? a.dates.split("–")[0].trim() : "";
+      const dateStrB = b.dates ? b.dates.split("–")[0].trim() : "";
+
+      dateA = new Date(dateStrA);
+      dateB = new Date(dateStrB);
+
+      // If parsing fails, use current date (they'll be sorted equally)
+      if (isNaN(dateA.getTime())) dateA = new Date();
+      if (isNaN(dateB.getTime())) dateB = new Date();
+    }
+
     return dateA.getTime() - dateB.getTime();
   });
 
-  // const mid = Math.ceil(sortedEvents.length / 2);
-  const topEvents = sortedEvents;
-  // const bottomEvents = sortedEvents.slice(mid);
+  // If no upcoming events, show a message
+  if (sortedEvents.length === 0) {
+    return (
+      <section className="w-full py-12 sm:py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center space-y-4 sm:space-y-6">
+            <h2 className="text-3xl sm:text-4xl font-bold text-center">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ae904c]/80 via-[#ae904c] to-[#ae904c]/80">
+                Upcoming Conferences
+              </span>
+            </h2>
+            <p className="text-white/60 text-center max-w-2xl text-sm sm:text-base">
+              No upcoming conferences at the moment. Check back soon!
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="w-full py-12 sm:py-20">
@@ -208,8 +280,8 @@ const EventsSection: React.FC = () => {
         </div>
       </div>
       <div className="w-full overflow-hidden">
-        <ScrollingRow events={topEvents} direction="left" />
-        {/* <ScrollingRow events={bottomEvents} direction="right" /> */}
+        <ScrollingRow events={sortedEvents} direction="left" />
+        {/* <ScrollingRow events={sortedEvents} direction="right" /> */}
       </div>
     </section>
   );
