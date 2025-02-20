@@ -11,7 +11,7 @@ const CountdownBanner = () => {
   });
 
   const calculateTimeLeft = () => {
-    const targetDate = new Date("2025-03-25T00:00:00");
+    const targetDate = new Date("2025-02-25T00:00:00");
     const now = new Date();
     const difference = targetDate.getTime() - now.getTime();
 
@@ -107,7 +107,7 @@ const CountdownBanner = () => {
         >
           <div className="flex items-center gap-2 justify-center">
             <Calendar className="w-5 h-5" />
-            <span>March 25, 2025</span>
+            <span>Feb 25, 2025</span>
           </div>
           <div className="flex items-center gap-2 justify-center">
             <MapPin className="w-5 h-5" />

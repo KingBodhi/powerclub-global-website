@@ -10,6 +10,7 @@ import {
   ArrowUpRight,
   Search,
   ChevronDown,
+  Clock,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import eventsData from "@/data/events.json";
@@ -217,25 +218,28 @@ export default function EventsPage() {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
+  // Helper to parse dates from the format "Month Day–Day, Year" or "Month Day, Year"
+  const parseDateRange = (dateStr: string) => {
+    const [monthYear, yearPart] = dateStr.split(", ");
+    const year = yearPart;
+    const [month, days] = monthYear.split(" ");
+
+    const [startDay, endDay] = days.split("–").map((d) => d.trim());
+
+    // If there's no end day (single day event), use the start day
+    const endDayValue = endDay || startDay;
+
+    // Create date objects
+    const startDate = new Date(`${month} ${startDay}, ${year}`);
+    const endDate = new Date(`${month} ${endDayValue}, ${year}`);
+
+    return { startDate, endDate };
+  };
+
+  const currentDate = new Date();
+
+  // Apply filters to all events
   const filteredEvents = eventsData.events.filter((event) => {
-    // Helper to parse dates from the format "Month Day–Day, Year" or "Month Day, Year"
-    const parseDateRange = (dateStr: string) => {
-      const [monthYear, yearPart] = dateStr.split(", ");
-      const year = yearPart;
-      const [month, days] = monthYear.split(" ");
-
-      const [startDay, endDay] = days.split("–").map((d) => d.trim());
-
-      // If there's no end day (single day event), use the start day
-      const endDayValue = endDay || startDay;
-
-      // Create date objects
-      const startDate = new Date(`${month} ${startDay}, ${year}`);
-      const endDate = new Date(`${month} ${endDayValue}, ${year}`);
-
-      return { startDate, endDate };
-    };
-
     // Search filter
     const matchesSearch =
       event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -274,14 +278,26 @@ export default function EventsPage() {
 
     return matchesSearch && matchesLocation && matchesDateRange;
   });
+
+  // Separate filtered events into upcoming and past
+  const upcomingEvents = filteredEvents.filter((event) => {
+    const { endDate: eventEnd } = parseDateRange(event.dates);
+    return eventEnd >= currentDate;
+  });
+
+  const pastEvents = filteredEvents.filter((event) => {
+    const { endDate: eventEnd } = parseDateRange(event.dates);
+    return eventEnd < currentDate;
+  });
+
   const locations = [
     "all",
     ...new Set(eventsData.events.map((event) => event.location)),
   ];
 
-  // Split events for different sections
-  const featuredEvents = filteredEvents.slice(0, 3);
-  const remainingEvents = filteredEvents.slice(3);
+  // Split upcoming events for different sections
+  const featuredUpcomingEvents = upcomingEvents.slice(0, 3);
+  const remainingUpcomingEvents = upcomingEvents.slice(3);
 
   return (
     <main className="min-h-screen bg-black">
@@ -297,7 +313,7 @@ export default function EventsPage() {
                 className="text-5xl md:text-6xl font-bold mb-6"
               >
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ae904c]/90 via-[#ae904c] to-[#ae904c]/90">
-                  Upcoming Conferences
+                  Conferences
                 </span>
               </motion.h1>
               <motion.p
@@ -306,8 +322,8 @@ export default function EventsPage() {
                 transition={{ delay: 0.2 }}
                 className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto"
               >
-                Join us at these upcoming blockchain and technology conferences
-                around the world
+                Join us at these blockchain and technology conferences around
+                the world
               </motion.p>
             </div>
 
@@ -346,26 +362,52 @@ export default function EventsPage() {
           </div>
         </DarkGridBackground>
 
-        {/* Featured Events */}
-        <div className="max-w-6xl mx-auto space-y-6 mb-16">
-          {featuredEvents.map((event) => (
-            <FeaturedEventCard key={event.id} event={event} />
-          ))}
-        </div>
+        {/* Upcoming Events Section Title */}
+        {upcomingEvents.length > 0 && (
+          <div className="max-w-6xl mx-auto mb-8 mt-12">
+            <div className="flex items-center gap-3 border-b border-white/10 pb-4">
+              <Calendar className="w-5 h-5 text-[#ae904c]" />
+              <h2 className="text-2xl font-semibold text-white">
+                Upcoming Conferences
+              </h2>
+            </div>
+          </div>
+        )}
 
-        {/* Compact Events Grid */}
-        {/* {compactEvents.length > 0 && (
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {compactEvents.map((event) => (
+        {/* Featured Upcoming Events */}
+        {featuredUpcomingEvents.length > 0 && (
+          <div className="max-w-6xl mx-auto space-y-6 mb-16">
+            {featuredUpcomingEvents.map((event) => (
+              <FeaturedEventCard key={event.id} event={event} />
+            ))}
+          </div>
+        )}
+
+        {/* Remaining Upcoming Events Grid */}
+        {remainingUpcomingEvents.length > 0 && (
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
+            {remainingUpcomingEvents.map((event) => (
               <SmallEventCard key={event.id} event={event} />
             ))}
           </div>
-        )} */}
+        )}
 
-        {/* Remaining Events Grid */}
-        {remainingEvents.length > 0 && (
+        {/* Past Events Section Title */}
+        {pastEvents.length > 0 && (
+          <div className="max-w-6xl mx-auto mb-8 mt-20">
+            <div className="flex items-center gap-3 border-b border-white/10 pb-4">
+              <Clock className="w-5 h-5 text-[#ae904c]" />
+              <h2 className="text-2xl font-semibold text-white">
+                Past Conferences
+              </h2>
+            </div>
+          </div>
+        )}
+
+        {/* Past Events Grid */}
+        {pastEvents.length > 0 && (
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {remainingEvents.map((event) => (
+            {pastEvents.map((event) => (
               <SmallEventCard key={event.id} event={event} />
             ))}
           </div>
@@ -386,6 +428,12 @@ export default function EventsPage() {
             <p className="text-white/60">
               Showing {filteredEvents.length} event
               {filteredEvents.length !== 1 ? "s" : ""}
+              {upcomingEvents.length > 0 && pastEvents.length > 0 && (
+                <span>
+                  {" "}
+                  ({upcomingEvents.length} upcoming, {pastEvents.length} past)
+                </span>
+              )}
             </p>
           </div>
         )}
