@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
+    "@notionhq/client": "^2.2.16",
     "appwrite": "^17.0.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.474.0",
     "motion": "^12.4.1",
     "next": "15.1.6",
+    "notion-to-md": "^3.1.6",
     "react": "^19.0.0",
     "react-countup": "^6.5.3",
     "react-dom": "^19.0.0",

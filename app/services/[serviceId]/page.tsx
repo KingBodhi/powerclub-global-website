@@ -150,32 +150,8 @@ interface PageProps {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-// const HighlightCard: React.FC<FeatureCard> = ({ title, description, icon }) => (
-//   <div className="relative h-full">
-//     {/* Static border frame */}
-//     <div className="absolute inset-0 rounded-xl border border-[#ae904c]/30" />
-
-//     {/* Card content */}
-//     <div
-//       className="relative p-8 rounded-xl bg-gradient-to-br from-[#ae904c]/20 to-black/40
-//       border border-[#ae904c]/30 backdrop-blur-md transform-gpu h-full
-//       transition-all duration-300 hover:-translate-x-2 hover:-translate-y-2"
-//     >
-//       <div className="flex flex-col gap-6">
-//         <div className="flex items-center gap-3">
-//           {icon}
-//           <h3 className="text-xl font-semibold text-[#ae904c]">{title}</h3>
-//         </div>
-//         <p className="text-white/70">{description}</p>
-//       </div>
-//     </div>
-//   </div>
-// );
-
 export default async function ServicePage({ params }: PageProps) {
-  // Await both params and searchParams
   const resolvedParams = await params;
-  // const resolvedSearchParams = searchParams ? await searchParams : undefined;
 
   const service = services.find((s) => s.id === resolvedParams.serviceId);
 
