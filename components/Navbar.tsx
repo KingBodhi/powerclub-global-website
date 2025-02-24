@@ -154,8 +154,13 @@ const Navbar: React.FC = () => {
             z-40
           `}
         >
+          {/* PCG Logo at top with larger size */}
+          <div className="flex justify-center pt-8">
+            <img src="/logo-transparent.png" alt="Logo" className="w-32" />
+          </div>
+
           {/* Main navigation items */}
-          <div className="flex-grow flex flex-col items-center justify-center p-4 space-y-8">
+          <div className="flex-grow flex flex-col items-center justify-center p-4 space-y-6">
             {navItems.map((item, index) => (
               <div
                 key={item.text}
@@ -175,8 +180,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Social Links at Bottom */}
-          <div className="p-8 flex flex-col items-center space-y-6 mt-auto">
-            <img src="/logo-transparent.png" alt="Logo" className="w-20 mb-4" />
+          <div className="p-8 flex flex-col items-center space-y-6">
             <SocialLinks />
           </div>
         </div>
