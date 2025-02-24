@@ -2,81 +2,117 @@
 
 import React, { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { BlogPost } from "@/lib/notion";
 
 interface PressReleaseCardProps {
-  date: string;
-  title: string;
-  description: string;
-  readingTime: string;
-  image: string;
+  post: BlogPost;
 }
 
-const PressReleaseCard: React.FC<PressReleaseCardProps> = ({
-  date,
-  title,
-  description,
-  readingTime,
-  image,
-}) => (
-  <div className="group relative h-[450px] perspective-1000">
-    <div className="preserve-3d transition-transform duration-500 ease-out group-hover:[transform:rotateX(10deg)_rotateY(-10deg)]">
-      <div className="absolute inset-0 rounded-md bg-black/30 blur-xl transform translate-y-4 scale-95 transition-all duration-500 group-hover:translate-y-8 group-hover:scale-90" />
-      <div className="absolute inset-0 rounded-md backdrop-blur-sm bg-[#ae904c]/5 border border-[#ae904c]/20 transform transition-all duration-500" />
-      <div
-        className="relative h-[450px] rounded-md backdrop-blur-sm bg-gradient-to-b from-[#ae904c]/5 to-[#ae904c]/0 
-        border border-[#ae904c]/20 group-hover:border-[#ae904c]/40
-        transition-all duration-500 ease-out transform
-        group-hover:-translate-y-2 group-hover:-translate-x-2"
-      >
-        <div className="h-48 w-full rounded-t-md overflow-hidden relative">
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50" />
-        </div>
-
-        <div className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#ae904c]/20 via-transparent to-[#ae904c]/20 animate-gradient-shift" />
-          <div className="absolute -inset-px rounded-md bg-gradient-to-r from-[#ae904c]/30 via-[#ae904c]/10 to-[#ae904c]/30 blur-sm group-hover:animate-pulse" />
-        </div>
-
-        <div className="relative z-10 p-6 w-full h-[calc(100%-12rem)] flex flex-col">
-          <div className="flex justify-between items-center mb-4">
-            <span className="text-[#ae904c]/80 text-sm font-medium">
-              {date}
-            </span>
-            <span className="text-white/40 text-sm">{readingTime}</span>
+const PressReleaseCard: React.FC<PressReleaseCardProps> = ({ post }) => (
+  <Link href={`/press/${post.id}`}>
+    <div className="group relative h-[450px] perspective-1000">
+      <div className="preserve-3d transition-transform duration-500 ease-out group-hover:[transform:rotateX(10deg)_rotateY(-10deg)]">
+        <div className="absolute inset-0 rounded-md bg-black/30 blur-xl transform translate-y-4 scale-95 transition-all duration-500 group-hover:translate-y-8 group-hover:scale-90" />
+        <div className="absolute inset-0 rounded-md backdrop-blur-sm bg-[#ae904c]/5 border border-[#ae904c]/20 transform transition-all duration-500" />
+        <div
+          className="relative h-[450px] rounded-md backdrop-blur-sm bg-gradient-to-b from-[#ae904c]/5 to-[#ae904c]/0 
+          border border-[#ae904c]/20 group-hover:border-[#ae904c]/40
+          transition-all duration-500 ease-out transform
+          group-hover:-translate-y-2 group-hover:-translate-x-2"
+        >
+          <div className="h-48 w-full rounded-t-md overflow-hidden relative">
+            {post.mediaType === "video" && post.coverVideo ? (
+              <video
+                src={post.coverVideo}
+                className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+              />
+            ) : post.coverImage ? (
+              <img
+                src={post.coverImage}
+                alt={post.title}
+                className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+              />
+            ) : (
+              <div className="w-full h-full bg-[#ae904c]/10" />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50" />
           </div>
 
-          <h3 className="text-lg font-semibold mb-3 text-[#ae904c] group-hover:text-[#ae904c]/90 transition-colors duration-300 line-clamp-2">
-            {title}
-          </h3>
+          <div className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#ae904c]/20 via-transparent to-[#ae904c]/20 animate-gradient-shift" />
+            <div className="absolute -inset-px rounded-md bg-gradient-to-r from-[#ae904c]/30 via-[#ae904c]/10 to-[#ae904c]/30 blur-sm group-hover:animate-pulse" />
+          </div>
 
-          <p className="text-white/60 mb-4 flex-grow text-sm line-clamp-3">
-            {description}
-          </p>
+          <div className="relative z-10 p-6 w-full h-[calc(100%-12rem)] flex flex-col">
+            <div className="flex justify-between items-center mb-4">
+              <span className="text-[#ae904c]/80 text-sm font-medium">
+                {new Date(post.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
+              {post.tags && post.tags.length > 0 && (
+                <span className="text-white/40 text-sm">{post.tags[0]}</span>
+              )}
+            </div>
 
-          <button
-            className="flex items-center text-[#ae904c]/80 hover:text-[#ae904c] transition-all duration-300 
-            group-hover:translate-x-1 mt-auto relative
-            before:absolute before:-inset-4 before:rounded-lg before:bg-[#ae904c]/5 before:opacity-0 
-            before:group-hover:opacity-100 before:transition-opacity before:duration-300"
-          >
-            Read More <ArrowUpRight className="w-4 h-4 ml-2" />
-          </button>
+            <h3 className="text-lg font-semibold mb-3 text-[#ae904c] group-hover:text-[#ae904c]/90 transition-colors duration-300 line-clamp-2">
+              {post.title}
+            </h3>
+
+            <p className="text-white/60 mb-4 flex-grow text-sm line-clamp-3">
+              {post.description}
+            </p>
+
+            <div
+              className="flex items-center text-[#ae904c]/80 hover:text-[#ae904c] transition-all duration-300 
+              group-hover:translate-x-1 mt-auto relative
+              before:absolute before:-inset-4 before:rounded-lg before:bg-[#ae904c]/5 before:opacity-0 
+              before:group-hover:opacity-100 before:transition-opacity before:duration-300"
+            >
+              Read More <ArrowUpRight className="w-4 h-4 ml-2" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 const PressReleaseSection: React.FC = () => {
-  const [time, setTime] = useState(0);
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [isClient, setIsClient] = useState(false);
+  const [time, setTime] = useState(0);
   const gridSize = 60;
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const response = await fetch("/api/posts");
+        if (!response.ok) {
+          throw new Error("Failed to fetch posts");
+        }
+        const data = await response.json();
+        setPosts(data.slice(0, 4)); // Get only first 4 posts
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+        setError(
+          error instanceof Error ? error.message : "Failed to fetch posts"
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   useEffect(() => {
     setIsClient(true);
@@ -111,42 +147,6 @@ const PressReleaseSection: React.FC = () => {
     return Math.min(0.3, Math.max(0.1, baseOpacity * 0.2 * pulse));
   };
 
-  const pressReleases = [
-    {
-      date: "February 1, 2024",
-      title: "Company Launches Revolutionary New Platform",
-      description:
-        "Announcing the launch of our groundbreaking platform that transforms how businesses interact with their customers.",
-      readingTime: "3 min read",
-      image: "/press-release/press-release-1.jpg",
-    },
-    {
-      date: "January 15, 2024",
-      title: "Strategic Partnership Announcement",
-      description:
-        "Exciting new partnership set to revolutionize industry standards and create innovative solutions for clients.",
-      readingTime: "4 min read",
-      image: "/press-release/press-release-2.jpg",
-    },
-    {
-      date: "January 5, 2024",
-      title: "Award-Winning Innovation Recognition",
-      description:
-        "Our team's dedication to excellence recognized with prestigious industry award for technological innovation.",
-      readingTime: "2 min read",
-      image: "/press-release/press-release-4.jpg",
-    },
-    {
-      date: "December 20, 2023",
-      title: "Expansion into New Markets",
-      description:
-        "Strategic expansion plans unveiled as company moves to establish presence in key international markets.",
-      readingTime: "5 min read",
-      image: "/press-release/press-release-3.jpg",
-    },
-  ];
-
-  // Show a simple loading state during SSR
   if (!isClient) {
     return (
       <div className="relative w-full pb-32 overflow-hidden bg-black">
@@ -163,7 +163,7 @@ const PressReleaseSection: React.FC = () => {
   }
 
   return (
-    <div className="relative w-full pb-32 ">
+    <div className="relative w-full pb-32">
       {/* Animated Grid Background */}
       <div className="absolute inset-0">
         <svg
@@ -207,19 +207,19 @@ const PressReleaseSection: React.FC = () => {
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ae904c]/80 via-[#ae904c] to-[#ae904c]/80">
-                    Press Releases
+                    Latest Updates
                   </span>
                 </h2>
                 <p className="text-white/60 max-w-2xl">
                   Stay updated with our latest announcements and company news
                 </p>
               </div>
-              <button
-                onClick={() => (window.location.href = "/press")}
+              <Link
+                href="/press"
                 className="hidden md:flex items-center text-[#ae904c]/80 hover:text-[#ae904c] transition-colors duration-300"
               >
                 View All <ArrowRight className="w-4 h-4 ml-2" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -227,16 +227,37 @@ const PressReleaseSection: React.FC = () => {
         {/* Press Releases Grid */}
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
-            {pressReleases.map((release, index) => (
-              <PressReleaseCard key={index} {...release} />
-            ))}
+            {isLoading ? (
+              // Loading skeleton
+              Array.from({ length: 4 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="h-[450px] rounded-md animate-pulse bg-[#ae904c]/5"
+                />
+              ))
+            ) : error ? (
+              <div className="col-span-full text-center text-red-500">
+                {error}
+              </div>
+            ) : posts.length === 0 ? (
+              <div className="col-span-full text-center text-[#ae904c]/80">
+                No posts available
+              </div>
+            ) : (
+              posts.map((post) => (
+                <PressReleaseCard key={post.id} post={post} />
+              ))
+            )}
           </div>
 
           {/* Mobile View All Button */}
           <div className="mt-8 text-center md:hidden">
-            <button className="inline-flex items-center text-[#ae904c]/80 hover:text-[#ae904c] transition-colors duration-300">
+            <Link
+              href="/press"
+              className="inline-flex items-center text-[#ae904c]/80 hover:text-[#ae904c] transition-colors duration-300"
+            >
               View All <ArrowRight className="w-4 h-4 ml-2" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>
