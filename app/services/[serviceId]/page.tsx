@@ -5,13 +5,16 @@ import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 
 import {
   ArrowUpRight,
-  Check,
   Globe,
   MessageCircle,
   Lightbulb,
   Phone,
   Sparkles,
   Users,
+  Handshake,
+  Globe2Icon,
+  ChartAreaIcon,
+  Search,
 } from "lucide-react";
 import Footer from "@/components/Footer";
 import Link from "next/link";
@@ -21,6 +24,7 @@ import Partners from "@/components/Carousel";
 import { cn } from "@/lib/utils";
 import FAQSection from "@/components/FAQSection";
 import WorkflowSection from "@/components/WorkflowSection";
+import { FaSchoolFlag } from "react-icons/fa6";
 
 const people = [
   {
@@ -100,10 +104,10 @@ interface FeatureCard {
   icon: React.ReactNode;
 }
 
-interface FAQ {
-  question: string;
-  answer: string;
-}
+// interface FAQ {
+//   question: string;
+//   answer: string;
+// }
 
 const features: FeatureCard[] = [
   {
@@ -130,19 +134,33 @@ const features: FeatureCard[] = [
   },
 ];
 
-const faqs: FAQ[] = [
-  {
-    question: "How long does the process typically take?",
-    answer:
-      "The timeline varies depending on project scope, but typically ranges from 4-12 weeks.",
-  },
-  {
-    question: "What makes your approach unique?",
-    answer:
-      "We combine industry expertise with innovative technology and personalized service.",
-  },
-  // Add more FAQs as needed
-];
+// const faqs: FAQ[] = [
+//   {
+//     question: "What services do you offer?",
+//     answer:
+//       "We design, build, and maintain websites. We also help with SEO, web performance, and custom web apps.",
+//   },
+//   {
+//     question: "Can you make a website for my small business?",
+//     answer:
+//       "Yes, we create websites for businesses of all sizes, big or small.",
+//   },
+//   {
+//     question: "Will my website work on phones and tablets?",
+//     answer:
+//       "Absolutely, we make responsive websites that look great on all devices.",
+//   },
+//   {
+//     question: "How do you help my site show up on search engines?",
+//     answer:
+//       "We use SEO techniques to improve your site’s ranking and visibility online.",
+//   },
+//   {
+//     question: "What if I need help after my site is live?",
+//     answer:
+//       "No worries, we offer maintenance and support to keep your site running smoothly.",
+//   },
+// ];
 interface PageProps {
   params: Promise<{
     serviceId: string;
@@ -244,23 +262,14 @@ export default async function ServicePage({ params }: PageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h3 className="text-3xl lg:text-5xl font-semibold text-[#ae904c]">
-                Lorem Ipsum
+                {service.heading1}
               </h3>
               <div className="space-y-4">
                 <p className="text-white/70 text-base lg:text-lg">
-                  We believe in a collaborative approach that puts your goals
-                  first. Our team works closely with you to understand your
-                  unique challenges and opportunities, developing tailored
-                  solutions that drive real results.
+                  {service.para1}
                 </p>
                 <p className="text-white/70 text-base lg:text-lg">
-                  In today&apos;s fast-paced digital landscape, having a strong
-                  presence and clear strategy is more important than ever. Our
-                  solutions help you stay ahead of the curve and maintain a
-                  competitive edge. We believe in a collaborative approach that
-                  puts your goals first. Our team works closely with you to
-                  understand your unique challenges and opportunities,
-                  developing tailored solutions that drive real results.
+                  {service.para2}
                 </p>
               </div>
             </div>
@@ -311,74 +320,35 @@ export default async function ServicePage({ params }: PageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative h-[300px] lg:h-[400px] rounded-2xl overflow-hidden order-2 lg:order-1">
               <img
-                src={`/services/${service.id}-cover.webp`}
+                src={`/services/${service.id}1.jpeg`}
                 alt="Placeholder"
                 className="object-cover w-full h-full"
               />
             </div>
             <div className="space-y-6 order-1 lg:order-2">
               <h3 className="text-3xl lg:text-5xl font-semibold text-[#ae904c]">
-                Lorem Ipsum
+                {service.heading2}
               </h3>
               <div className="space-y-4">
                 <p className="text-white/70 text-base lg:text-lg">
-                  Our proven track record speaks for itself. We&apos;ve helped
-                  numerous organizations transform their digital presence and
-                  achieve measurable growth through strategic implementation and
-                  innovative solutions.
+                  {service.para3}
                 </p>
                 <p className="text-white/70 text-base lg:text-lg">
-                  By combining industry expertise with cutting-edge technology,
-                  we ensure that every project we undertake delivers maximum
-                  value and sustainable long-term results for our clients. Our
-                  proven track record speaks for itself. We&apos;ve helped
-                  numerous organizations transform their digital presence and
-                  achieve measurable growth through strategic implementation and
-                  innovative solutions.
+                  {service.para4}
                 </p>
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/* Feature cards 2 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 md:py-10 max-w-7xl mx-auto">
-        {features.map((feature, index) => (
-          <div
-            key={feature.title}
-            className={cn(
-              "flex flex-col lg:border-r border-[#ae904c]/20 py-10 relative group/feature",
-              (index === 0 || index === 4) && "lg:border-l border-[#ae904c]/50",
-              index < 4 && "lg:border-b border-[#ae904c]/50"
-            )}
-          >
-            {index < 4 && (
-              <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-[#ae904c]/5 to-transparent pointer-events-none" />
-            )}
-            {index >= 4 && (
-              <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-[#ae904c]/5 to-transparent pointer-events-none" />
-            )}
-            <div className="mb-4 relative z-10 px-10 text-[#ae904c]">
-              {feature.icon}
-            </div>
-            <div className="text-lg font-bold mb-2 relative z-10 px-10">
-              <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-[#ae904c]/20 group-hover/feature:bg-[#ae904c] transition-all duration-200 origin-center" />
-              <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-white">
-                {feature.title}
-              </span>
-            </div>
-            <p className="text-sm text-white/70 max-w-xs relative z-10 px-10">
-              {feature.description}
-            </p>
-          </div>
-        ))}
-      </div>
       {/* Workflow Section */}
       <section className="w-full flex flex-col items-center justify-between">
         <WorkflowSection />
       </section>
       {/* FAQ Section */}
-      <FAQSection faqs={faqs} />
+      {service.faq && service.faq.length > 0 && (
+        <FAQSection faqs={service.faq} />
+      )}
       {/* Partner Logos Section */}
       <section className="pt-16 lg:pt-24">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -388,47 +358,46 @@ export default async function ServicePage({ params }: PageProps) {
                 Why Choose Us
               </h3>
               <p className="text-white/70 text-lg leading-relaxed mb-8">
-                With years of experience and a track record of success,
-                we&apos;ve helped countless businesses achieve their goals. Our
-                unique approach combines innovative strategies with proven
-                methodologies to deliver exceptional results.
+                {service.whyus}
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
-                    <Check className="w-6 h-6 text-[#ae904c]" />
+                    <Handshake className="w-6 h-6 text-[#ae904c]" />
                   </div>
-                  <span className="text-white">98% Success Rate</span>
+                  <span className="text-white">3000+ brands consulted</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
+                    <Globe2Icon className="w-6 h-6 text-[#ae904c]" />
+                  </div>
+                  <span className="text-white">Proven global strategies</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
+                    <FaSchoolFlag className="w-6 h-6 text-[#ae904c]" />
+                  </div>
+                  <span className="text-white">Expert industry insights</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
+                    <ChartAreaIcon className="w-6 h-6 text-[#ae904c]" />
+                  </div>
+                  <span className="text-white">Tailored growth solutions</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
+                    <Search className="w-6 h-6 text-[#ae904c]" />
+                  </div>
+                  <span className="text-white">
+                    Innovative marketing tactics
+                  </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
                     <Users className="w-6 h-6 text-[#ae904c]" />
                   </div>
-                  <span className="text-white">500+ Clients</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
-                    <Check className="w-6 h-6 text-[#ae904c]" />
-                  </div>
-                  <span className="text-white">98% Success Rate</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
-                    <Users className="w-6 h-6 text-[#ae904c]" />
-                  </div>
-                  <span className="text-white">500+ Clients</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
-                    <Check className="w-6 h-6 text-[#ae904c]" />
-                  </div>
-                  <span className="text-white">98% Success Rate</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-[#ae904c]/10">
-                    <Users className="w-6 h-6 text-[#ae904c]" />
-                  </div>
-                  <span className="text-white">500+ Clients</span>
+                  <span className="text-white">Data-driven decisions</span>
                 </div>
               </div>
             </div>
@@ -452,7 +421,10 @@ export default async function ServicePage({ params }: PageProps) {
           <Partners />
         </div>
       </section>
-      <CTASection />
+      <CTASection
+        headingText={service.ctaheading}
+        paragraphText={service.ctapara}
+      />
       <section className="max-w-7xl mx-auto px-4 md:px-8 mb-24">
         <h2 className="text-4xl lg:text-5xl font-semibold text-[#ae904c] mb-16">
           Other Services
@@ -463,7 +435,7 @@ export default async function ServicePage({ params }: PageProps) {
             <ServiceCard
               key={service.id}
               id={service.id}
-              title={service.title}
+              title={service.maintitle!}
               image={`/services/${service.id}-cover.webp`}
               description={service.description}
             />

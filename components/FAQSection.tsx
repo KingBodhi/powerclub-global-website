@@ -8,7 +8,11 @@ interface FAQ {
   answer: string;
 }
 
-export default function FAQSection({ faqs }: { faqs: FAQ[] }) {
+export default function FAQSection({ faqs = [] }: { faqs?: FAQ[] }) {
+  if (!faqs || faqs.length === 0) {
+    return null; // Don't render anything if no FAQs are provided
+  }
+
   return (
     <section className="py-16 lg:py-24">
       <div className="max-w-3xl mx-auto px-4 md:px-8">

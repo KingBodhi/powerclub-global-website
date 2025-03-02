@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
+// import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import { Globe, Lightbulb, MessageCircle, Sparkles, Users } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
@@ -8,6 +8,7 @@ import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
+import { useRouter } from "next/navigation";
 
 interface FeatureCard {
   title: string;
@@ -26,98 +27,100 @@ const features: FeatureCard[] = [
   {
     title: "Expert Team",
     description:
-      "Our team brings decades of combined experience in the industry.",
+      "Our team of industry veterans brings decades of combined experience to every project we undertake.",
     icon: <Users className="w-6 h-6 text-[#ae904c]" />,
   },
   {
     title: "Global Reach",
     description:
-      "Connect with audiences worldwide through our extensive network.",
+      "With operations in over 25 countries, we connect brands with audiences worldwide through our extensive network.",
     icon: <Globe className="w-6 h-6 text-[#ae904c]" />,
   },
   {
     title: "Innovative Solutions",
-    description: "Cutting-edge approaches tailored to your unique needs.",
+    description:
+      "We deliver cutting-edge approaches tailored specifically to your unique business challenges and goals.",
     icon: <Lightbulb className="w-6 h-6 text-[#ae904c]" />,
   },
   {
     title: "Transparent Communication",
-    description: "Open lines of communication for clarity and peace of mind.",
+    description:
+      "We maintain clear, open communication throughout every project, ensuring alignment and peace of mind.",
     icon: <MessageCircle className="w-6 h-6 text-[#ae904c]" />,
   },
 ];
 
 const stats: Stat[] = [
   {
-    value: 500,
+    value: 750,
     label: "Events Organized",
     suffix: "+",
-    desc: "We have successfully organized over 500 events.",
+    desc: "Successfully delivered exceptional experiences across a diverse range of industries and formats.",
   },
   {
-    value: 50,
+    value: 85,
     label: "Attendees",
     suffix: "K+",
-    desc: "We have engaged with over 50,000 attendees.",
+    desc: "Connected brands with over 85,000 engaged participants through our immersive events.",
   },
   {
-    value: 25,
+    value: 35,
     label: "Countries",
     suffix: "+",
-    desc: "We have worked with clients from over 25 countries.",
+    desc: "Expanded our global footprint to deliver impactful experiences across five continents.",
   },
   {
-    value: 98,
+    value: 99,
     label: "Client Satisfaction",
     suffix: "%",
-    desc: "Our clients rate us highly for our services.",
+    desc: "Consistently exceeding expectations with our attention to detail and commitment to excellence.",
   },
 ];
 
-const people = [
-  {
-    id: 1,
-    name: "John Doe",
-    designation: "Software Engineer",
-    image:
-      "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
-  },
-  {
-    id: 2,
-    name: "Robert Johnson",
-    designation: "Product Manager",
-    image:
-      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-  },
-  {
-    id: 3,
-    name: "Jane Smith",
-    designation: "Data Scientist",
-    image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-  },
-  {
-    id: 4,
-    name: "Emily Davis",
-    designation: "UX Designer",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-  },
-  {
-    id: 5,
-    name: "Tyler Durden",
-    designation: "Soap Developer",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
-  },
-  {
-    id: 6,
-    name: "Dora",
-    designation: "The Explorer",
-    image:
-      "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3534&q=80",
-  },
-];
+// const people = [
+//   {
+//     id: 1,
+//     name: "Sarah Mitchell",
+//     designation: "Founder & CEO",
+//     image:
+//       "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+//   },
+//   {
+//     id: 2,
+//     name: "Michael Chen",
+//     designation: "Chief Strategy Officer",
+//     image:
+//       "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+//   },
+//   {
+//     id: 3,
+//     name: "Olivia Rodriguez",
+//     designation: "Creative Director",
+//     image:
+//       "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+//   },
+//   {
+//     id: 4,
+//     name: "James Washington",
+//     designation: "Head of Events",
+//     image:
+//       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+//   },
+//   {
+//     id: 5,
+//     name: "Daniel Park",
+//     designation: "Technology Director",
+//     image:
+//       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
+//   },
+//   {
+//     id: 6,
+//     name: "Aisha Patel",
+//     designation: "Global Partnerships",
+//     image:
+//       "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3534&q=80",
+//   },
+// ];
 
 const VideoGrid = () => {
   const videos = [
@@ -216,6 +219,11 @@ const StatCounter = ({ stat, index }: { stat: Stat; index: number }) => {
 };
 
 export default function AboutPage() {
+  const router = useRouter();
+  const handleGetStarted = () => {
+    // navigate to contact page
+    router.push("/contact");
+  };
   return (
     <main className="min-h-screen bg-black">
       <Navbar />
@@ -227,40 +235,40 @@ export default function AboutPage() {
             <div>
               <span className="inline-block px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-[#ae904c]/10 text-[#ae904c] text-xs md:text-sm mb-6 md:mb-8">
                 <Sparkles className="inline-block w-3 h-3 md:w-4 md:h-4 mr-1.5 md:mr-2" />
-                Leading the Industry Since 2018
+                Transforming Experiences Since 2018
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl text-white uppercase">
               <span className="whitespace-normal lg:whitespace-nowrap">
-                Where Vision
+                Where Vision <br /> meets
               </span>
               <br />
               <span className="font-bold text-[#ae904c] whitespace-normal">
-                Excellence
+                Excellence <span className="text-white font-normal">And</span>{" "}
+                Innovation
               </span>
               <br />
-              In Innovation
             </h1>
 
-            <div className="flex gap-3 mt-8 lg:mt-12">
+            {/* <div className="flex gap-3 mt-8 lg:mt-12">
               <AnimatedTooltip items={people} />
-            </div>
+            </div> */}
             <p className="text-white/70 text-base lg:text-lg max-w-xl mt-8 lg:mt-12">
-              We are more than just a company – we&apos;re a collective of
-              visionaries, innovators, and industry leaders dedicated to
-              transforming the digital landscape.
+              At PowerClub Global, we&apos;re more than an agency – we&apos;re a
+              dynamic collective of visionaries, strategists, and creators
+              dedicated to transforming how brands connect with their audiences.
             </p>
             <p className="text-white/70 text-base lg:text-lg max-w-xl mt-6 lg:mt-8">
-              We are more than just a company – we&apos;re a collective of
-              visionaries, innovators, and industry leaders dedicated to
-              transforming the digital landscape. With over 5 years of
-              excellence, we&apos;ve helped shape the future of digital
-              innovation, working with leading brands and organizations
-              worldwide.
+              With a proven track record spanning over five years, we&apos;ve
+              partnered with leading brands across industries to create
+              immersive experiences that leave lasting impressions.
             </p>
             <div className="">
-              <button className="bg-[#ae904c] text-white max-w-44 px-6 py-3 rounded-lg mt-8 lg:mt-12 flex items-center gap-2">
-                Get Started Now
+              <button
+                onClick={handleGetStarted}
+                className="bg-[#ae904c] text-white max-w-44 px-6 py-3 rounded-lg mt-8 lg:mt-12 flex items-center gap-2"
+              >
+                Book A Call
               </button>
             </div>
           </div>
@@ -279,18 +287,18 @@ export default function AboutPage() {
       {/* Building Tomorrow Section */}
       <div className="text-center max-w-4xl mx-auto px-4 mt-32">
         <h2 className="text-4xl lg:text-5xl font-bold text-[#ae904c] mb-8">
-          Building Tomorrow&apos;s Digital Landscape
+          Crafting Exceptional Brand Experiences
         </h2>
         <p className="text-white/70 text-lg leading-relaxed">
-          Since our inception, we&apos;ve been at the forefront of digital
-          innovation, working with visionary leaders and influential figures who
-          share our passion for excellence. Our journey has been marked by
-          groundbreaking achievements and transformative partnerships that
-          continue to shape the industry.
+          Since our founding, PowerClub Global has been at the forefront of
+          innovative event management, digital transformation, and strategic
+          brand experiences. We&apos;ve collaborated with industry pioneers,
+          global brands, and influential figures who share our commitment to
+          excellence and innovation.
         </p>
       </div>
 
-      {/* Tilted Images Row */}
+      {/* Images with influential people */}
       <div className="w-full mt-24 overflow-y-visible overflow-x-clip">
         <div className="flex flex-nowrap gap-6 justify-between ">
           {[
@@ -323,15 +331,16 @@ export default function AboutPage() {
       </div>
       <div className="text-center max-w-4xl mx-auto px-4 mt-32">
         <p className="text-white/70 text-lg leading-relaxed">
-          Since our inception, we&apos;ve been at the forefront of digital
-          innovation, working with visionary leaders and influential figures who
-          share our passion for excellence. Our journey has been marked by
-          groundbreaking achievements and transformative partnerships that
-          continue to shape the industry. Since our inception, we&apos;ve been
-          at the forefront of digital innovation, working with visionary leaders
-          and influential figures who share our passion for excellence. Our
-          journey has been marked by groundbreaking achievements and
-          transformative partnerships that continue to shape the industry.
+          Our journey is defined by groundbreaking achievements and meaningful
+          partnerships that continue to shape the future of brand experiences.
+          Our collaborative approach has allowed us to build meaningful
+          relationships with industry leaders, visionaries, and change-makers
+          across the globe. Through strategic partnerships, we&apos;ve amplified
+          our clients&apos; reach and impact, creating authentic connections
+          that resonate with audiences and drive measurable results. These
+          collaborations have enabled us to push boundaries, challenge
+          conventions, and deliver truly transformative experiences that stand
+          the test of time.
         </p>
       </div>
       {/* Feature Cards */}
@@ -369,7 +378,7 @@ export default function AboutPage() {
       {/* Past Events Section */}
       <section className="max-w-7xl mx-auto px-4 md:px-8 pb-24 pt-32">
         <h2 className="text-4xl lg:text-5xl font-bold text-[#ae904c] text-center mb-16">
-          Past Events
+          Signature Events
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -390,19 +399,19 @@ export default function AboutPage() {
             <div className="p-6">
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-xl font-bold text-white">
-                  Permissionless 2022
+                  Permissionless 2023
                 </h3>
-                <span className="text-sm text-[#ae904c]">Miami, FL</span>
+                <span className="text-sm text-[#ae904c]">Austin, TX</span>
               </div>
               <p className="text-white/70 text-sm leading-relaxed mb-4">
-                A groundbreaking conference that brought together industry
-                leaders to discuss the future of blockchain technology and
-                decentralized finance.
+                A landmark conference bringing together industry pioneers,
+                developers, and investors to explore the frontiers of
+                decentralized technology and its real-world applications.
               </p>
               <div className="flex items-center gap-2 text-[#ae904c] text-sm">
-                <span>May 17-19, 2022</span>
+                <span>May 15-17, 2023</span>
                 <span className="text-white/30">•</span>
-                <span>5000+ Attendees</span>
+                <span>7,500+ Attendees</span>
               </div>
             </div>
           </div>
@@ -424,18 +433,19 @@ export default function AboutPage() {
             <div className="p-6">
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-xl font-bold text-white">
-                  Miami Blockchain Week
+                  Global Tech Summit
                 </h3>
-                <span className="text-sm text-[#ae904c]">Miami, FL</span>
+                <span className="text-sm text-[#ae904c]">Singapore</span>
               </div>
               <p className="text-white/70 text-sm leading-relaxed mb-4">
-                An immersive week-long event showcasing the latest innovations
-                in blockchain technology and their real-world applications.
+                An immersive multi-day event showcasing breakthrough innovations
+                across AI, blockchain, and emerging technologies, featuring
+                hands-on workshops and thought leadership panels.
               </p>
               <div className="flex items-center gap-2 text-[#ae904c] text-sm">
-                <span>April 1-7, 2022</span>
+                <span>October 10-14, 2023</span>
                 <span className="text-white/30">•</span>
-                <span>10000+ Attendees</span>
+                <span>12,000+ Attendees</span>
               </div>
             </div>
           </div>
@@ -457,19 +467,19 @@ export default function AboutPage() {
             <div className="p-6">
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-xl font-bold text-white">
-                  Versace Innovation Summit
+                  Luxury Innovation Forum
                 </h3>
-                <span className="text-sm text-[#ae904c]">Milan, Italy</span>
+                <span className="text-sm text-[#ae904c]">Paris, France</span>
               </div>
               <p className="text-white/70 text-sm leading-relaxed mb-4">
-                A prestigious gathering of fashion and technology leaders
-                exploring the intersection of luxury brands and digital
-                innovation.
+                An exclusive gathering of luxury brands and technology
+                innovators exploring the future of high-end retail, digital
+                fashion, and immersive consumer experiences.
               </p>
               <div className="flex items-center gap-2 text-[#ae904c] text-sm">
-                <span>September 15-16, 2022</span>
+                <span>September 22-23, 2023</span>
                 <span className="text-white/30">•</span>
-                <span>1000+ Attendees</span>
+                <span>1,500+ Industry Leaders</span>
               </div>
             </div>
           </div>
@@ -482,27 +492,31 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h3 className="text-3xl lg:text-5xl font-semibold text-[#ae904c]">
-                Lorem Ipsum
+                Our Approach
               </h3>
               <div className="space-y-4">
                 <p className="text-white/70 text-base lg:text-lg">
-                  We believe in a collaborative approach that puts your goals
-                  first. Our team works closely with you to understand your
-                  unique challenges and opportunities, developing tailored
-                  solutions that drive real results.
+                  At PowerClub Global, we believe in a collaborative,
+                  client-centered approach that puts your objectives at the
+                  heart of everything we do. Our team works closely with you to
+                  understand your unique challenges, audience, and goals,
+                  developing tailored solutions that drive meaningful engagement
+                  and measurable results.
                 </p>
                 <p className="text-white/70 text-base lg:text-lg">
-                  In today&apos;s fast-paced digital landscape, having a strong
-                  presence and clear strategy is more important than ever. Our
-                  solutions help you stay ahead of the curve and maintain a
-                  competitive edge.
+                  In today&apos;s rapidly evolving digital landscape, having a
+                  strategic partner who understands both traditional and
+                  emerging channels is essential. Our interdisciplinary team
+                  combines deep industry expertise with creative thinking to
+                  help you navigate complexity, seize opportunities, and
+                  maintain a competitive edge in your market.
                 </p>
               </div>
             </div>
             <div className="relative h-[300px] lg:h-[400px] rounded-2xl overflow-hidden">
               <img
                 src="/services/press-relations1.jpeg"
-                alt="Placeholder"
+                alt="Team collaboration session"
                 className="object-cover w-full h-full"
               />
             </div>
@@ -516,25 +530,30 @@ export default function AboutPage() {
             <div className="relative h-[300px] lg:h-[400px] rounded-2xl overflow-hidden order-2 lg:order-1">
               <img
                 src="/about/team-at-work.jpeg"
-                alt="Placeholder"
+                alt="PowerClub Global team at work"
                 className="object-cover w-full h-full"
               />
             </div>
             <div className="space-y-6 order-1 lg:order-2">
               <h3 className="text-3xl lg:text-5xl font-semibold text-[#ae904c]">
-                Lorem Ipsum
+                Our Commitment
               </h3>
               <div className="space-y-4">
                 <p className="text-white/70 text-base lg:text-lg">
-                  Our proven track record speaks for itself. We&apos;ve helped
-                  numerous organizations transform their digital presence and
-                  achieve measurable growth through strategic implementation and
-                  innovative solutions.
+                  Our track record of success is built on a foundation of
+                  excellence, integrity, and innovation. We&apos;ve helped
+                  organizations of all sizes transform their digital presence,
+                  create unforgettable experiences, and achieve substantial
+                  growth through strategic implementation and creative
+                  problem-solving.
                 </p>
                 <p className="text-white/70 text-base lg:text-lg">
-                  By combining industry expertise with cutting-edge technology,
-                  we ensure that every project we undertake delivers maximum
-                  value and sustainable long-term results for our clients.
+                  By combining specialized industry expertise with cutting-edge
+                  technology and creative thinking, we ensure that every project
+                  we undertake delivers exceptional value and sustainable
+                  results. We&apos;re committed to pushing boundaries, exceeding
+                  expectations, and helping our clients thrive in an
+                  increasingly competitive landscape.
                 </p>
               </div>
             </div>

@@ -17,7 +17,7 @@ const Timeline = () => {
       title: "Initial Consultation",
       shortDescription: "Schedule a consultation to discuss your needs",
       description:
-        "Our comprehensive consultation process is designed to deeply understand your business needs and objectives. We analyze your current position and identify opportunities for growth.",
+        "We start by understanding your business, goals, and vision. This helps us craft a strategy that fits your unique requirements.",
       benefits: [
         "In-depth needs analysis",
         "Custom solution planning",
@@ -25,22 +25,23 @@ const Timeline = () => {
         "Timeline planning",
       ],
       keyPoints: [
-        "Expert team assessment",
-        "Industry-specific insights",
-        "Clear goal setting",
-        "Resource allocation",
+        "Custom strategies",
+        "Goal-focused plans",
+        "Expert insights",
+        "Smooth process",
+        "Measurable results",
       ],
     },
     {
       title: "Strategy Development",
       shortDescription: "Get your customized strategic plan",
       description:
-        "We develop a detailed strategy that aligns with your goals and market position. Our team creates a comprehensive roadmap that outlines every step of the implementation process.",
+        "Our team develops a detailed strategy tailored to your objectives and market position. We outline a clear roadmap to guide every step of the implementation process.",
       benefits: [
-        "Data-driven approach",
-        "Competitive analysis",
-        "Risk assessment",
-        "Growth projections",
+        "Personalized strategy",
+        "Clear roadmap",
+        "Market-aligned plans",
+        "Step-by-step guidance",
       ],
       keyPoints: [
         "Detailed action plans",
@@ -53,7 +54,7 @@ const Timeline = () => {
       title: "Implementation",
       shortDescription: "Execute the plan with our expert team",
       description:
-        "Our experienced team brings your strategy to life with precision and attention to detail. We ensure seamless execution while maintaining constant communication throughout the process.",
+        "We bring the strategy to life. Our specialists handle everything from content creation to campaign management ensuring smooth execution across all channels.",
       benefits: [
         "Expert execution",
         "Regular updates",
@@ -71,7 +72,7 @@ const Timeline = () => {
       title: "Optimization & Growth",
       shortDescription: "Achieve and maintain optimal results",
       description:
-        "We continuously monitor and optimize performance to ensure sustainable growth. Our team provides regular analysis and recommendations for ongoing improvement.",
+        "We continuously monitor, analyze, and refine your campaigns to maximize performance. Our goal is to help you scale sustainably and stay ahead of the curve.",
       benefits: [
         "Performance analysis",
         "Growth optimization",
@@ -81,7 +82,7 @@ const Timeline = () => {
       keyPoints: [
         "Data analytics",
         "Strategy refinement",
-        "Market adaptation",
+        "Performance tracking",
         "Scalability planning",
       ],
     },

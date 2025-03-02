@@ -13,10 +13,13 @@ import { Sparkles } from "lucide-react";
 import EventSection from "@/components/EventSection";
 import DarkGridBackground3 from "@/components/DarkGridBackground3";
 import CountdownBanner from "@/components/CountdownBanner";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   const handleGetStarted = () => {
-    console.log("Get Started button clicked!");
+    // navigate to contact page
+    router.push("/contact");
   };
 
   return (

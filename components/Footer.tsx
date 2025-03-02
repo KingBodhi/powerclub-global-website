@@ -1,6 +1,6 @@
 import React from "react";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
-import { FaXTwitter } from "react-icons/fa6";
+import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import { FaTelegram, FaXTwitter } from "react-icons/fa6";
 
 const Footer: React.FC = () => {
   return (
@@ -24,6 +24,14 @@ const Footer: React.FC = () => {
             />
             <div className="flex space-x-6">
               <a
+                href="https://www.instagram.com/powerclub.global/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
                 href="https://www.facebook.com/p/Powerclub-Global-100093219199164/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -39,13 +47,22 @@ const Footer: React.FC = () => {
               >
                 <FaXTwitter className="w-5 h-5" />
               </a>
+
               <a
-                href="https://www.instagram.com/powerclub.global/"
+                href="https://www.youtube.com/@powerclubglobal"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
               >
-                <Instagram className="w-5 h-5" />
+                <Youtube className="w-5 h-5" />
+              </a>
+              <a
+                href="t.me/powerclubglboal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-400/60 hover:text-amber-400 transition-colors duration-300"
+              >
+                <FaTelegram className="w-5 h-5" />
               </a>
               <a
                 href="https://www.linkedin.com/company/powerclub-global-usa"

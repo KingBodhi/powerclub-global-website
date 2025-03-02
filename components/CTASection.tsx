@@ -10,15 +10,19 @@ interface CTASectionProps {
   secondaryButtonText?: string;
   onPrimaryClick?: () => void;
   onSecondaryClick?: () => void;
+  headingText?: string; // New prop for heading text
+  paragraphText?: string; // New prop for paragraph text
 }
 
 const CTASection: React.FC<CTASectionProps> = ({
   title = "Let's Work Together!",
   description = "Let's work together to achieve your goals. Our team of experts is ready to help bring your vision to life.",
   primaryButtonText = "Schedule Call",
-  secondaryButtonText = "Let's Chat",
+  secondaryButtonText = "Contact Us",
   onPrimaryClick,
   onSecondaryClick,
+  headingText, // Added new prop
+  paragraphText, // Added new prop
 }) => {
   const router = useRouter();
 
@@ -40,6 +44,12 @@ const CTASection: React.FC<CTASectionProps> = ({
       router.push("/contact");
     }
   };
+
+  // Use headingText if provided, otherwise fall back to title
+  const displayHeading = headingText || title;
+
+  // Use paragraphText if provided, otherwise fall back to description
+  const displayParagraph = paragraphText || description;
 
   return (
     <div className="relative w-full bg-black/95 py-24">
@@ -67,11 +77,11 @@ const CTASection: React.FC<CTASectionProps> = ({
           >
             <h2 className="text-5xl font-bold mb-6">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ae904c] to-[#ae904c]/80">
-                {title}
+                {displayHeading}
               </span>
             </h2>
             <p className="text-white/60 max-w-2xl mx-auto text-lg mb-12">
-              {description}
+              {displayParagraph}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
