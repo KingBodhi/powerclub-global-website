@@ -11,7 +11,7 @@ const CountdownBanner = () => {
   });
 
   const calculateTimeLeft = () => {
-    const targetDate = new Date("2025-02-25T00:00:00");
+    const targetDate = new Date("2025-03-02T15:00:00-07:00");
     const now = new Date();
     const difference = targetDate.getTime() - now.getTime();
 
@@ -72,7 +72,7 @@ const CountdownBanner = () => {
           backgroundBlendMode: "overlay",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 via-cyan-900/30 to-purple-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black" />
       </div>
 
@@ -84,38 +84,44 @@ const CountdownBanner = () => {
         animate="visible"
       >
         <motion.img
-          src="/featured-event/astronauts.png"
-          alt="Astronauts"
-          className="absolute -bottom-10 md:-bottom-20 right-0 w-[20rem] md:w-[35rem] lg:w-[50rem] z-0"
+          src="/featured-event/coin.png"
+          alt="Bitcoin"
+          className="absolute -bottom-10 md:-bottom-16 -right-20 w-[20rem] md:w-[25rem] lg:w-[30rem] z-0 hidden md:block"
           variants={floatAnimation}
           animate="animate"
         />
-
         {/* Event Title */}
-        <motion.div className="mb-8 w-full md:w-auto" variants={itemVariants}>
-          <img
-            src="/featured-event/supermoon-heading.avif"
-            alt="Supermoon Event"
-            className="max-w-[280px] md:max-w-md mx-auto"
-          />
+        <motion.div
+          className="mb-8 w-full md:w-auto text-center"
+          variants={itemVariants}
+        >
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#ae904c] mb-2">
+            PCG Presents
+          </h1>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white">
+            A Bitcoin Mesh Networking Reception
+          </h2>
+          <p className="text-xl md:text-2xl text-[#ae904c] mt-2">
+            by LAB 484 🌐
+          </p>
         </motion.div>
 
         {/* Event Details */}
         <motion.div
-          className="flex flex-col md:flex-row gap-4 md:gap-6 mb-8 text-cyan-200 bg-black/50 p-4 rounded-lg text-sm md:text-base w-full md:w-auto"
+          className="flex flex-col md:flex-row gap-4 md:gap-6 mb-8 text-[#ae904c] bg-black/70 p-4 rounded-lg text-sm md:text-base w-full md:w-auto"
           variants={itemVariants}
         >
           <div className="flex items-center gap-2 justify-center">
             <Calendar className="w-5 h-5" />
-            <span>Feb 25, 2025</span>
-          </div>
-          <div className="flex items-center gap-2 justify-center">
-            <MapPin className="w-5 h-5" />
-            <span>ETHDenver, Colorado</span>
+            <span>Sunday, March 2, 2025</span>
           </div>
           <div className="flex items-center gap-2 justify-center">
             <Clock className="w-5 h-5" />
-            <span>18:00 MST</span>
+            <span>15:00 - 19:00 GMT-7</span>
+          </div>
+          <div className="flex items-center gap-2 justify-center">
+            <MapPin className="w-5 h-5" />
+            <span>1536 Clermont St, Denver</span>
           </div>
         </motion.div>
 
@@ -132,17 +138,17 @@ const CountdownBanner = () => {
           ].map((item, index) => (
             <React.Fragment key={item.label}>
               <div className="flex flex-col items-center">
-                <div className="text-2xl md:text-5xl font-bold bg-white/10 backdrop-blur-sm rounded-lg p-2 md:p-4 min-w-16 md:min-w-24">
+                <div className="text-2xl md:text-5xl font-bold bg-[#ae904c]/20 backdrop-blur-sm rounded-lg p-2 md:p-4 min-w-16 md:min-w-24 border border-[#ae904c]/40">
                   {String(item.value).padStart(2, "0")}
                 </div>
-                <div className="mt-2 text-cyan-200 font-medium uppercase tracking-wider text-xs md:text-base">
+                <div className="mt-2 text-[#ae904c] font-medium uppercase tracking-wider text-xs md:text-base">
                   {item.label}
                 </div>
               </div>
               {index < 3 && (
                 <>
                   <div
-                    className="absolute text-cyan-200 text-2xl md:text-5xl font-bold"
+                    className="absolute text-[#ae904c] text-2xl md:text-5xl font-bold"
                     style={{
                       left: `${(index + 1) * 25 - 2}%`,
                       top: "50%",
@@ -157,14 +163,14 @@ const CountdownBanner = () => {
 
         {/* CTA Button */}
         <motion.a
-          href="https://lu.ma/supermoonethdenver"
+          href="https://lu.ma/kndysxzc"
           target="_blank"
           rel="noopener noreferrer"
           variants={itemVariants}
-          className="mt-12 px-6 md:px-8 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-full
-                     text-white font-semibold uppercase tracking-wider text-sm md:text-base
-                     hover:from-purple-500 hover:to-cyan-500 transition-colors
-                     shadow-lg shadow-purple-900/50 z-10"
+          className="mt-12 px-6 md:px-8 py-3 bg-[#ae904c] rounded-full
+                     text-black font-semibold uppercase tracking-wider text-sm md:text-base
+                     hover:bg-[#c9a959] transition-colors
+                     shadow-lg shadow-[#ae904c]/30 z-10"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
