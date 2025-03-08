@@ -213,7 +213,7 @@ const ContactSection: React.FC = () => {
               <ContactCard
                 icon={Mail}
                 title="Email Us"
-                info="contact@example.com"
+                info="innovate@powerclubglobal.com"
                 primary
               />
             </div>
