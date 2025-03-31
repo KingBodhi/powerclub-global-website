@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Suspense } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -212,7 +212,7 @@ const LocationFilter = ({
   );
 };
 
-export default function EventsPage() {
+function EventsPageContent() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("all");
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -441,5 +441,13 @@ export default function EventsPage() {
 
       <Footer />
     </main>
+  );
+}
+
+export default function EventsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <EventsPageContent />
+    </Suspense>
   );
 }

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 // import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import { Globe, Lightbulb, MessageCircle, Sparkles, Users } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -218,14 +218,15 @@ const StatCounter = ({ stat, index }: { stat: Stat; index: number }) => {
   );
 };
 
-export default function AboutPage() {
+function AboutPageContent() {
   const router = useRouter();
+
   const handleGetStarted = () => {
-    // navigate to contact page
     router.push("/contact");
   };
+
   return (
-    <main className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black">
       <Navbar />
 
       {/* Hero Section */}
@@ -563,6 +564,14 @@ export default function AboutPage() {
 
       <CTASection />
       <Footer />
-    </main>
+    </div>
+  );
+}
+
+export default function AboutPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AboutPageContent />
+    </Suspense>
   );
 }

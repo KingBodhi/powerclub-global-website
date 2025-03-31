@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import {
   Mail,
   Send,
@@ -111,7 +111,7 @@ const HighlightCard: React.FC = () => (
   </div>
 );
 
-export default function ContactPage() {
+function ContactPageContent() {
   const [time, setTime] = useState(0);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [isClient, setIsClient] = useState(false);
@@ -417,6 +417,15 @@ export default function ContactPage() {
     </main>
   );
 }
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ContactPageContent />
+    </Suspense>
+  );
+}
+
 const onScheduleCall = () => {
   window.open(
     "https://calendly.com/powerclub-global/business-interaction",
