@@ -33,7 +33,6 @@ const PARTNERS = [
 function Partners() {
   return (
     <div className="w-full -mt-32 md:-mt-40">
-      {/* Added this container with max-width to prevent overflow */}
       <div className="max-w-[90vw] mx-auto overflow-hidden">
         {/* Carousel track */}
         <div className="relative flex overflow-hidden">
