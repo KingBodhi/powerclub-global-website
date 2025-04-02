@@ -2,11 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["images.unsplash.com"],
+    domains: [
+      "prod-files-secure.s3.us-west-2.amazonaws.com",
+      "s3.us-west-2.amazonaws.com",
+      "www.notion.so",
+    ],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "prod-files-secure.s3.us-west-2.amazonaws.com",
+        hostname: "**.amazonaws.com",
+        pathname: "/**",
       },
     ],
   },

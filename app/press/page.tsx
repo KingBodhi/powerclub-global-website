@@ -5,6 +5,7 @@ import { ArrowUpRight, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
+import NotionImage from "@/components/NotionImage";
 
 async function PressReleases() {
   const posts = await getBlogPosts();
@@ -23,20 +24,26 @@ async function PressReleases() {
                   transition-all duration-500 ease-out transform
                   group-hover:-translate-y-2 group-hover:-translate-x-2"
               >
-                <div className="h-48 w-full rounded-t-md overflow-hidden relative">
+                <div className="h-48 w-full rounded-t-md overflow-hidden relative bg-[#ae904c]/5">
                   {post.mediaType === "video" && post.coverVideo ? (
-                    <video
-                      src={post.coverVideo}
-                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-                    />
+                    <div className="h-full w-full flex items-center justify-center">
+                      <video
+                        src={post.coverVideo}
+                        className="max-h-full max-w-full object-contain"
+                      />
+                    </div>
                   ) : post.coverImage ? (
-                    <img
+                    <NotionImage
                       src={post.coverImage}
                       alt={post.title}
-                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                      className="transition-transform duration-500 group-hover:scale-105"
                     />
                   ) : (
-                    <div className="w-full h-full bg-[#ae904c]/10" />
+                    <div className="w-full h-full bg-[#ae904c]/10 flex items-center justify-center">
+                      <span className="text-[#ae904c]/50 text-sm">
+                        No image available
+                      </span>
+                    </div>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50" />
                 </div>
@@ -61,7 +68,7 @@ async function PressReleases() {
                     {post.title}
                   </h3>
 
-                  <p className="text-white/60 mb-4 flex-grow text-sm line-clamp-3">
+                  <p className="text-white/60 mb-4 flex-grow text-sm line-clamp">
                     {post.description}
                   </p>
 
