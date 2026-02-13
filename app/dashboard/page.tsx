@@ -109,7 +109,7 @@ export default function DashboardPage() {
             {/* Quick Stats */}
             <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto mb-12">
               <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                <p className="text-3xl font-bold text-[#ae904c]">$0.001</p>
+                <p className="text-3xl font-bold text-[#ae904c]">$0.01</p>
                 <p className="text-xs text-white/50 uppercase tracking-wider mt-2">VIBE Price</p>
               </div>
               <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
@@ -298,7 +298,7 @@ export default function DashboardPage() {
               {/* Token Info */}
               <div className="grid grid-cols-3 gap-4 mb-12">
                 <div className="p-4 rounded-xl bg-white/5 border border-white/10 text-center">
-                  <p className="text-2xl font-bold text-[#ae904c]">$0.001</p>
+                  <p className="text-2xl font-bold text-[#ae904c]">$0.01</p>
                   <p className="text-xs text-white/50 uppercase tracking-wider mt-2">Current Price</p>
                 </div>
                 <div className="p-4 rounded-xl bg-white/5 border border-white/10 text-center">
