@@ -355,7 +355,7 @@ export default function DashboardPage() {
               </span>
             </h2>
             <p className="text-white/60 text-base mb-12 max-w-2xl mx-auto uppercase tracking-wide">
-              Join Power Club Global today. Install the dashboard, connect to the network, and start earning VIBE tokens from your device's compute power.
+              Join Power Club Global today. Install the dashboard, connect to the network, and start earning VIBE tokens from your device&apos;s compute power.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
