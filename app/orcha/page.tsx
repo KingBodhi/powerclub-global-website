@@ -11,7 +11,7 @@ const platformDownloads = [
     platform: "macOS",
     icon: "🍎",
     description: "Mac Studio, MacBook - Intel & Apple Silicon",
-    downloadUrl: "https://github.com/KingBodhi/pcg-cc-mcp/releases/download/v1.0.0-macos/orcha-macos-installer.tar.gz",
+    downloadUrl: "https://github.com/KingBodhi/pcg-cc-mcp/releases/download/v1.0.0-macos/orcha-bonomotion-macos.tar.gz",
     size: "113 MB",
     available: true,
   },
