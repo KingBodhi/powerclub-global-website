@@ -14,22 +14,25 @@ const platformDownloads = [
     downloadUrl: "https://github.com/KingBodhi/pcg-cc-mcp/releases/download/v1.0.0-macos/orcha-bonomotion-macos.tar.gz",
     size: "113 MB",
     available: true,
+    version: "v1.0.0-beta",
+  },
+  {
+    platform: "Linux",
+    icon: "🐧",
+    description: "Ubuntu 20.04+, Debian, Pop!_OS",
+    downloadUrl: "https://github.com/KingBodhi/pcg-cc-mcp/releases/download/v1.0.0-linux/orcha-linux-installer.tar.gz",
+    size: "113 MB",
+    available: true,
+    version: "v1.0.0-beta",
   },
   {
     platform: "Windows",
     icon: "🪟",
     description: "Windows 10/11 - 64-bit",
     downloadUrl: "#",
-    size: "TBA",
+    size: "Coming Soon",
     available: false,
-  },
-  {
-    platform: "Linux",
-    icon: "🐧",
-    description: "Ubuntu 20.04+, Debian, Pop!_OS",
-    downloadUrl: "#",
-    size: "TBA",
-    available: false,
+    version: "In Development",
   },
 ];
 
@@ -156,6 +159,19 @@ export default function OrchaPage() {
               </p>
             </motion.div>
 
+            {/* Beta Notice */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-8 p-4 rounded-xl bg-[#ae904c]/10 border border-[#ae904c]/30"
+            >
+              <p className="text-sm text-white/70 text-center">
+                <span className="font-semibold text-[#ae904c] uppercase tracking-wider">Beta Release</span> • ORCHA includes built-in auto-update. Run{" "}
+                <code className="text-[#ae904c] text-xs px-2 py-1 bg-black/30 rounded">orcha-update</code> to check for new versions.
+              </p>
+            </motion.div>
+
             {/* Platform Downloads */}
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               {platformDownloads.map((platform, index) => (
@@ -172,7 +188,11 @@ export default function OrchaPage() {
                     {platform.platform}
                   </h3>
                   <p className="text-sm text-white/60 mb-2 text-center">{platform.description}</p>
-                  <p className="text-xs text-white/40 mb-6 text-center">{platform.size}</p>
+                  <div className="flex items-center justify-center gap-2 mb-4">
+                    <p className="text-xs text-white/40">{platform.size}</p>
+                    <span className="text-white/20">•</span>
+                    <p className="text-xs text-[#ae904c]/60">{platform.version}</p>
+                  </div>
 
                   {platform.available ? (
                     <a
@@ -204,44 +224,57 @@ export default function OrchaPage() {
                   <Terminal className="w-6 h-6 text-[#ae904c]" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white uppercase tracking-wide">macOS Installation</h3>
-                  <p className="text-xs text-white/50 uppercase tracking-wider">Quick setup for Mac Studio & MacBook</p>
+                  <h3 className="text-lg font-semibold text-white uppercase tracking-wide">Installation Guide</h3>
+                  <p className="text-xs text-white/50 uppercase tracking-wider">Quick setup for all platforms</p>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <div className="p-4 rounded-lg bg-black/50 border border-white/10">
-                  <p className="text-sm text-white/70 mb-2 uppercase tracking-wider font-semibold">Step 1: Download & Extract</p>
-                  <code className="block font-mono text-xs text-[#ae904c]">
-                    cd ~/Downloads<br/>
-                    tar -xzf orcha-macos-installer.tar.gz<br/>
-                    cd pcg-cc-mcp
-                  </code>
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* macOS Instructions */}
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold text-[#ae904c] uppercase tracking-wider mb-3">🍎 macOS</h4>
+                  <div className="p-3 rounded-lg bg-black/50 border border-white/10">
+                    <p className="text-xs text-white/70 mb-1 uppercase tracking-wider font-semibold">Extract & Setup</p>
+                    <code className="block font-mono text-xs text-[#ae904c]">
+                      tar -xzf orcha-*-macos.tar.gz<br/>
+                      cd pcg-cc-mcp<br/>
+                      ./orcha-deployment/setup-bonomotion-macos.sh
+                    </code>
+                  </div>
+                  <div className="p-3 rounded-lg bg-black/50 border border-white/10">
+                    <p className="text-xs text-white/70 mb-1 uppercase tracking-wider font-semibold">Start Services</p>
+                    <code className="block font-mono text-xs text-[#ae904c]">
+                      launchctl load ~/Library/LaunchAgents/com.powerclubglobal.*.plist
+                    </code>
+                  </div>
                 </div>
 
-                <div className="p-4 rounded-lg bg-black/50 border border-white/10">
-                  <p className="text-sm text-white/70 mb-2 uppercase tracking-wider font-semibold">Step 2: Run Setup</p>
-                  <code className="block font-mono text-xs text-[#ae904c]">
-                    chmod +x orcha-deployment/setup-bonomotion-macos.sh<br/>
-                    ./orcha-deployment/setup-bonomotion-macos.sh
-                  </code>
+                {/* Linux Instructions */}
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold text-[#ae904c] uppercase tracking-wider mb-3">🐧 Linux</h4>
+                  <div className="p-3 rounded-lg bg-black/50 border border-white/10">
+                    <p className="text-xs text-white/70 mb-1 uppercase tracking-wider font-semibold">Extract & Setup</p>
+                    <code className="block font-mono text-xs text-[#ae904c]">
+                      tar -xzf orcha-linux-installer.tar.gz<br/>
+                      cd pcg-cc-mcp<br/>
+                      ./orcha-deployment/setup-linux.sh
+                    </code>
+                  </div>
+                  <div className="p-3 rounded-lg bg-black/50 border border-white/10">
+                    <p className="text-xs text-white/70 mb-1 uppercase tracking-wider font-semibold">Start Services</p>
+                    <code className="block font-mono text-xs text-[#ae904c]">
+                      systemctl --user enable orcha.service<br/>
+                      systemctl --user start orcha.service
+                    </code>
+                  </div>
                 </div>
+              </div>
 
-                <div className="p-4 rounded-lg bg-black/50 border border-white/10">
-                  <p className="text-sm text-white/70 mb-2 uppercase tracking-wider font-semibold">Step 3: Start Services</p>
-                  <code className="block font-mono text-xs text-[#ae904c]">
-                    launchctl load ~/Library/LaunchAgents/com.powerclubglobal.apn-node.plist<br/>
-                    launchctl load ~/Library/LaunchAgents/com.powerclubglobal.orcha.plist
-                  </code>
-                </div>
-
-                <div className="p-4 rounded-lg bg-black/50 border border-white/10">
-                  <p className="text-sm text-white/70 mb-2 uppercase tracking-wider font-semibold">Step 4: Access Dashboard</p>
-                  <code className="block font-mono text-xs text-[#ae904c]">
-                    http://localhost:3000<br/>
-                    http://&lt;your-mac-ip&gt;:3000 (from other devices)
-                  </code>
-                </div>
+              <div className="mt-4 p-4 rounded-lg bg-black/50 border border-white/10">
+                <p className="text-sm text-white/70 mb-1 uppercase tracking-wider font-semibold">Access Dashboard</p>
+                <code className="block font-mono text-xs text-[#ae904c]">
+                  http://localhost:3000
+                </code>
               </div>
 
               <div className="mt-6 p-4 rounded-lg bg-[#ae904c]/10 border border-[#ae904c]/30">
